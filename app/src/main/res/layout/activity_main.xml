@@ -52,7 +52,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/cubes"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mint"
+        app:layout_constraintTop_toBottomOf="@+id/drink1"
         app:srcCompat="@drawable/mocktail" />
 
     <ImageView
@@ -93,16 +93,33 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="200dp"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="509dp"
+        android:layout_marginEnd="571dp"
         android:layout_marginBottom="625dp"
         android:text="Chose your drink"
         android:textAlignment="center"
         android:textColor="@color/darkBeige"
         android:textSize="28sp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/drink1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title" />
+
+    <ImageView
+        android:id="@+id/drink1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="160dp"
+        android:layout_marginEnd="288dp"
+        android:layout_marginBottom="428dp"
+        app:layout_constraintBottom_toTopOf="@+id/cocktail"
+        app:layout_constraintEnd_toStartOf="@+id/textView2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/drink" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
