@@ -4,122 +4,149 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:alpha="0.7"
-    android:background="@drawable/background"
+    android:background="@color/ligthBeige"
     tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/title"
-        android:layout_width="1283dp"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="1dp"
-        android:layout_marginBottom="71dp"
-        android:alpha="0.8"
-        android:background="#F2F0D1"
+        android:layout_marginBottom="679dp"
+        android:background="@color/darkBeige"
         android:fontFamily="@font/share_regular"
         android:paddingTop="15dp"
         android:shadowColor="@color/black"
         android:text="Drink Master"
         android:textAlignment="center"
+
         android:textColor="@color/white"
         android:textSize="48sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView2"
+        app:layout_constraintBottom_toTopOf="@+id/imageView6"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.333"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.001" />
+        tools:ignore="TextContrastCheck" />
 
     <ImageView
         android:id="@+id/mint"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="3dp"
+
         android:layout_marginTop="1dp"
-        android:layout_marginEnd="1063dp"
-        android:layout_marginBottom="631dp"
-        app:layout_constraintBottom_toTopOf="@+id/cocktail"
+        android:layout_marginEnd="1066dp"
+        android:layout_marginBottom="13dp"
+        app:layout_constraintBottom_toBottomOf="@+id/title"
         app:layout_constraintEnd_toStartOf="@+id/imageView4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/mint" />
 
-    <ImageView
-        android:id="@+id/cocktail"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginEnd="1068dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/cubes"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/drink1"
-        app:srcCompat="@drawable/mocktail" />
-
-    <ImageView
-        android:id="@+id/cubes"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginBottom="1dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/cocktail"
-        app:layout_constraintTop_toBottomOf="@+id/imageView4"
-        app:srcCompat="@drawable/ice" />
 
     <ImageView
         android:id="@+id/imageView4"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginBottom="630dp"
-        app:layout_constraintBottom_toTopOf="@+id/cubes"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="352dp"
+        app:layout_constraintBottom_toTopOf="@+id/imageView5"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/mint"
+        app:layout_constraintStart_toEndOf="@+id/tonic_text"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/lemon" />
 
     <ImageView
         android:id="@+id/imageView5"
-        android:layout_width="0dp"
-        android:layout_height="101dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="280dp"
-        android:layout_marginEnd="7dp"
-        app:layout_constraintEnd_toEndOf="@+id/title"
-        app:layout_constraintStart_toStartOf="@+id/cubes"
+        android:layout_width="118dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="376dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/imageView4"
         app:layout_constraintTop_toBottomOf="@+id/imageView4"
         app:srcCompat="@drawable/right_arrow" />
 
     <TextView
-        android:id="@+id/textView2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="509dp"
-        android:layout_marginEnd="571dp"
-        android:layout_marginBottom="625dp"
-        android:text="Chose your drink"
+        android:id="@+id/tonic_text"
+        android:layout_width="123dp"
+        android:layout_height="82dp"
+        android:layout_marginStart="550dp"
+        android:layout_marginEnd="467dp"
+        android:layout_marginBottom="159dp"
+        android:fontFamily="@font/share_regular"
+        android:shadowColor="@color/text_shadow_black"
+        android:shadowDx="3"
+        android:shadowDy="3"
+        android:shadowRadius="1"
+        android:text="Gin n Tonic"
         android:textAlignment="center"
-        android:textColor="@color/darkBeige"
+        android:textColor="@color/black"
         android:textSize="28sp"
+        app:layout_constraintBottom_toTopOf="@+id/imageView5"
+        app:layout_constraintEnd_toStartOf="@+id/imageView4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="0dp"
+        android:layout_height="125dp"
+        android:layout_marginStart="9dp"
+        android:layout_marginEnd="9dp"
+        android:layout_marginBottom="3dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/drink1"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/imageView6"
+        app:layout_constraintStart_toStartOf="@+id/imageView5"
+        app:layout_constraintTop_toBottomOf="@+id/imageView5"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/ice" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="1070dp"
+        android:layout_marginBottom="3dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imageView3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        app:srcCompat="@drawable/mocktail" />
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="471dp"
+        android:layout_height="433dp"
+        android:layout_marginStart="39dp"
+        android:layout_marginTop="92dp"
+        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/tonic_text"
+        app:srcCompat="@drawable/gin" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="441dp"
+        android:layout_height="436dp"
+        android:layout_marginStart="109dp"
+        android:layout_marginTop="190dp"
+        android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+        android:textSize="28sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title" />
 
     <ImageView
-        android:id="@+id/drink1"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="70dp"
-        android:layout_marginTop="160dp"
-        android:layout_marginEnd="288dp"
-        android:layout_marginBottom="428dp"
-        app:layout_constraintBottom_toTopOf="@+id/cocktail"
-        app:layout_constraintEnd_toStartOf="@+id/textView2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/drink" />
+        android:id="@+id/imageView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="343dp"
+        android:layout_marginEnd="334dp"
+        android:layout_marginBottom="3dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imageView3"
+        app:layout_constraintStart_toEndOf="@+id/imageView6"
+        app:srcCompat="@drawable/order" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
