@@ -7,7 +7,6 @@
     android:background="@color/ligthBeige"
     tools:context=".Rum_coke">
 
-
     <TextView
         android:id="@+id/title"
         android:layout_width="0dp"
@@ -20,7 +19,6 @@
         android:shadowColor="@color/black"
         android:text="Drink Master"
         android:textAlignment="center"
-
         android:textColor="@color/white"
         android:textSize="48sp"
         app:layout_constraintBottom_toTopOf="@+id/imageView6"
@@ -33,7 +31,6 @@
         android:id="@+id/mint"
         android:layout_width="0dp"
         android:layout_height="0dp"
-
         android:layout_marginTop="1dp"
         android:layout_marginEnd="1066dp"
         android:layout_marginBottom="13dp"
@@ -42,7 +39,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/mint" />
-
 
     <ImageView
         android:id="@+id/imageView4"
