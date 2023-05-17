@@ -4,17 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:alpha="0.7"
+    android:alpha="0.9"
     android:background="@drawable/background"
     tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/title"
         android:layout_width="1283dp"
-        android:layout_height="0dp"
+        android:layout_height="110dp"
         android:layout_marginTop="1dp"
         android:layout_marginBottom="71dp"
-        android:alpha="0.8"
+
         android:background="#F2F0D1"
         android:fontFamily="@font/share_regular"
         android:paddingTop="15dp"
@@ -110,16 +110,40 @@
 
     <ImageView
         android:id="@+id/drink1"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="186dp"
+        android:layout_height="138dp"
         android:layout_marginStart="70dp"
         android:layout_marginTop="160dp"
         android:layout_marginEnd="288dp"
         android:layout_marginBottom="428dp"
         app:layout_constraintBottom_toTopOf="@+id/cocktail"
         app:layout_constraintEnd_toStartOf="@+id/textView2"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/drink" />
+
+    <ImageView
+        android:id="@+id/drink1"
+        android:layout_width="186dp"
+        android:layout_height="138dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="160dp"
+        android:layout_marginEnd="288dp"
+        android:layout_marginBottom="428dp"
+        app:layout_constraintBottom_toTopOf="@+id/cocktail"
+        app:layout_constraintEnd_toStartOf="@+id/textView2"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/drink" />
+
+    <ImageView
+        android:id="@+id/drink2"
+        android:layout_width="241dp"
+        android:layout_height="202dp"
+        app:srcCompat="@drawable/drink"
+        tools:layout_editor_absoluteX="888dp"
+        tools:layout_editor_absoluteY="427dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
