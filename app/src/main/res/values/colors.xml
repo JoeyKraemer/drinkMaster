@@ -3,4 +3,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="darkBeige">#D5BEAA</color>
+    <color name="text_shadow_black">#FF000000</color>
+    <color name="ligthBeige">#F9F6EE</color>
 </resources>
