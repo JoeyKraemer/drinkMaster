@@ -1,4 +1,4 @@
-package com.example.AndroidApp
+package com.example.tileandbackground
 
 import org.junit.Test
 
