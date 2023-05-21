@@ -2,6 +2,8 @@ package com.example.tileandbackground
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.ContextMenu
+import android.view.View
 import android.widget.ImageView
 
 class MainActivity : AppCompatActivity() {
@@ -16,8 +18,16 @@ class MainActivity : AppCompatActivity() {
             //what should it do
             setContentView(R.layout.activity_main)
         }
+
+        val popUp = findViewById(R.id.popUpRumPage) as ImageView
+
     }
 
+    override fun onCreateContextMenu(menu: ContextMenu?, v: View?, menuInfo: ContextMenu.ContextMenuInfo?) {
+        super.onCreateContextMenu(menu, v, menuInfo)
+        menuInflater.inflate(R.menu.popup)
+    }
 }
+
 
 
