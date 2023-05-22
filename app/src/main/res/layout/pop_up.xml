@@ -20,8 +20,18 @@
 
     <Button
         android:id="@+id/button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@st"
+        android:layout_width="187dp"
+        android:layout_height="65dp"
+        android:background="#F9F6EE"
+        android:layout_marginTop="150dp"
+        android:layout_marginLeft="480dp"
         android:text="No" />
+
+    <Button
+        android:id="@+id/buttonYes"
+        android:layout_width="187dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="-60dp"
+        android:layout_marginLeft="50dp"
+        android:text="Yes" />
 </LinearLayout>
