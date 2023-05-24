@@ -13,8 +13,12 @@
         android:theme="@style/Theme.TileAndBackground"
         tools:targetApi="31">
         <activity
-            android:name=".Rum_coke"
-            android:exported="false" />
+
+            android:name=".ok_box"
+            android:exported="false"
+            android:label="@string/title_activity_ok_box"
+            android:theme="@style/Theme.TileAndBackground" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true">

@@ -12,7 +12,11 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="1dp"
+<<<<<<< HEAD
+        android:layout_marginBottom="658dp"
+=======
         android:layout_marginBottom="679dp"
+>>>>>>> origin/development-app
         android:background="@color/darkBeige"
         android:fontFamily="@font/share_regular"
         android:paddingTop="15dp"
@@ -22,7 +26,11 @@
 
         android:textColor="@color/white"
         android:textSize="48sp"
+<<<<<<< HEAD
+        app:layout_constraintBottom_toTopOf="@+id/imageButton"
+=======
         app:layout_constraintBottom_toTopOf="@+id/imageView6"
+>>>>>>> origin/development-app
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -32,7 +40,10 @@
         android:id="@+id/mint"
         android:layout_width="0dp"
         android:layout_height="0dp"
+<<<<<<< HEAD
+=======
 
+>>>>>>> origin/development-app
         android:layout_marginTop="1dp"
         android:layout_marginEnd="1066dp"
         android:layout_marginBottom="13dp"
@@ -49,14 +60,22 @@
         android:layout_height="0dp"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="352dp"
+<<<<<<< HEAD
+        app:layout_constraintBottom_toTopOf="@+id/arrowChangePage"
+=======
         app:layout_constraintBottom_toTopOf="@+id/imageView5"
+>>>>>>> origin/development-app
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/tonic_text"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/lemon" />
 
     <ImageView
+<<<<<<< HEAD
+        android:id="@+id/arrowChangePage"
+=======
         android:id="@+id/imageView5"
+>>>>>>> origin/development-app
         android:layout_width="118dp"
         android:layout_height="0dp"
         android:layout_marginBottom="376dp"
@@ -81,7 +100,11 @@
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="28sp"
+<<<<<<< HEAD
+        app:layout_constraintBottom_toTopOf="@+id/arrowChangePage"
+=======
         app:layout_constraintBottom_toTopOf="@+id/imageView5"
+>>>>>>> origin/development-app
         app:layout_constraintEnd_toStartOf="@+id/imageView4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title"
@@ -98,13 +121,29 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/imageView6"
+<<<<<<< HEAD
+        app:layout_constraintStart_toStartOf="@+id/arrowChangePage"
+        app:layout_constraintTop_toBottomOf="@+id/arrowChangePage"
+=======
         app:layout_constraintStart_toStartOf="@+id/imageView5"
         app:layout_constraintTop_toBottomOf="@+id/imageView5"
+>>>>>>> origin/development-app
         app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/ice" />
 
     <ImageView
         android:id="@+id/imageView6"
+<<<<<<< HEAD
+        android:layout_width="95dp"
+        android:layout_height="114dp"
+        android:layout_marginEnd="362dp"
+        android:layout_marginBottom="3dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imageButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        app:layout_constraintVertical_bias="1.0"
+=======
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginEnd="1070dp"
@@ -113,6 +152,7 @@
         app:layout_constraintEnd_toStartOf="@+id/imageView3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title"
+>>>>>>> origin/development-app
         app:srcCompat="@drawable/mocktail" />
 
     <ImageView
@@ -136,6 +176,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title" />
 
+<<<<<<< HEAD
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="400dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView6"
+        app:layout_constraintTop_toBottomOf="@+id/title"
+=======
     <ImageView
         android:id="@+id/imageView8"
         android:layout_width="wrap_content"
@@ -146,6 +197,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/imageView3"
         app:layout_constraintStart_toEndOf="@+id/imageView6"
+>>>>>>> origin/development-app
         app:srcCompat="@drawable/order" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
