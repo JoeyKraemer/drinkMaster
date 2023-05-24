@@ -11,6 +11,7 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.PopupMenu
 import androidx.appcompat.app.AlertDialog
+import androidx.compose.ui.graphics.Color
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding : Activity
@@ -37,12 +38,16 @@ class MainActivity : AppCompatActivity() {
         showPopUp.setOnClickListener{
             showPop()
 
+        //get reference to Image
+        val arrow = findViewById(R.id.arrowChangePage) as ImageView
+        //click Listener
+        arrow.setOnClickListener{
+            //what should it do
+            setContentView(R.layout.activity_main)
+
         }
 
-
-
-
-
+    }
     }
 
 
@@ -54,8 +59,10 @@ class MainActivity : AppCompatActivity() {
        val dialog = builder.create()
 
         dialog.show()
-    }
-}
 
+    }
+
+
+}
 
 

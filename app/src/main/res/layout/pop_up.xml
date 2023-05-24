@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="740dp"
     android:layout_height="470dp"
     android:layout_gravity="center"
@@ -7,13 +8,12 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/mainText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="80dp"
         android:layout_marginTop="80dp"
         android:baselineAligned="false"
-        android:fontFamily="@font/share_regular"
         android:text="Are you sure you want drink x"
         android:textColor="@color/white"
         android:textSize="50dp" />
@@ -21,17 +21,41 @@
     <Button
         android:id="@+id/button"
         android:layout_width="187dp"
+        android:fontFamily="@font/share_regular"
         android:layout_height="65dp"
-        android:background="#F9F6EE"
-        android:layout_marginTop="150dp"
         android:layout_marginLeft="480dp"
-        android:text="No" />
+        android:layout_marginTop="150dp"
+        android:backgroundTint="#F9F6EE"
+        android:text="No"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/black"
+        app:cornerRadius="0dp" />
 
     <Button
         android:id="@+id/buttonYes"
         android:layout_width="187dp"
         android:layout_height="65dp"
-        android:layout_marginTop="-60dp"
         android:layout_marginLeft="50dp"
-        android:text="Yes" />
+        android:layout_marginTop="-60dp"
+        android:backgroundTint="#F9F6EE"
+        android:text="Yes"
+        android:fontFamily="@font/share_regular"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/black"
+        app:cornerRadius="0dp" />
+
+    <ImageView
+        android:id="@+id/lemon"
+        android:layout_width="85dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="630dp"
+        app:srcCompat="@drawable/lemon" />
+
+    <ImageView
+        android:id="@+id/mocktail"
+        android:layout_width="98dp"
+        android:layout_height="112dp"
+        android:layout_marginTop="-470dp"
+        app:srcCompat="@drawable/mocktail" />
+
 </LinearLayout>
