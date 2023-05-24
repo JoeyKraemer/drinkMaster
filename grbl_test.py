@@ -56,8 +56,8 @@ for line in f:
     l = line.strip() # Strip all EOL characters for consistency
     print ('Sending: ') 
     print (l)
+    l = l + '\n'
     s.write(l.encode())
-    s.write('\n') # Send g-code block to grbl
     grbl_out = s.readline() # Wait for grbl response with carriage return
     print(' : ') 
     print(grbl_out.strip())
