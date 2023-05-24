@@ -19,7 +19,6 @@
         android:shadowColor="@color/black"
         android:text="Drink Master"
         android:textAlignment="center"
-
         android:textColor="@color/white"
         android:textSize="48sp"
         app:layout_constraintBottom_toTopOf="@+id/imageButton"
