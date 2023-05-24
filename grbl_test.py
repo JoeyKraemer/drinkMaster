@@ -59,11 +59,8 @@ for line in f:
     l = l + '\n'
     s.write(l.encode())
     grbl_out = s.readline() # Wait for grbl response with carriage return
-    print(' : ') 
+    print('Response: ') 
     print(grbl_out.strip())
-
-# Wait here until grbl is finished to close serial port and file.
-# raw_input("  Press <Enter> to exit and disable grbl.") 
 
 # Close file and serial port
 f.close()
