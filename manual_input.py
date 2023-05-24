@@ -5,7 +5,8 @@ import time
 s = serial.Serial('/dev/ttyUSB0',115200)
 
 # Wake up grbl
-s.write("\r\n\r\n")
+a = "\r\n\r\n"
+s.write(a.encode())
 time.sleep(2)   # Wait for grbl to initialize 
 s.flushInput()  # Flush startup text in serial input
 
