@@ -13,7 +13,7 @@ import androidx.compose.ui.graphics.Color
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_rum_coke)
 
         //get reference to Image
         val arrow = findViewById(R.id.arrowChangePage) as ImageView
