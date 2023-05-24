@@ -18,4 +18,4 @@ while gcode != "q":
     if gcode == "q":
         break
     else:
-        s.write(gcode);
+        s.write(gcode.encode());
