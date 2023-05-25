@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         //click Listener
         arrow.setOnClickListener {
             //what should it do
-            setContentView(R.layout.activity_rum_coke)
+            setContentView(R.layout.activity_main)
         }
 
         var showPopUp = findViewById<ImageButton>(R.id.imageButton)
@@ -42,6 +42,8 @@ class MainActivity : AppCompatActivity() {
                 setContentView(R.layout.activity_main)
             }
         }
+
+
     }
 
     private fun showPop() {
@@ -50,6 +52,15 @@ class MainActivity : AppCompatActivity() {
         builder.setView(customView)
         val dialog = builder.create()
         dialog.show()
+        val noButton = customView.findViewById(R.id.button) as Button
+        val yesButton = customView.findViewById(R.id.buttonYes) as Button
+        yesButton.setOnClickListener{
+            dialog.hide()
+            confirmationPopUp()
+        }
+        noButton.setOnClickListener{
+            dialog.hide()
+       }
     }
 
     private fun confirmationPopUp() {
@@ -58,6 +69,10 @@ class MainActivity : AppCompatActivity() {
         builder.setView(customView)
         val dialog = builder.create()
         dialog.show()
+        customView.postDelayed({
+            dialog.hide()
+           finishedPopUpBox()
+        },10000)
     }
 
     private fun finishedPopUpBox() {
@@ -66,7 +81,10 @@ class MainActivity : AppCompatActivity() {
         builder.setView(customView)
         val dialog = builder.create()
         dialog.show()
+        customView.postDelayed(
+            {dialog.hide()},5000)
     }
+
 }
 
 

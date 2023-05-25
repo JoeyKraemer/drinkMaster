@@ -20,6 +20,7 @@
 
     <Button
         android:id="@+id/button"
+        android:clickable="true"
         android:layout_width="187dp"
         android:fontFamily="@font/share_regular"
         android:layout_height="65dp"
@@ -33,6 +34,7 @@
 
     <Button
         android:id="@+id/buttonYes"
+        android:clickable="true"
         android:layout_width="187dp"
         android:layout_height="65dp"
         android:layout_marginLeft="50dp"
