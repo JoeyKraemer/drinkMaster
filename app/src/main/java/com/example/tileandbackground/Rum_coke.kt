@@ -9,13 +9,9 @@ class Rum_coke : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_rum_coke)
-
-
         var backPage = findViewById(R.id.backPage) as ImageView
-
         backPage.setOnClickListener{
             setContentView(R.layout.activity_main)
         }
-
     }
 }
