@@ -62,6 +62,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+
     private fun showPop() {
         val builder = AlertDialog.Builder(this)
         val customView = LayoutInflater.from(this).inflate(R.layout.pop_up, null)
