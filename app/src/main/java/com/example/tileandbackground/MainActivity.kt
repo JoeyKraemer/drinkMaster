@@ -1,6 +1,7 @@
 package com.example.tileandbackground
 
 import android.app.Activity
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.ContextMenu
@@ -15,6 +16,7 @@ import androidx.compose.ui.graphics.Color
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: Activity
+    var drinkValues = ArrayList<Int>(4)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -27,10 +29,17 @@ class MainActivity : AppCompatActivity() {
         }
 
         var showPopUp = findViewById<ImageButton>(R.id.imageButton)
+
+        for(i in drinkValues.indices){  //placeholder
+            drinkValues[i] = 0
+        }
+
+        /*
         var countMocktail = 0
         var countRumCoke = 0
         var countLemonade = 0
         var countCokeLemon = 0
+        */
 
         showPopUp.setOnClickListener {
             showPop()
@@ -41,6 +50,13 @@ class MainActivity : AppCompatActivity() {
                 //what should it do
                 setContentView(R.layout.activity_main)
             }
+        }
+
+        val mintIcon = findViewById<ImageView>(R.id.mint)
+        mintIcon.setOnClickListener{ view ->
+            val intent = Intent(this@MainActivity, AdminActivity::class.java)
+            intent.putExtra("drinkValues", drinkValues)
+            startActivity(intent);
         }
 
 
@@ -84,6 +100,8 @@ class MainActivity : AppCompatActivity() {
         customView.postDelayed(
             {dialog.hide()},5000)
     }
+
+
 
 }
 

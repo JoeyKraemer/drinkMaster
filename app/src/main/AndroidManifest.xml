@@ -12,6 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TileAndBackground"
         tools:targetApi="31">
+
+        <activity android:name=".AdminActivity"></activity>
         <activity
 
             android:name=".ok_box"
