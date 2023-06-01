@@ -1,8 +1,7 @@
-package com.example.tileandbackground
+package com.example.ProjectDrinkMaster
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ImageButton
 import android.widget.ImageView
 
 class Rum_coke : AppCompatActivity() {

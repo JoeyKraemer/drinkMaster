@@ -10,14 +10,14 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.TileAndBackground"
+        android:theme="@style/Theme.ProjectDrinkMaster"
         tools:targetApi="31">
         <activity
 
             android:name=".ok_box"
             android:exported="false"
             android:label="@string/title_activity_ok_box"
-            android:theme="@style/Theme.TileAndBackground" />
+            android:theme="@style/Theme.ProjectDrinkMaster" />
 
         <activity
             android:name=".MainActivity"

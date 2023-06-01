@@ -1,4 +1,4 @@
-package com.example.tileandbackground.ui.theme
+package com.example.ProjectDrinkMaster.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

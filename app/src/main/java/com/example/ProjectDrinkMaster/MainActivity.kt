@@ -1,17 +1,13 @@
-package com.example.tileandbackground
+package com.example.ProjectDrinkMaster
 
 import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.ContextMenu
 import android.view.LayoutInflater
-import android.view.View
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
-import android.widget.PopupMenu
 import androidx.appcompat.app.AlertDialog
-import androidx.compose.ui.graphics.Color
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: Activity
