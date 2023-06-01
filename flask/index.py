@@ -13,8 +13,10 @@ def index():
 		grbl()
 		return render_template("index.html")
 	elif request.method == "GET":
-		arg = request.args["hello"];
-		return render_template("hello.html")
+		if request.args.get("hello"):
+			return render_template("hello.html")
+		else:
+			return render_template("index.html")
 	
 
 	 
