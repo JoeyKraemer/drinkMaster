@@ -55,18 +55,17 @@ def main():
 
 # Stream g-code to grbl
 	for line in f:
-    		l = line.strip() # Strip all EOL characters for consistency
-    		print ('Sending: ') 
-    		print (l)
-    		l = l + '\n'
-    		s.write(l.encode())
-    		grbl_out = s.readline() # Wait for grbl response with carriage return
-    		print('Response: ') 
-    		print(grbl_out.strip())
+    	l = line.strip() # Strip all EOL characters for consistency
+    	print ('Sending: ') 
+    	print (l)
+    	l = l + '\n'
+    	s.write(l.encode())
+    	grbl_out = s.readline() # Wait for grbl response with carriage return
+    	print('Response: ') 
+    	print(grbl_out.strip())
 
 # Close file and serial port
-	f.close()
-	s.close()    
+s.close()    
 
 if __name__ == "__main__":
 	main()
