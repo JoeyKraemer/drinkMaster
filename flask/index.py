@@ -11,11 +11,11 @@ app = Flask(__name__)
 def index():
 	if request.method == "POST":
 		grbl()
-	
+		return render_template("index.html")
 	elif request.method == "GET":
 		arg = request.args["hello"];
-		print(f"<p> {arg} </p>");
-	return render_template("index.html")
+		return render_template("hello.html")
+	
 
 	 
 
