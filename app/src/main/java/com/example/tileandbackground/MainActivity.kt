@@ -70,9 +70,6 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra("drinkValues", drinkValues)
             startActivity(intent);
         }
-
-        Log.d("networkRequest","right before sending post request")
-
     }
 
 
@@ -115,10 +112,8 @@ class MainActivity : AppCompatActivity() {
             {dialog.hide()},5000)
     }
 
-
-    // reads entire page
-    private fun readURLPage(page: String) : String{
-        return URL("$url$page").readText()
+    private fun sendServerRequest(key: String, value: String){
+        sendRequest(url, key, value).execute()
     }
 }
 

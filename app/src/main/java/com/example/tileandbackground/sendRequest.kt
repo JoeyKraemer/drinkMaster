@@ -8,6 +8,7 @@ import java.io.InputStreamReader
 import java.net.HttpURLConnection
 import java.net.URL
 
+// task to send something to a webpage
 class sendRequest (url: String, key: String, value: String) : AsyncTask<Void, Void, String>() {
     val url = URL("$url?$key=$value")
 

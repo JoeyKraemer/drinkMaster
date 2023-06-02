@@ -2,13 +2,14 @@ package com.example.tileandbackground
 
 import android.os.Bundle
 import android.os.PersistableBundle
+import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import kotlin.random.Random
 
 class AdminActivity : AppCompatActivity() {
-
+    val url = "http://192.168.0.102:5000/"
 
 
     // size of graph in dp
@@ -91,5 +92,10 @@ class AdminActivity : AppCompatActivity() {
         }
 
         return sizes
+    }
+
+    private fun readPage(): String{
+        var hello = readRequest(url,"").execute().get()
+        return hello
     }
 }
