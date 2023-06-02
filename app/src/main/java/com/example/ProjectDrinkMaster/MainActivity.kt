@@ -110,17 +110,7 @@ class MainActivity : AppCompatActivity() {
             {dialog.hide()},5000)
     }
 
-    private fun getImageArray() : ArrayList<String>{
 
-        imageId = arrayOf(  R.drawable.gin,
-            R.drawable.lemon,
-            R.drawable.coke,
-            R.drawable.rum
-        )
-        for (i int s){
-            list
-        }
-    }
 
 }
 
