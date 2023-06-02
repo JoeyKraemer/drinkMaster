@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="102dp"
+        android:fontFamily="@font/share_regular"
+        android:text="Drink Master"
+        android:textSize="70sp"
+        android:textStyle="normal"
+        android:shadowColor="@color/text_shadow_black"
+        android:shadowDx="3"
+        android:shadowDy="3"
+        android:shadowRadius="1"
+
+        />
+
+</LinearLayout>
