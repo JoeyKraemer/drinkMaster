@@ -26,4 +26,28 @@
         android:layout_height="100dp"
         app:srcCompat="@drawable/logo" />
 
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="191dp"
+        android:layout_height="wrap_content"
+        android:text="Button" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="191dp"
+        android:layout_height="wrap_content"
+        android:text="Button" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="191dp"
+        android:layout_height="wrap_content"
+        android:text="Button" />
+
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="948dp"
+        android:layout_height="340dp"
+        app:srcCompat="@drawable/rum" />
+
 </LinearLayout>
