@@ -16,7 +16,7 @@ class CustomAdapter(private val mList: List<ItemsViewModel>) : RecyclerView.Adap
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomAdapter.ViewHolder {
         TODO("Not yet implemented")
         //infales the card_view_desgin view
-        val view = LayoutInflater.from(parent.context).inflate()
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.recycler_view,parent,false)
 
         return ViewHolder(view)
     }
