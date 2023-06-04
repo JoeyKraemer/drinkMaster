@@ -21,7 +21,7 @@
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="48sp"
-        app:layout_constraintBottom_toTopOf="@+id/backPage"
+        app:layout_constraintBottom_toTopOf="@+id/arrowChangePageLeft"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -46,25 +46,25 @@
         android:layout_height="52dp"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="352dp"
-        app:layout_constraintBottom_toTopOf="@+id/arrowChangePage"
+        app:layout_constraintBottom_toTopOf="@+id/arrowChangePageRigth"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tonic_text"
+        app:layout_constraintStart_toEndOf="@+id/ginTonicText"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/lemon" />
 
     <ImageView
-        android:id="@+id/arrowChangePage"
+        android:id="@+id/arrowChangePageRigth"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="376dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/backPage"
+        app:layout_constraintStart_toEndOf="@+id/arrowChangePageLeft"
         app:layout_constraintTop_toBottomOf="@+id/imageView4"
         app:srcCompat="@drawable/right_arrow" />
 
     <TextView
-        android:id="@+id/tonic_text"
+        android:id="@+id/ginTonicText"
         android:layout_width="123dp"
         android:layout_height="82dp"
         android:layout_marginStart="550dp"
@@ -79,7 +79,7 @@
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="28sp"
-        app:layout_constraintBottom_toTopOf="@+id/arrowChangePage"
+        app:layout_constraintBottom_toTopOf="@+id/arrowChangePageRigth"
         app:layout_constraintEnd_toStartOf="@+id/imageView4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title"
@@ -96,8 +96,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/imageView6"
-        app:layout_constraintStart_toStartOf="@+id/arrowChangePage"
-        app:layout_constraintTop_toBottomOf="@+id/arrowChangePage"
+        app:layout_constraintStart_toStartOf="@+id/arrowChangePageRigth"
+        app:layout_constraintTop_toBottomOf="@+id/arrowChangePageRigth"
         app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/ice" />
 
@@ -116,7 +116,7 @@
         app:srcCompat="@drawable/mocktail" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/ginText"
         android:layout_width="493dp"
         android:layout_height="403dp"
         android:layout_marginStart="109dp"
@@ -127,7 +127,7 @@
         app:layout_constraintTop_toBottomOf="@+id/title" />
 
     <ImageView
-        android:id="@+id/popUp"
+        android:id="@+id/placeOrder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="343dp"
@@ -139,17 +139,17 @@
         app:srcCompat="@drawable/order" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/rumCokePicture"
         android:layout_width="465dp"
         android:layout_height="393dp"
         android:layout_marginTop="100dp"
         android:layout_marginEnd="41dp"
-        app:layout_constraintEnd_toStartOf="@+id/arrowChangePage"
-        app:layout_constraintTop_toBottomOf="@+id/tonic_text"
+        app:layout_constraintEnd_toStartOf="@+id/arrowChangePageRigth"
+        app:layout_constraintTop_toBottomOf="@+id/ginTonicText"
         app:srcCompat="@drawable/rum" />
 
     <ImageView
-        android:id="@+id/backPage"
+        android:id="@+id/arrowChangePageLeft"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginEnd="1070dp"
@@ -157,7 +157,7 @@
         android:clickable="true"
         android:rotation="180"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/arrowChangePage"
+        app:layout_constraintEnd_toStartOf="@+id/arrowChangePageRigth"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title"
         app:srcCompat="@drawable/right_arrow" />

@@ -11,17 +11,36 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="ac3b4eea-662e-41fc-a573-bfd99551fb88" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/ProjectDrinkMaster/CustomAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/ProjectDrinkMaster/CustomAdapter.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/list_item.xml" beforeDir="false" />
+=======
+    <list default="true" id="5e4b92da-f5ca-4891-930d-fd7884d05390" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/ProjectDrinkMaster/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/ProjectDrinkMaster/MainActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/ProjectDrinkMaster/Rum_coke.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/ProjectDrinkMaster/Rum_coke.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_rum_coke.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_rum_coke.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/gin_tonic.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/gin_tonic.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/gintonic.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/gintonic.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/recycler_view.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/recycler_view.xml" afterDir="false" />
+>>>>>>> fd7e1f94e330e32ebcf38f4712ad952909163c5b
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+<<<<<<< HEAD
   <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\berna\.android\avd\Pixel_C_API_33.avd]" />
+=======
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\hakan\.android\avd\Pixel_C_API_33.avd]" />
+>>>>>>> fd7e1f94e330e32ebcf38f4712ad952909163c5b
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -56,12 +75,22 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+<<<<<<< HEAD
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.cidr.known.project.marker": "true",
     "cidr.known.project.marker": "true",
     "last_opened_file_path": "C:/Users/hakan/OneDrive/Documents/GitHub/drinkMaster",
     "settings.editor.selected.configurable": "preferences.lookFeel"
+=======
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "cidr.known.project.marker": "true",
+    "last_opened_file_path": "C:/Users/hakan/OneDrive/Documents/GitHub/drinkMaster"
+>>>>>>> fd7e1f94e330e32ebcf38f4712ad952909163c5b
   }
 }]]></component>
   <component name="RunManager">
@@ -145,6 +174,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1685619923838</updated>
+      <workItem from="1685897889608" duration="4000" />
     </task>
     <servers />
   </component>

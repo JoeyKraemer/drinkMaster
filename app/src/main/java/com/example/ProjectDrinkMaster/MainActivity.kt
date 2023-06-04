@@ -1,9 +1,6 @@
 package com.example.ProjectDrinkMaster
 
 import  android.app.Activity
-import android.content.Intent
-import android.os.AsyncTask
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -28,19 +25,19 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         //get reference to Image
-        val arrow = findViewById<ImageView>(R.id.arrowChangePage)
+        val arrow = findViewById<ImageView>(R.id.arrowChangePageRigth)
         //click Listener
         arrow.setOnClickListener {
             //what should it do
             setContentView(R.layout.activity_main)
         }
 
-        var showPopUp = findViewById<ImageButton>(R.id.imageButton)
+        var showPopUp = findViewById<ImageButton>(R.id.orderButton)
         var countMocktail = 0
         var countRumCoke = 0
         var countLemonade = 0
         var countCokeLemon = 0
-        val imageToChange = findViewById(R.id.imageView7) as ImageView
+        val imageToChange = findViewById(R.id.ginPicture) as ImageView
 
         //defining values of what can be in each array
 
@@ -64,7 +61,7 @@ class MainActivity : AppCompatActivity() {
         showPopUp.setOnClickListener {
             showPop()
             //get reference to Image
-            val arrow = findViewById<ImageView>(R.id.arrowChangePage)
+            val arrow = findViewById<ImageView>(R.id.arrowChangePageRigth)
             //click Listener
             arrow.setOnClickListener {
                 //what should it do
@@ -80,7 +77,7 @@ class MainActivity : AppCompatActivity() {
         builder.setView(customView)
         val dialog = builder.create()
         dialog.show()
-        val noButton = customView.findViewById(R.id.button) as Button
+        val noButton = customView.findViewById(R.id.buttonNo) as Button
         val yesButton = customView.findViewById(R.id.buttonYes) as Button
         yesButton.setOnClickListener{
             dialog.hide()
