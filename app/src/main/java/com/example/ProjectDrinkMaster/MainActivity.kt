@@ -1,4 +1,4 @@
-package com.example.tileandbackground
+package com.example.ProjectDrinkMaster
 
 import  android.app.Activity
 import android.content.Intent
@@ -6,27 +6,22 @@ import android.os.AsyncTask
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.ContextMenu
 import android.view.LayoutInflater
-import android.view.View
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
-import android.widget.PopupMenu
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
-import androidx.compose.ui.graphics.Color
-import java.io.BufferedReader
-import java.io.DataOutputStream
-import java.io.InputStreamReader
-import java.net.HttpURLConnection
-import java.net.URL
+import androidx.recyclerview.widget.RecyclerView
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: Activity
-    var drinkValues = ArrayList<Int>(4)
-    val url = "http://192.168.0.102:5000/"
+    //recycling view
+    private lateinit var newRecyclerView: RecyclerView
+    private lateinit var newArrayList: ArrayList<Rum_coke>
+    lateinit var  heading : Array<String>
+    lateinit var news : Array<Rum_coke>
+    lateinit var imageId : Array<Int>
+    lateinit var text : Array<String>
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,17 +36,30 @@ class MainActivity : AppCompatActivity() {
         }
 
         var showPopUp = findViewById<ImageButton>(R.id.imageButton)
-
-        for(i in drinkValues.indices){  //placeholder
-            drinkValues[i] = 0
-        }
-
-        /*
         var countMocktail = 0
         var countRumCoke = 0
         var countLemonade = 0
         var countCokeLemon = 0
-        */
+        val imageToChange = findViewById(R.id.imageView7) as ImageView
+
+        //defining values of what can be in each array
+
+        imageId = arrayOf(  R.drawable.gin,
+            R.drawable.lemon,
+            R.drawable.coke,
+            R.drawable.rum
+        )
+
+        heading = arrayOf(  "Gin n Tonic",
+            "Lemonade",
+            "Coke and lemon",
+            "Rum")
+
+        text = arrayOf("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged." ,
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. ")
+
 
         showPopUp.setOnClickListener {
             showPop()
@@ -60,19 +68,9 @@ class MainActivity : AppCompatActivity() {
             //click Listener
             arrow.setOnClickListener {
                 //what should it do
-                setContentView(R.layout.activity_main)
+                imageToChange.setImageResource(imageId[++])
             }
         }
-
-        val mintIcon = findViewById<ImageView>(R.id.mint)
-        mintIcon.setOnClickListener{ view ->
-            val intent = Intent(this@MainActivity, AdminActivity::class.java)
-            intent.putExtra("drinkValues", drinkValues)
-            startActivity(intent);
-        }
-
-        Log.d("networkRequest","right before sending post request")
-
     }
 
 
@@ -116,10 +114,7 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    // reads entire page
-    private fun readURLPage(page: String) : String{
-        return URL("$url$page").readText()
-    }
+
 }
 
 
