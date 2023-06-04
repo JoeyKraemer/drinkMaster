@@ -20,10 +20,10 @@ class ItemsViewModel(text: String?, image: Int, title: String?) {
     fun setText(name: String?) {
         text = name!!
     }
-    fun image(): Int? {
+    fun getImage(): Int? {
         return image
     }
-    fun setYear(image: Int?) {
+    fun setImage(image: Int?) {
         this.image = image!!
     }
     fun getTitle(): String? {

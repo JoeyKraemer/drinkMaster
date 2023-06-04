@@ -21,12 +21,13 @@ class MainActivity : AppCompatActivity() {
     lateinit var imageId : Array<Int>
     lateinit var text : Array<String>
     private var drinkList = ArrayList<ItemsViewModel>()
-    private lateinit var drinkAdapter : DrinkApapter
+    private lateinit var drinkAdapter : CustomAdapter
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        title = "DrinkMaster"
         //get reference to Image
         /*
         val arrow = findViewById<ImageView>(R.id.arrowChangePageRigth)
@@ -39,7 +40,7 @@ class MainActivity : AppCompatActivity() {
 
          */
 
-        var showPopUp = findViewById<ImageButton>(R.id.recyclerViewOrderButton)
+        var showPopUp = findViewById<ImageButton>(R.id.imageButton)
         var countMocktail = 0
         var countRumCoke = 0
         var countLemonade = 0
@@ -49,9 +50,11 @@ class MainActivity : AppCompatActivity() {
 
         //getting the recyclerview by its id
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
-
+        drinkAdapter = CustomAdapter(drinkList)
         //creating the layout
         recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.adapter = drinkAdapter
+        prepareDiffernetDrinks()
     }
 
 
@@ -103,7 +106,7 @@ class MainActivity : AppCompatActivity() {
         drinkList.add(drink)
         drink = ItemsViewModel("Random text",R.drawable.lemonade,"Lemonde")
         drinkList.add(drink)
-        CustomAdapter.notifyDataSetChanged()
+        drinkAdapter.notifyDataSetChanged()
 
 
     }
