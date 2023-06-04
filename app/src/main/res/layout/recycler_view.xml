@@ -59,13 +59,6 @@
             android:layout_marginTop="-300dp"
             app:srcCompat="@drawable/rum" />
 
-        <ImageButton
-            android:id="@+id/recyclerViewOrderButton"
-            android:layout_width="436dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            app:srcCompat="@drawable/order" />
-
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>
