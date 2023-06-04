@@ -28,7 +28,7 @@
             android:textSize="48sp" />
 
         <TextView
-            android:id="@+id/tonic_text"
+            android:id="@+id/ginTonicText"
             android:layout_width="123dp"
             android:layout_height="82dp"
             android:layout_marginStart="550dp"
@@ -45,14 +45,14 @@
             android:textSize="28sp" />
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/recyclerViewText"
             android:layout_width="397dp"
             android:layout_height="295dp"
             android:layout_marginLeft="150dp"
             android:text="TextView" />
 
         <ImageView
-            android:id="@+id/imageView8"
+            android:id="@+id/recyclerViewImage"
             android:layout_width="393dp"
             android:layout_height="315dp"
             android:layout_marginLeft="760dp"
@@ -60,7 +60,7 @@
             app:srcCompat="@drawable/rum" />
 
         <ImageButton
-            android:id="@+id/imageButton2"
+            android:id="@+id/recyclerViewOrderButton"
             android:layout_width="436dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

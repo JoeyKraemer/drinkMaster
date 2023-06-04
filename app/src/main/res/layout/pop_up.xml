@@ -20,7 +20,7 @@
         android:textSize="50dp" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/buttonNo"
         android:clickable="true"
         android:layout_width="187dp"
         android:fontFamily="@font/share_regular"
