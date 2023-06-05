@@ -6,17 +6,19 @@
     android:background="@color/ligthBeige"
     app:cardElevation="6dp">
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/title"
             android:layout_width="match_parent"
-            android:layout_height="102dp"
+            android:layout_height="match_parent"
             android:background="@color/darkBeige"
             android:fontFamily="@font/share_regular"
             android:paddingTop="15dp"
@@ -27,11 +29,19 @@
             android:textSize="48sp" />
 
         <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="82dp"
-            android:layout_height="102dp"
-            android:layout_marginTop="-100dp"
+            android:id="@+id/mint"
+            android:layout_width="76dp"
+            android:layout_height="75dp"
             app:srcCompat="@drawable/mint" />
+
+        <ImageView
+            android:id="@+id/lemon"
+            android:layout_width="76dp"
+            android:layout_height="75dp"
+            android:layout_marginLeft="1200dp"
+            app:srcCompat="@drawable/lemon" />
+
+        </FrameLayout>
 
         <TextView
             android:id="@+id/ginTonicText"
@@ -50,20 +60,26 @@
             android:textColor="@color/black"
             android:textSize="28sp" />
 
-        <TextView
-            android:id="@+id/recyclerViewText"
-            android:layout_width="397dp"
-            android:layout_height="295dp"
-            android:layout_marginLeft="150dp"
-            android:text="TextView" />
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/recyclerViewImage"
-            android:layout_width="393dp"
-            android:layout_height="315dp"
-            android:layout_marginLeft="760dp"
-            android:layout_marginTop="-300dp"
-            app:srcCompat="@drawable/rum" />
+            <TextView
+                android:id="@+id/recyclerViewText"
+                android:layout_width="393dp"
+                android:layout_height="315dp"
+                android:layout_marginLeft="150dp"
+                android:text="TextView" />
+
+            <ImageView
+                android:id="@+id/recyclerViewImage"
+                android:layout_width="393dp"
+                android:layout_height="315dp"
+                android:layout_marginLeft="760dp"
+                android:layout_marginTop="0dp"
+                app:srcCompat="@drawable/rum" />
+
+        </FrameLayout>
 
         <ImageButton
             android:id="@+id/order"
@@ -73,30 +89,24 @@
             android:scaleType="fitXY"
             app:srcCompat="@drawable/order" />
 
-        <ImageView
-            android:id="@+id/imageView8"
-            android:layout_width="82dp"
-            android:layout_height="102dp"
-            android:layout_marginTop="-730dp"
-            android:layout_marginLeft="1200dp"
-            app:srcCompat="@drawable/lemon" />
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/imageView12"
-            android:layout_width="82dp"
-            android:layout_height="102dp"
+            <ImageView
+                android:id="@+id/mocktail"
+                android:layout_width="76dp"
+                android:layout_height="75dp"
+                app:srcCompat="@drawable/mocktail" />
+
+            <ImageView
+            android:id="@+id/ice"
+            android:layout_width="76dp"
+            android:layout_height="75dp"
             android:layout_marginLeft="1200dp"
-            android:layout_marginTop="600dp"
             app:srcCompat="@drawable/ice" />
 
-        <ImageView
-            android:id="@+id/imageView10"
-            android:layout_width="82dp"
-            android:layout_height="102dp"
-            android:layout_marginTop="-100dp"
-            app:srcCompat="@drawable/mocktail" />
-
-
+        </FrameLayout>
     </LinearLayout>
 
 </androidx.core.widget.NestedScrollView>
