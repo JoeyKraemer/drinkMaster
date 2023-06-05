@@ -11,18 +11,11 @@
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:itemCount="6"
+        tools:itemCount="7"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="0dp"
+        android:scrollbars="horizontal"
         tools:listitem="@layout/recycler_view" />
-
-    <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/order"
-        tools:layout_editor_absoluteX="385dp"
-        tools:layout_editor_absoluteY="686dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
