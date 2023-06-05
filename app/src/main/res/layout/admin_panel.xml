@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/textView2"
@@ -28,21 +29,31 @@
 
     <Button
         android:id="@+id/button2"
-        android:layout_width="191dp"
-        android:layout_height="wrap_content"
-        android:text="Button" />
+        android:layout_width="340dp"
+        android:layout_height="170dp"
+        android:background="#F9F6EE"
+        android:backgroundTint="#F9F6EE"
+        android:text="Restart Raspberry Pi "
+        android:textColor="@color/black"
+        android:textSize="25sp" />
 
     <Button
         android:id="@+id/button3"
-        android:layout_width="191dp"
-        android:layout_height="wrap_content"
-        android:text="Button" />
+        android:layout_width="340dp"
+        android:layout_height="170dp"
+        android:background="#DFD0D0"
+        android:text="Calibrate Machine "
+        android:textColor="@color/black"
+        android:textSize="25sp" />
 
     <Button
         android:id="@+id/button4"
-        android:layout_width="191dp"
-        android:layout_height="wrap_content"
-        android:text="Button" />
+        android:layout_width="340dp"
+        android:layout_height="170dp"
+        android:background="#CDC5C5"
+        android:text="Restart Machine"
+        android:textColor="@color/black"
+        android:textSize="25sp" />
 
     <ImageView
         android:id="@+id/imageView9"
