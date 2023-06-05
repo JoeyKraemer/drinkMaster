@@ -8,9 +8,9 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="365dp"
+        android:layout_width="398dp"
         android:layout_height="100dp"
-        android:layout_marginLeft="890dp"
+        android:layout_marginLeft="980dp"
         android:fontFamily="@font/share_regular"
         android:shadowColor="@color/text_shadow_black"
         android:shadowDx="3"
@@ -18,47 +18,31 @@
         android:shadowRadius="1"
         android:text="Drink Master"
 
-        android:textSize="70sp"
+        android:textSize="80sp"
         android:textStyle="normal" />
 
     <ImageView
         android:id="@+id/imageView10"
-        android:layout_width="115dp"
+        android:layout_width="100dp"
         android:layout_height="100dp"
         app:srcCompat="@drawable/logo" />
 
-    <Button
-        android:id="@+id/button2"
+    <ImageButton
+        android:id="@+id/imageButton5"
         android:layout_width="340dp"
         android:layout_height="170dp"
-        android:background="#F9F6EE"
-        android:backgroundTint="#F9F6EE"
-        android:text="Restart Raspberry Pi "
-        android:textColor="@color/black"
-        android:textSize="25sp" />
+        app:srcCompat="@drawable/restart_pi_button" />
 
-    <Button
-        android:id="@+id/button3"
+    <ImageButton
+        android:id="@+id/imageButton6"
         android:layout_width="340dp"
         android:layout_height="170dp"
-        android:background="#DFD0D0"
-        android:text="Calibrate Machine "
-        android:textColor="@color/black"
-        android:textSize="25sp" />
+        app:srcCompat="@drawable/calibrate_button" />
 
-    <Button
-        android:id="@+id/button4"
+    <ImageButton
+        android:id="@+id/imageButton7"
         android:layout_width="340dp"
         android:layout_height="170dp"
-        android:background="#CDC5C5"
-        android:text="Restart Machine"
-        android:textColor="@color/black"
-        android:textSize="25sp" />
-
-    <ImageView
-        android:id="@+id/imageView9"
-        android:layout_width="948dp"
-        android:layout_height="340dp"
-        app:srcCompat="@drawable/rum" />
+        app:srcCompat="@drawable/restart_button" />
 
 </LinearLayout>
