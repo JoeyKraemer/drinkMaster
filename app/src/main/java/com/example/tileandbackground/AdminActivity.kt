@@ -13,11 +13,11 @@ class AdminActivity : AppCompatActivity() {
 
 
     // size of graph in dp
-    val graphHeight = 400
+    val graphHeight = 600
 
     private val graphBarLengths = ArrayList<Int>(4)
 
-    private val graphBars = ArrayList<ImageView>(4)
+    private var graphBars = ArrayList<ImageView>(4)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,18 +33,27 @@ class AdminActivity : AppCompatActivity() {
 
 
         // dynamically get graph bar images
-        for(i in graphBars.indices){
-            graphBars[i] = findViewById<ImageView>(resources.getIdentifier("graphBar$i","id", getPackageName()))
-        }
+        //for(i in graphBars.indices){
+            //graphBars[i] = findViewById<ImageView>(resources.getIdentifier("graphBar$i","id", getPackageName()))
+        //}
 
+        graphBars += findViewById<ImageView>(R.id.drinkBar0)
+        graphBars += findViewById<ImageView>(R.id.drinkBar1)
+        graphBars += findViewById<ImageView>(R.id.drinkBar2)
+        graphBars += findViewById<ImageView>(R.id.drinkBar3)
 
         // import array of amount of drinks sold from main, if it fails, all values are 0
-        val importedArray = intent.getIntArrayExtra("drinkValues")
-        if (importedArray != null) {
-            for(i in graphBarLengths.indices){
-                graphBarLengths[i] = importedArray[i]
-            }
+        //val importedArray = intent.getIntArrayExtra("drinkValues")
+        //if (importedArray != null) {
+        //    for(i in graphBarLengths.indices){
+        //        graphBarLengths[i] = importedArray[i]
+        //    }
+        //}
+        for(i in (0..3)){  //placeholder
+            graphBarLengths += (0..10).random()
         }
+
+        //resizeGraph()
 
         /*
         rebootPiButton.setOnClickListener(){
@@ -66,7 +75,7 @@ class AdminActivity : AppCompatActivity() {
 
         // find the highest number
         var highest = 0
-        for (i in graphBarLengths){
+        for (i in graphBarLengths.indices){
             if (graphBarLengths[i] > highest){
                 highest = graphBarLengths[i]
             }
@@ -77,6 +86,9 @@ class AdminActivity : AppCompatActivity() {
         var sizes = calcScaled(graphHeight, highest, graphBarLengths)
 
         for(i in sizes.indices){
+            if(sizes[i] == 0){
+                sizes[i] = 10
+            }
             graphBars[i].layoutParams.height = sizes[i]
             // find a way to update the view if it doesn't.
         }
@@ -88,7 +100,9 @@ class AdminActivity : AppCompatActivity() {
 
         var sizes = ArrayList<Int>(values.size)
         for(i in values.indices){
-            sizes[i] = (values[i]/highest*height).toInt()
+            Log.d("math", values[i].toDouble().toString() + " / " + highest.toString() + " * " + height + " = ")
+            Log.d("math",(values[i].toDouble()/highest*height).toString())
+            sizes += (values[i].toDouble()/highest*height).toInt()
         }
 
         return sizes

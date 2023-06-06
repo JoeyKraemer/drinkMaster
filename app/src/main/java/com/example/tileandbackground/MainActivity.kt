@@ -42,8 +42,8 @@ class MainActivity : AppCompatActivity() {
 
         var showPopUp = findViewById<ImageButton>(R.id.imageButton)
 
-        for(i in drinkValues.indices){  //placeholder
-            drinkValues[i] = 0
+        for(i in (0..3)){  //placeholder
+            drinkValues += (0..10).random()
         }
 
         /*
@@ -67,7 +67,6 @@ class MainActivity : AppCompatActivity() {
         val mintIcon = findViewById<ImageView>(R.id.mint)
         mintIcon.setOnClickListener{ view ->
             val intent = Intent(this@MainActivity, AdminActivity::class.java)
-            intent.putExtra("drinkValues", drinkValues)
             startActivity(intent);
         }
     }
