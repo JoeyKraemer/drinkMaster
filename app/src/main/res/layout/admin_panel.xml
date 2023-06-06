@@ -12,9 +12,9 @@
 
         <TextView
             android:id="@+id/textView2"
-            android:layout_width="398dp"
+            android:layout_width="440dp"
             android:layout_height="100dp"
-            android:layout_marginLeft="995dp"
+            android:layout_marginLeft="835dp"
             android:layout_marginTop="5dp"
             android:fontFamily="@font/share_regular"
             android:shadowColor="@color/black"
@@ -23,37 +23,37 @@
             android:shadowRadius="1"
 
             android:text="Drink Master"
-            android:textSize="80sp"
+            android:textSize="85sp"
             android:textStyle="normal" />
 
-    <ImageView
-        android:id="@+id/imageView10"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        app:srcCompat="@drawable/logo" />
+        <ImageView
+            android:id="@+id/imageView10"
+            android:layout_width="102dp"
+            android:layout_height="100dp"
+            app:srcCompat="@drawable/logo" />
 
         <ImageButton
             android:id="@+id/imageButton5"
             android:layout_width="340dp"
             android:layout_height="170dp"
-            android:layout_marginLeft="130dp"
-            android:layout_marginTop="230dp"
+            android:layout_marginLeft="70dp"
+            android:layout_marginTop="215dp"
             app:srcCompat="@drawable/restart_pi_button" />
 
         <ImageButton
             android:id="@+id/imageButton6"
             android:layout_width="340dp"
             android:layout_height="170dp"
-            android:layout_marginLeft="550dp"
-            android:layout_marginTop="230dp"
+            android:layout_marginLeft="470dp"
+            android:layout_marginTop="215dp"
             app:srcCompat="@drawable/calibrate_button" />
 
         <ImageButton
             android:id="@+id/imageButton7"
             android:layout_width="340dp"
             android:layout_height="170dp"
-            android:layout_marginLeft="970dp"
-            android:layout_marginTop="230dp"
+            android:layout_marginLeft="870dp"
+            android:layout_marginTop="215dp"
             app:srcCompat="@drawable/restart_button" />
 
     </FrameLayout>

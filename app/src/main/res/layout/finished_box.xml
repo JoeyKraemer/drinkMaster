@@ -21,8 +21,8 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="113dp"
-        android:layout_height="113dp"
+        android:layout_width="115dp"
+        android:layout_height="120dp"
         android:layout_marginTop="-258dp"
         app:srcCompat="@drawable/mocktail" />
 
@@ -31,6 +31,6 @@
         android:layout_width="113dp"
         android:layout_height="105dp"
         android:layout_marginLeft="625dp"
-        android:layout_marginTop="255dp"
+        android:layout_marginTop="245dp"
         app:srcCompat="@drawable/lemon" />
 </LinearLayout>
