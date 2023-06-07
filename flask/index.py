@@ -4,6 +4,7 @@ from flask import render_template
 from flask import Flask
 from flask import request
 from grbl_test import main as grbl
+from unlock import main as unlock
 
 app = Flask(__name__)
 
