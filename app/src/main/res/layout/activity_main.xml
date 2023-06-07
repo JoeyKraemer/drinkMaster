@@ -8,6 +8,7 @@
     tools:context=".MainActivity">
 
     <FrameLayout
+        android:id="@+id/frameLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -41,8 +42,8 @@
             android:id="@+id/imageButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="650dp"
             android:layout_marginLeft="400dp"
+            android:layout_marginTop="650dp"
             app:srcCompat="@drawable/order" />
 
     </FrameLayout>
@@ -52,9 +53,11 @@
         android:layout_width="864dp"
         android:layout_height="459dp"
         android:scrollbars="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/frameLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/frameLayout"
         tools:itemCount="7"
-        tools:layout_editor_absoluteX="208dp"
-        tools:layout_editor_absoluteY="171dp"
         tools:listitem="@layout/recycler_view" />
 
 

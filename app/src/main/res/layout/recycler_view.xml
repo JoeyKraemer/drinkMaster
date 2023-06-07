@@ -21,6 +21,11 @@
                 android:layout_width="552dp"
                 android:layout_height="578dp"
                 android:text="TextView" />
+            <TextView
+                android:id="@+id/ginTonicText"
+                android:layout_width="552dp"
+                android:layout_height="578dp"
+                android:text="TextView" />
 
             <ImageView
                 android:id="@+id/recyclerViewImage"

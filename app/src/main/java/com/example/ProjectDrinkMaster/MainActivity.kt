@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
 
          */
 
-        var showPopUp = findViewById<ImageButton>(R.id.order)
+        var showPopUp = findViewById<ImageButton>(R.id.imageButton)
         var countMocktail = 0
         var countRumCoke = 0
         var countLemonade = 0
@@ -56,6 +56,12 @@ class MainActivity : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false)
         recyclerView.adapter = drinkAdapter
         prepareDiffernetDrinks()
+
+       showPopUp.setOnClickListener {
+            showPop()
+        }
+
+
     }
 
 
