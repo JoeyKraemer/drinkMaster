@@ -11,102 +11,28 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/darkBeige"
-            android:fontFamily="@font/share_regular"
-            android:paddingTop="15dp"
-            android:shadowColor="@color/black"
-            android:text="Drink Master"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="48sp" />
-
-        <ImageView
-            android:id="@+id/mint"
-            android:layout_width="76dp"
-            android:layout_height="75dp"
-            app:srcCompat="@drawable/mint" />
-
-        <ImageView
-            android:id="@+id/lemon"
-            android:layout_width="76dp"
-            android:layout_height="75dp"
-            android:layout_marginLeft="1200dp"
-            app:srcCompat="@drawable/lemon" />
-
-        </FrameLayout>
-
-        <TextView
-            android:id="@+id/ginTonicText"
-            android:layout_width="123dp"
-            android:layout_height="82dp"
-            android:layout_marginStart="550dp"
-            android:layout_marginEnd="467dp"
-            android:layout_marginBottom="159dp"
-            android:fontFamily="@font/share_regular"
-            android:shadowColor="@color/text_shadow_black"
-            android:shadowDx="3"
-            android:shadowDy="3"
-            android:shadowRadius="1"
-            android:text="Gin n Tonic"
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textSize="28sp" />
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="789dp">
 
             <TextView
                 android:id="@+id/recyclerViewText"
-                android:layout_width="393dp"
-                android:layout_height="315dp"
-                android:layout_marginLeft="150dp"
+                android:layout_width="552dp"
+                android:layout_height="578dp"
                 android:text="TextView" />
 
             <ImageView
                 android:id="@+id/recyclerViewImage"
-                android:layout_width="393dp"
-                android:layout_height="315dp"
-                android:layout_marginLeft="760dp"
-                android:layout_marginTop="0dp"
+                android:layout_width="710dp"
+                android:layout_height="605dp"
+                android:layout_marginLeft="560dp"
+                android:layout_marginTop="250dp"
                 app:srcCompat="@drawable/rum" />
 
         </FrameLayout>
 
-        <ImageButton
-            android:id="@+id/order"
-            android:layout_width="337dp"
-            android:layout_height="74dp"
-            android:layout_gravity="center_horizontal"
-            android:scaleType="fitXY"
-            app:srcCompat="@drawable/order" />
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <ImageView
-                android:id="@+id/mocktail"
-                android:layout_width="76dp"
-                android:layout_height="75dp"
-                app:srcCompat="@drawable/mocktail" />
-
-            <ImageView
-            android:id="@+id/ice"
-            android:layout_width="76dp"
-            android:layout_height="75dp"
-            android:layout_marginLeft="1200dp"
-            app:srcCompat="@drawable/ice" />
-
-        </FrameLayout>
     </LinearLayout>
 
 </androidx.core.widget.NestedScrollView>
