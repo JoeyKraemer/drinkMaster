@@ -48,13 +48,12 @@ class MainActivity : AppCompatActivity() {
         var countCokeLemon = 0
 
 
-
         //getting the recyclerview by its id
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         drinkAdapter = CustomAdapter(drinkList)
         //creating the layout
         var test = LinearLayoutManager(applicationContext)
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.layoutManager = LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false)
         recyclerView.adapter = drinkAdapter
         prepareDiffernetDrinks()
     }
