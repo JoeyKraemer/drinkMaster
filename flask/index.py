@@ -15,7 +15,8 @@ def index():
 		return render_template("index.html")
 	elif request.method == "GET":
 		if request.args.get("hello"):
-			return render_template("hello.html")
+			v = request.args.get("hello");
+			return render_template("hello.html", v)
 		else:
 			return render_template("index.html")
 	
