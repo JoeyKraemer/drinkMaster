@@ -60,5 +60,4 @@
         tools:itemCount="7"
         tools:listitem="@layout/recycler_view" />
 
-
 </androidx.constraintlayout.widget.ConstraintLayout>

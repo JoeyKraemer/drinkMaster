@@ -24,29 +24,16 @@ class MainActivity : AppCompatActivity() {
     private var drinkList = ArrayList<ItemsViewModel>()
     private lateinit var drinkAdapter : CustomAdapter
 
-
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        //get reference to Image
-        /*
-        val arrow = findViewById<ImageView>(R.id.arrowChangePageRigth)
-        //click Listener
-        arrow.setOnClickListener {
-            //what should it do
-            setContentView(R.layout.activity_main)
-        }
-
-
-         */
 
         var showPopUp = findViewById<ImageButton>(R.id.imageButton)
         var countMocktail = 0
         var countRumCoke = 0
         var countLemonade = 0
         var countCokeLemon = 0
-
 
         //getting the recyclerview by its id
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
@@ -56,14 +43,10 @@ class MainActivity : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false)
         recyclerView.adapter = drinkAdapter
         prepareDiffernetDrinks()
-
-       showPopUp.setOnClickListener {
+        showPopUp.setOnClickListener {
             showPop()
         }
-
-
     }
-
 
     private fun showPop() {
         val builder = AlertDialog.Builder(this)
@@ -116,10 +99,7 @@ class MainActivity : AppCompatActivity() {
         drink = ItemsViewModel("Lemonade is a classic and refreshing beverage that embodies the bright and tangy flavors of fresh lemons. With its simple yet irresistible blend of lemon juice, water, and sweetener, lemonade has been a beloved thirst-quencher for generations.",R.drawable.lemonade,"Lemonde")
         drinkList.add(drink)
         drinkAdapter.notifyDataSetChanged()
-
-
     }
-
 }
 
 

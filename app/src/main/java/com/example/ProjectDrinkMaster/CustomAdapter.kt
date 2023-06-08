@@ -16,35 +16,24 @@ class CustomAdapter( private val mList: List<ItemsViewModel>) : RecyclerView.Ada
         val description : TextView = itemView.findViewById(R.id.recyclerViewText)
         val image : ImageView = itemView.findViewById(R.id.recyclerViewImage)
         val title : TextView =  itemView.findViewById(R.id.ginTonicText)
-
-
     }
     //create new views
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-
         //infales the card_view_desgin view
         val view = LayoutInflater.from(parent.context).inflate(R.layout.recycler_view,parent,false)
-
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-
         val ItemsViewModel = mList[position]
-
         // sets the image to the imageview from our itemHolder class
         holder.description.text = ItemsViewModel.text
        // holder.image. = ItemsViewModel.getImage()
         holder.image.setImageResource(ItemsViewModel.image)
         holder.title.text = ItemsViewModel.title
-
-
     }
 
     override fun getItemCount(): Int {
-
         return mList.size
     }
-
-
 }

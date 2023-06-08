@@ -41,7 +41,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/mint" />
 
-
     <ImageView
         android:id="@+id/imageView4"
         android:layout_width="0dp"
