@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace 'com.example.tileandbackground'
+    namespace 'com.example.ProjectDrinkMaster'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.tileandbackground"
+        applicationId "com.example.ProjectDrinkMaster"
         minSdk 22
         targetSdk 33
         versionCode 1
@@ -67,4 +67,7 @@ dependencies {
     androidTestImplementation 'androidx.compose.ui:ui-test-junit4'
     debugImplementation 'androidx.compose.ui:ui-tooling'
     debugImplementation 'androidx.compose.ui:ui-test-manifest'
+    implementation 'androidx.recyclerview:recyclerview:1.2.0'
+    // for adding cardview
+    implementation 'androidx.cardview:cardview:1.0.0'
 }
