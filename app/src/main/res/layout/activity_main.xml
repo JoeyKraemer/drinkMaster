@@ -10,12 +10,14 @@
     <FrameLayout
         android:id="@+id/frameLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
 
         <TextView
             android:id="@+id/title"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:background="@color/darkBeige"
             android:fontFamily="@font/share_regular"
             android:paddingTop="15dp"
@@ -39,12 +41,27 @@
             app:srcCompat="@drawable/lemon" />
 
         <ImageButton
-            android:id="@+id/imageButton"
+            android:id="@+id/order"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="400dp"
             android:layout_marginTop="650dp"
             app:srcCompat="@drawable/order" />
+
+        <ImageView
+            android:id="@+id/mocktail"
+            android:layout_width="76dp"
+            android:layout_height="75dp"
+            android:layout_marginTop="730dp"
+            app:srcCompat="@drawable/mocktail" />
+
+        <ImageView
+            android:id="@+id/ice"
+            android:layout_width="76dp"
+            android:layout_height="75dp"
+            android:layout_marginLeft="1200dp"
+            android:layout_marginTop="730dp"
+            app:srcCompat="@drawable/ice" />
 
     </FrameLayout>
 
@@ -53,6 +70,7 @@
         android:layout_width="864dp"
         android:layout_height="459dp"
         android:scrollbars="horizontal"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/frameLayout"
         app:layout_constraintStart_toStartOf="parent"

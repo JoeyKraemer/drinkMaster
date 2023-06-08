@@ -18,8 +18,14 @@
 
             <TextView
                 android:id="@+id/recyclerViewText"
-                android:layout_width="552dp"
-                android:layout_height="578dp"
+                android:layout_width="571dp"
+                android:layout_height="match_parent"
+                android:text="TextView" />
+
+            <TextView
+                android:id="@+id/ginTonicText"
+                android:layout_width="571dp"
+                android:layout_height="match_parent"
                 android:text="TextView" />
             <TextView
                 android:id="@+id/ginTonicText"
@@ -29,10 +35,9 @@
 
             <ImageView
                 android:id="@+id/recyclerViewImage"
-                android:layout_width="710dp"
-                android:layout_height="605dp"
-                android:layout_marginLeft="560dp"
-                android:layout_marginTop="250dp"
+                android:layout_width="675dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="600dp"
                 app:srcCompat="@drawable/rum" />
 
         </FrameLayout>
