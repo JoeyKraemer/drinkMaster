@@ -13,9 +13,10 @@ def index():
 		grbl()
 		return render_template("index.html")
 	elif request.method == "GET":
-		if request.args.get("hello"):
-			v = request.args.get("hello");
-			return render_template("hello.html", v=v)
+		if request.args.get("action"):
+			v = request.args.get("action");
+			if v == "calibration":
+				grbl()
 		else:
 			return render_template("index.html")
 	
