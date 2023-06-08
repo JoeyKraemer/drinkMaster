@@ -45,7 +45,7 @@ def main():
 	s = serial.Serial('/dev/ttyUSB0',115200)
 
 # Open g-code file
-	f = open('/GCODE/grbl.gcode','r');
+	f = open('/GCODE/homing.gcode','r');
 
 # Wake up grbl
 	a = "\r\n\r\n"
