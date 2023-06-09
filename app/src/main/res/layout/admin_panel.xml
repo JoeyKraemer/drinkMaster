@@ -22,7 +22,6 @@
             android:shadowRadius="3"
             android:text="Drink Master"
 
-
             android:textAlignment="center"
             android:textSize="85sp"
             android:textStyle="normal" />

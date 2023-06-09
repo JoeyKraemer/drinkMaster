@@ -45,4 +45,5 @@
         android:layout_marginLeft="625dp"
         android:layout_marginTop="250dp"
         app:srcCompat="@drawable/lemon" />
+
 </LinearLayout>
