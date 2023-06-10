@@ -63,5 +63,4 @@
         android:scaleType="fitXY"
         app:srcCompat="@drawable/lemon_small" />
 
-
 </LinearLayout>

@@ -28,29 +28,16 @@ class MainActivity : AppCompatActivity() {
 
     val url = "http://192.168.0.102:5000/"
 
-
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        //get reference to Image
-        /*
-        val arrow = findViewById<ImageView>(R.id.arrowChangePageRigth)
-        //click Listener
-        arrow.setOnClickListener {
-            //what should it do
-            setContentView(R.layout.activity_main)
-        }
-
-
-         */
 
         var showPopUp = findViewById<ImageButton>(R.id.order)
         var countMocktail = 0
         var countRumCoke = 0
         var countLemonade = 0
         var countCokeLemon = 0
-
 
         //getting the recyclerview by its id
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
@@ -60,8 +47,7 @@ class MainActivity : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false)
         recyclerView.adapter = drinkAdapter
         prepareDiffernetDrinks()
-
-       showPopUp.setOnClickListener {
+        showPopUp.setOnClickListener {
             showPop()
         }
 
@@ -70,9 +56,7 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this@MainActivity, AdminActivity::class.java)
             startActivity(intent);
         }
-
     }
-
 
     private fun showPop() {
         val builder = AlertDialog.Builder(this)
@@ -125,8 +109,6 @@ class MainActivity : AppCompatActivity() {
         drink = ItemsViewModel("Lemonade is a classic and refreshing beverage that embodies the bright and tangy flavors of fresh lemons. With its simple yet irresistible blend of lemon juice, water, and sweetener, lemonade has been a beloved thirst-quencher for generations.",R.drawable.lemonade,"Lemonde")
         drinkList.add(drink)
         drinkAdapter.notifyDataSetChanged()
-
-
     }
 
     private fun sendServerRequest(key: String, value: String){

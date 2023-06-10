@@ -1,4 +1,4 @@
-package com.example.ProjectDrinkMaster;
+package com.example.ProjectDrinkMaster
 
 import android.os.Bundle
 import android.os.PersistableBundle
@@ -48,14 +48,13 @@ class AdminActivity : AppCompatActivity() {
 
         // ===== BUTTONS ======
         /*
+
         // get buttons
         val rebootPiButton = findViewById<Button>(R.id.rebootPiButton)
         val rebootMachineButton = findViewById<Button>(R.id.rebootMachineButton)
         val calibrateButton = findViewById<Button>(R.id.calibrateButton)
          */
 
-
-        // set listeners for 3 buttons
         /*
         rebootPiButton.setOnClickListener(){
 
@@ -67,7 +66,6 @@ class AdminActivity : AppCompatActivity() {
 
         }
         */
-
 
         // ===== KEYCODE ======
         // create pop up password
@@ -88,12 +86,12 @@ class AdminActivity : AppCompatActivity() {
 
         // add values to graph
         resizeGraph()
-
     }
+
+
 
     // will change the graph bar image sizes, depending on the values in graphBarLengths (designed in use with "fitXY")
     private fun resizeGraph() {
-
         // find the highest number
         var highest = 0
         for (i in graphBarLengths.indices){
@@ -113,26 +111,27 @@ class AdminActivity : AppCompatActivity() {
             graphBars[i].layoutParams.height = sizes[i]
             // find a way to update the view if it doesn't.
         }
-
     }
 
     // calculate the actual size of the element based on part/whole*max
     private fun calcScaled(height: Int, highest: Int, values: ArrayList<Int>): ArrayList<Int>{
-
         var sizes = ArrayList<Int>(values.size)
         for(i in values.indices){
             Log.d("math", values[i].toDouble().toString() + " / " + highest.toString() + " * " + height + " = ")
             Log.d("math",(values[i].toDouble()/highest*height).toString())
             sizes += (values[i].toDouble()/highest*height).toInt()
         }
-
         return sizes
     }
+
+
 
     private fun readPage(): String{
         var hello = readRequest(url,"").execute().get()
         return hello
     }
+
+
 
     private val textWatcher = object : TextWatcher{
         override fun afterTextChanged(s: Editable?) {

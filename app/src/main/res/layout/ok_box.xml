@@ -11,6 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/mint_small" />
+
     <TextView
         android:id="@+id/topText"
         android:layout_width="wrap_content"
@@ -33,9 +34,7 @@
         android:fontFamily="@font/share_regular"
         android:text="Your drink will be prepared shortly"
         android:textColor="@color/white"
-        
         android:textSize="50dp" />
-
 
     <ImageView
         android:id="@+id/lemon"

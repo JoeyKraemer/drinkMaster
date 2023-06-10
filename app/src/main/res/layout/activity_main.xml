@@ -70,13 +70,11 @@
         android:layout_width="864dp"
         android:layout_height="459dp"
         android:scrollbars="horizontal"
-
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/frameLayout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/frameLayout"
         tools:itemCount="7"
         tools:listitem="@layout/recycler_view" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
