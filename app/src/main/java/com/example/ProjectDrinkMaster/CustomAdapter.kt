@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 class CustomAdapter( private val mList: List<ItemsViewModel>) : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
     //inner class that is created inside another clas
     lateinit var onOrderButtonPress : OnClickListener
+    lateinit var order : ImageButton
     class ViewHolder(view : View) : RecyclerView.ViewHolder(view){
         val description : TextView = itemView.findViewById(R.id.recyclerViewText)
         val image : ImageView = itemView.findViewById(R.id.recyclerViewImage)
@@ -34,10 +35,12 @@ class CustomAdapter( private val mList: List<ItemsViewModel>) : RecyclerView.Ada
         holder.image.setImageResource(ItemsViewModel.image)
         holder.title.text = ItemsViewModel.title
         holder.order.setImageResource(ItemsViewModel.orderButton)
+        order= holder.order
 
         holder.order.setOnClickListener{
             this.onOrderButtonPress.onClick(holder.order)
         }
+
 
     }
 
@@ -49,4 +52,7 @@ class CustomAdapter( private val mList: List<ItemsViewModel>) : RecyclerView.Ada
          this.onOrderButtonPress = button
     }
 
+    fun getOrderImg() : ImageButton{
+        return order
+    }
 }

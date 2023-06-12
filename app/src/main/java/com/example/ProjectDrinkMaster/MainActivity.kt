@@ -14,6 +14,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
+
 class MainActivity : AppCompatActivity() {
 
     // global variables
@@ -29,6 +30,8 @@ class MainActivity : AppCompatActivity() {
     lateinit var text : Array<String>
     private var drinkList = ArrayList<ItemsViewModel>()
     private lateinit var drinkAdapter : CustomAdapter
+   // private lateinit var test : ItemsViewModel
+    private var  number1 : Int = 0
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -63,6 +66,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showPop() {
+      //  if(test.image == 0){
+        //    number1 ++;
+        //}
         val builder = AlertDialog.Builder(this)
         val customView = LayoutInflater.from(this).inflate(R.layout.pop_up, null)
         builder.setView(customView)
@@ -73,7 +79,7 @@ class MainActivity : AppCompatActivity() {
         yesButton.setOnClickListener{
             dialog.hide()
             sendRequest("action", "calibration").execute()
-            TODO("change above request to drink request (alongside other options)")
+            //TODO("change above request to drink request (alongside other options)")
             confirmationPopUp()
         }
         noButton.setOnClickListener{
@@ -106,7 +112,7 @@ class MainActivity : AppCompatActivity() {
     private fun prepareDiffernetDrinks(){
         var drink = ItemsViewModel("Gin and Tonic, a beloved classic cocktail, is a delightful fusion of gin's botanical flavors and the refreshing effervescence of tonic water. This iconic drink originated in the 19th century as a malaria-fighting elixir for British soldiers in India, and it has since become a timeless favorite worldwide.\n" +
                 "\n" +
-                "Crafting a Gin and Tonic is simple yet satisfying. It typically involves combining gin, tonic water, and a hint of citrus, usually a slice of lime or lemon. The real magic happens when the flavors mingle, creating a crisp and invigorating beverage that is perfect for any occasion.",R.drawable.gin,"Gin n toinc",R.drawable.ordergintonic)
+                "Crafting a Gin and Tonic is simple yet satisfying. It typically involves combining gin, tonic water, and a hint of citrus, usually a slice of lime or lemon. The real magic happens when the flavors mingle, creating a crisp and invigorating beverage that is perfect for any occasion.",R.drawable.gin,"Amount" + number1.toString(),R.drawable.ordergintonic)
         drinkList.add(drink)
         drink = ItemsViewModel("Coke and Cola Max are iconic carbonated beverages that deliver the classic cola experience with their unique twists. Coke captures hearts with its rich, caramel-like flavor and refreshing effervescence, while Cola Max offers an intense taste with zero sugar and added caffeine. Whether you crave the timeless taste of Coke or the extra kick of Cola Max, both beverages provide a satisfying cola experience. Indulge in the perfect duo of Coke and Cola Max for a refreshing and energizing treat.",R.drawable.coke,"Coke Lemon",R.drawable.ordercolalemon)
         drinkList.add(drink)
@@ -116,6 +122,10 @@ class MainActivity : AppCompatActivity() {
         drinkList.add(drink)
         drinkAdapter.notifyDataSetChanged()
     }
+
+
+
+
 
 
 }
