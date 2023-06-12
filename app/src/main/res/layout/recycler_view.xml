@@ -22,6 +22,15 @@
             app:layout_constraintStart_toStartOf="parent"
             tools:layout_editor_absoluteY="30dp" />
 
+        <TextView
+            android:id="@+id/recylerTitle"
+            android:layout_width="222dp"
+            android:layout_height="122dp"
+            android:layout_marginStart="484dp"
+            android:text="Title"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="30dp" />
+
         <ImageView
             android:id="@+id/recyclerViewImage"
             android:layout_width="459dp"
@@ -33,8 +42,8 @@
             app:srcCompat="@drawable/rum"
             tools:layout_editor_absoluteY="-60dp" />
 
-        <ImageView
-            android:id="@+id/imageView"
+        <ImageButton
+            android:id="@+id/imageButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="356dp"
