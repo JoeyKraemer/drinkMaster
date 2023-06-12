@@ -56,6 +56,7 @@ class MainActivity : AppCompatActivity() {
             showPop()
         }
 
+        // setting button to get into the admin page
         val mintIcon = findViewById<ImageView>(R.id.mint)
         mintIcon.setOnClickListener{ view ->
             val intent = Intent(this@MainActivity, AdminActivity::class.java)
