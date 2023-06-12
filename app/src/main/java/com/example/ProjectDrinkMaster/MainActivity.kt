@@ -5,6 +5,7 @@ import  android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.ImageButton
@@ -15,6 +16,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.ProjectDrinkMaster.sendRequest
 
 class MainActivity : AppCompatActivity() {
+
+    // global variables
+    companion object{
+        const val url = "http://192.168.0.102:5000/"
+    }
+
     private lateinit var binding: Activity
     //recycling view
     private lateinit var newRecyclerView: RecyclerView
@@ -25,8 +32,6 @@ class MainActivity : AppCompatActivity() {
     lateinit var text : Array<String>
     private var drinkList = ArrayList<ItemsViewModel>()
     private lateinit var drinkAdapter : CustomAdapter
-
-    val url = "http://192.168.0.102:5000/"
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -68,6 +73,8 @@ class MainActivity : AppCompatActivity() {
         val yesButton = customView.findViewById(R.id.buttonYes) as Button
         yesButton.setOnClickListener{
             dialog.hide()
+            sendRequest("action", "calibration").execute()
+            TODO("change above request to drink request (alongside other options)")
             confirmationPopUp()
         }
         noButton.setOnClickListener{
@@ -111,9 +118,6 @@ class MainActivity : AppCompatActivity() {
         drinkAdapter.notifyDataSetChanged()
     }
 
-    private fun sendServerRequest(key: String, value: String){
-        sendRequest(url, key, value).execute()
-    }
 
 }
 

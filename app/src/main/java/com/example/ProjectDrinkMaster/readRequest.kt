@@ -4,6 +4,7 @@ import android.os.AsyncTask
 import java.net.URL
 
 // task to read an entire page
+// normal usage: readRequest(url,page).execute().get()
 class readRequest (url: String, page: String) : AsyncTask<Void, Void, String>() {
     private val url = url
     private val page = page

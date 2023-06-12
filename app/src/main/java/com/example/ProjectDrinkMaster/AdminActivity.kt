@@ -20,7 +20,6 @@ import com.example.ProjectDrinkMaster.readRequest
 import kotlin.random.Random
 
 class AdminActivity : AppCompatActivity() {
-    val url = "http://192.168.0.102:5000/"
 
     private val editTextArray: ArrayList<EditText> = ArrayList(NUM_OF_DIGITS)
     companion object {
@@ -46,9 +45,10 @@ class AdminActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_admin)
 
-        // ===== BUTTONS ======
+        // ===== INIT BUTTONS ======
         /*
 
+        TODO("link buttons to clickListeners")
         // get buttons
         val rebootPiButton = findViewById<Button>(R.id.rebootPiButton)
         val rebootMachineButton = findViewById<Button>(R.id.rebootMachineButton)
@@ -57,22 +57,22 @@ class AdminActivity : AppCompatActivity() {
 
         /*
         rebootPiButton.setOnClickListener(){
-
+            sendRequest("action", "rebootPi").execute()
         }
         rebootMachineButton.setOnClickListener(){
-
+            sendRequest("action", "rebootPlatform").execute()
         }
         calibrateButton.setOnClickListener(){
-
+            sendRequest("action", "calibrate").execute()
         }
         */
 
-        // ===== KEYCODE ======
+        // ===== INIT KEYCODE ======
         // create pop up password
         showPasswordDialog()
 
 
-        // ===== GRAPH ======
+        // ===== INIT GRAPH ======
         // randomly create values for graph
 
         for(i in (0..3)){
@@ -88,7 +88,7 @@ class AdminActivity : AppCompatActivity() {
         resizeGraph()
     }
 
-
+    // ===== GRAPH LOGIC =====
 
     // will change the graph bar image sizes, depending on the values in graphBarLengths (designed in use with "fitXY")
     private fun resizeGraph() {
@@ -113,7 +113,7 @@ class AdminActivity : AppCompatActivity() {
         }
     }
 
-    // calculate the actual size of the element based on part/whole*max
+    // calculate the actual size of the graph bar based on the formula of part/whole*max
     private fun calcScaled(height: Int, highest: Int, values: ArrayList<Int>): ArrayList<Int>{
         var sizes = ArrayList<Int>(values.size)
         for(i in values.indices){
@@ -124,15 +124,9 @@ class AdminActivity : AppCompatActivity() {
         return sizes
     }
 
+    // ===== PINCODE LOGIC =====
 
-
-    private fun readPage(): String{
-        var hello = readRequest(url,"").execute().get()
-        return hello
-    }
-
-
-
+    // text watcher for the pinCode popup
     private val textWatcher = object : TextWatcher{
         override fun afterTextChanged(s: Editable?) {
 
@@ -184,6 +178,15 @@ class AdminActivity : AppCompatActivity() {
         dialog = builder.create()
         dialog.setCancelable(false);
         dialog.setCanceledOnTouchOutside(false);
+
+        // makes it so that it returns when you press the back button
+        dialog.setOnKeyListener { dialog, keyCode, event ->
+            if(keyCode == KeyEvent.KEYCODE_BACK){
+                finish()
+                return@setOnKeyListener true
+            }
+            return@setOnKeyListener false
+        }
         dialog.show()
 
         // add keycode digit blocks
