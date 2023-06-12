@@ -5,7 +5,6 @@ import  android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.ImageButton
@@ -18,20 +17,27 @@ import androidx.recyclerview.widget.RecyclerView
 class MainActivity : AppCompatActivity() {
 
     // global variables
-    companion object{
+    companion object {
         const val url = "http://192.168.0.102:5000/"
     }
 
     private lateinit var binding: Activity
+
     //recycling view
     private lateinit var newRecyclerView: RecyclerView
-    lateinit var  heading : Array<String>
-    lateinit var imageId : Array<Int>
-    lateinit var text : Array<String>
+    lateinit var heading: Array<String>
+    lateinit var imageId: Array<Int>
+    lateinit var text: Array<String>
     private var drinkList = ArrayList<ItemsViewModel>()
-    private lateinit var drinkAdapter : CustomAdapter
-   // private lateinit var test : ItemsViewModel
-    private var  number1 : Int = 0
+    private lateinit var drinkAdapter: CustomAdapter
+
+    // private lateinit var test : ItemsViewModel
+    private var countMocktail: Int = 0
+    private var countRumCoke = 0
+    private var countLemonade = 0
+    private var countCola = 0
+    val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
+    private var buttonPressed = false
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,17 +45,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         var showPopUp = findViewById<ImageButton>(R.id.imageButton)
-        var countMocktail = 0
-        var countRumCoke = 0
-        var countLemonade = 0
-        var countCokeLemon = 0
-
         //getting the recyclerview by its id
-        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         drinkAdapter = CustomAdapter(drinkList)
         //creating the layout
         var test = LinearLayoutManager(applicationContext)
-        recyclerView.layoutManager = LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false)
+        recyclerView.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         recyclerView.adapter = drinkAdapter
         prepareDiffernetDrinks()
 
@@ -59,16 +60,13 @@ class MainActivity : AppCompatActivity() {
 
         // setting button to get into the admin page
         val mintIcon = findViewById<ImageView>(R.id.mint)
-        mintIcon.setOnClickListener{ view ->
+        mintIcon.setOnClickListener { view ->
             val intent = Intent(this@MainActivity, AdminActivity::class.java)
             startActivity(intent);
         }
     }
 
     private fun showPop() {
-      //  if(test.image == 0){
-        //    number1 ++;
-        //}
         val builder = AlertDialog.Builder(this)
         val customView = LayoutInflater.from(this).inflate(R.layout.pop_up, null)
         builder.setView(customView)
@@ -76,15 +74,16 @@ class MainActivity : AppCompatActivity() {
         dialog.show()
         val noButton = customView.findViewById(R.id.buttonNo) as Button
         val yesButton = customView.findViewById(R.id.buttonYes) as Button
-        yesButton.setOnClickListener{
+        yesButton.setOnClickListener {
+            buttonPressed == true
             dialog.hide()
-            sendRequest("action", "calibration").execute()
+            SendRequest("action", "calibration").execute()
             //TODO("change above request to drink request (alongside other options)")
             confirmationPopUp()
         }
-        noButton.setOnClickListener{
+        noButton.setOnClickListener {
             dialog.hide()
-       }
+        }
     }
 
     private fun confirmationPopUp() {
@@ -95,8 +94,8 @@ class MainActivity : AppCompatActivity() {
         dialog.show()
         customView.postDelayed({
             dialog.hide()
-           finishedPopUpBox()
-        },10000)
+            finishedPopUpBox()
+        }, 10000)
     }
 
     private fun finishedPopUpBox() {
@@ -106,28 +105,94 @@ class MainActivity : AppCompatActivity() {
         val dialog = builder.create()
         dialog.show()
         customView.postDelayed(
-            {dialog.hide()},5000)
+            { dialog.hide() }, 5000
+        )
     }
 
-    private fun prepareDiffernetDrinks(){
-        var drink = ItemsViewModel("Gin and Tonic, a beloved classic cocktail, is a delightful fusion of gin's botanical flavors and the refreshing effervescence of tonic water. This iconic drink originated in the 19th century as a malaria-fighting elixir for British soldiers in India, and it has since become a timeless favorite worldwide.\n" +
-                "\n" +
-                "Crafting a Gin and Tonic is simple yet satisfying. It typically involves combining gin, tonic water, and a hint of citrus, usually a slice of lime or lemon. The real magic happens when the flavors mingle, creating a crisp and invigorating beverage that is perfect for any occasion.",R.drawable.gin,"Amount" + number1.toString(),R.drawable.ordergintonic)
+    private fun prepareDiffernetDrinks() {
+        var drink = ItemsViewModel(
+            "Gin and Tonic, a beloved classic cocktail, is a delightful fusion of gin's botanical flavors and the refreshing effervescence of tonic water. This iconic drink originated in the 19th century as a malaria-fighting elixir for British soldiers in India, and it has since become a timeless favorite worldwide.\n" +
+                    "\n" +
+                    "Crafting a Gin and Tonic is simple yet satisfying. It typically involves combining gin, tonic water, and a hint of citrus, usually a slice of lime or lemon. The real magic happens when the flavors mingle, creating a crisp and invigorating beverage that is perfect for any occasion.",
+            R.drawable.gin,
+            "Aada",
+            R.drawable.ordergintonic
+        )
         drinkList.add(drink)
-        drink = ItemsViewModel("Coke and Cola Max are iconic carbonated beverages that deliver the classic cola experience with their unique twists. Coke captures hearts with its rich, caramel-like flavor and refreshing effervescence, while Cola Max offers an intense taste with zero sugar and added caffeine. Whether you crave the timeless taste of Coke or the extra kick of Cola Max, both beverages provide a satisfying cola experience. Indulge in the perfect duo of Coke and Cola Max for a refreshing and energizing treat.",R.drawable.coke,"Coke Lemon",R.drawable.ordercolalemon)
+        drink = ItemsViewModel(
+            "Coke and Cola Max are iconic carbonated beverages that deliver the classic cola experience with their unique twists. Coke captures hearts with its rich, caramel-like flavor and refreshing effervescence, while Cola Max offers an intense taste with zero sugar and added caffeine. Whether you crave the timeless taste of Coke or the extra kick of Cola Max, both beverages provide a satisfying cola experience. Indulge in the perfect duo of Coke and Cola Max for a refreshing and energizing treat.",
+            R.drawable.coke,
+            "Coke Lemon",
+            R.drawable.ordercolalemon
+        )
         drinkList.add(drink)
-        drink = ItemsViewModel("Rum and Coke is a timeless cocktail that brings together the smooth, rich flavors of rum with the crisp, effervescence of cola. This simple yet delightful drink has been enjoyed by cocktail enthusiasts for decades.",R.drawable.rum,"Rum cola", R.drawable.orderrumcola)
+        drink = ItemsViewModel(
+            "Rum and Coke is a timeless cocktail that brings together the smooth, rich flavors of rum with the crisp, effervescence of cola. This simple yet delightful drink has been enjoyed by cocktail enthusiasts for decades.",
+            R.drawable.rum,
+            "Rum cola",
+            R.drawable.orderrumcola
+        )
         drinkList.add(drink)
-        drink = ItemsViewModel("Lemonade is a classic and refreshing beverage that embodies the bright and tangy flavors of fresh lemons. With its simple yet irresistible blend of lemon juice, water, and sweetener, lemonade has been a beloved thirst-quencher for generations.",R.drawable.lemonade,"Lemonde",R.drawable.orderlemonade)
+        drink = ItemsViewModel(
+            "Lemonade is a classic and refreshing beverage that embodies the bright and tangy flavors of fresh lemons. With its simple yet irresistible blend of lemon juice, water, and sweetener, lemonade has been a beloved thirst-quencher for generations.",
+            R.drawable.lemonade,
+            "Lemonde",
+            R.drawable.orderlemonade
+        )
         drinkList.add(drink)
         drinkAdapter.notifyDataSetChanged()
+
     }
 
+    fun RecyclerView?.getCurrentPosition() : Int {
+        return (this?.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
+    }
 
+    public fun getOrderTimsGin(): Int {
+        if (buttonPressed === true) {
+        if ( recyclerView.getCurrentPosition() === 0) {
+                countMocktail++
+                return countMocktail
+            }
+        }
+        return countMocktail
+        buttonPressed == false
+    }
+/*
+    public fun getOrderLemoade(): Int {
+        if (buttonPressed === true) {
+            if (getCurrentPositon() == 1) {
+                countLemonade++
+                return countLemonade
+            }
+        }
+        return countLemonade
+        buttonPressed == false
+    }
 
+    public fun getOrderRum(): Int {
+        if (buttonPressed === true) {
+            if (getCurrentPositon() == 2) {
+                countRumCoke++
+                return countRumCoke
+            }
+        }
+        return countRumCoke
+        buttonPressed == false
+    }
 
+    public fun getOrderCola(): Int {
+        if (buttonPressed === true) {
+            if (getCurrentPositon() == 3) {
+                countCola++
+                return countCola
+            }
+        }
+        return countCola
+        buttonPressed == false
+    }
 
-
+ */
 }
 
 

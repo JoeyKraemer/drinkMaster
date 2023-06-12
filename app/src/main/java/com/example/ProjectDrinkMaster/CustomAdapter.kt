@@ -43,6 +43,9 @@ class CustomAdapter( private val mList: List<ItemsViewModel>) : RecyclerView.Ada
 
 
     }
+    public fun test(holder: ViewHolder, position: Int) : ItemsViewModel {
+        return mList[position]
+    }
 
     override fun getItemCount(): Int {
         return mList.size
@@ -52,7 +55,12 @@ class CustomAdapter( private val mList: List<ItemsViewModel>) : RecyclerView.Ada
          this.onOrderButtonPress = button
     }
 
+
     fun getOrderImg() : ImageButton{
         return order
     }
+
+
+
+
 }
