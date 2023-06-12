@@ -3,6 +3,7 @@ package com.example.ProjectDrinkMaster
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.OnClickListener
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
@@ -12,10 +13,12 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 
 class CustomAdapter( private val mList: List<ItemsViewModel>) : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
     //inner class that is created inside another clas
+    lateinit var onOrderButtonPress : OnClickListener
     class ViewHolder(view : View) : RecyclerView.ViewHolder(view){
         val description : TextView = itemView.findViewById(R.id.recyclerViewText)
         val image : ImageView = itemView.findViewById(R.id.recyclerViewImage)
-        val title : TextView =  itemView.findViewById(R.id.ginTonicText)
+        val title : TextView =  itemView.findViewById(R.id.recylerTitle)
+        val order : ImageButton = itemView.findViewById(R.id.imageButton)
     }
     //create new views
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -28,12 +31,22 @@ class CustomAdapter( private val mList: List<ItemsViewModel>) : RecyclerView.Ada
         val ItemsViewModel = mList[position]
         // sets the image to the imageview from our itemHolder class
         holder.description.text = ItemsViewModel.text
-       // holder.image. = ItemsViewModel.getImage()
         holder.image.setImageResource(ItemsViewModel.image)
         holder.title.text = ItemsViewModel.title
+        holder.order.setImageResource(ItemsViewModel.orderButton)
+
+        holder.order.setOnClickListener{
+            this.onOrderButtonPress.onClick(holder.order)
+        }
+
     }
 
     override fun getItemCount(): Int {
         return mList.size
     }
+
+     fun setOnOrderClick(button: OnClickListener){
+         this.onOrderButtonPress = button
+    }
+
 }
