@@ -40,13 +40,6 @@
             android:layout_marginLeft="1200dp"
             app:srcCompat="@drawable/lemon" />
 
-        <ImageButton
-            android:id="@+id/order"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="400dp"
-            android:layout_marginTop="650dp"
-            app:srcCompat="@drawable/order" />
 
         <ImageView
             android:id="@+id/mocktail"
@@ -68,7 +61,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="864dp"
-        android:layout_height="459dp"
+        android:layout_height="600dp"
         android:scrollbars="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/frameLayout"

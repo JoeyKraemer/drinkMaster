@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        var showPopUp = findViewById<ImageButton>(R.id.order)
+        var showPopUp = findViewById<ImageButton>(R.id.ordercolalemon)
         var countMocktail = 0
         var countRumCoke = 0
         var countLemonade = 0
