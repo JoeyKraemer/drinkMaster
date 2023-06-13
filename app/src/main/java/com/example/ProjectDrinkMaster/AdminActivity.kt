@@ -1,5 +1,7 @@
 package com.example.ProjectDrinkMaster
 
+import android.graphics.Color
+import android.graphics.PorterDuff
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -72,10 +74,17 @@ class AdminActivity : AppCompatActivity() {
             graphBarLengths += (0..10).random()
         }
 
+        // find graph bars and change their color
         graphBars += findViewById<ImageView>(R.id.drinkBar0)
         graphBars += findViewById<ImageView>(R.id.drinkBar1)
         graphBars += findViewById<ImageView>(R.id.drinkBar2)
         graphBars += findViewById<ImageView>(R.id.drinkBar3)
+
+        graphBars[0].setColorFilter(Color.parseColor("#30D5C8"))
+        graphBars[1].setColorFilter(Color.parseColor("#ADD8E6"))
+        graphBars[2].setColorFilter(Color.parseColor("#FFC0CB"))
+        graphBars[3].setColorFilter(Color.parseColor("#0000CC"))
+
 
         // add values to graph
         resizeGraph()
