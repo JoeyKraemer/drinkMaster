@@ -13,14 +13,14 @@
         app:srcCompat="@drawable/mint_small" />
 
     <TextView
-        android:id="@+id/bottomText"
+        android:id="@+id/topText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="90dp"
-        android:layout_marginTop="200dp"
+        android:layout_marginLeft="105dp"
+        android:layout_marginTop="80dp"
         android:baselineAligned="false"
         android:fontFamily="@font/share_regular"
-        android:text="Your drink has been finished"
+        android:text="Your drink has been finished ."
         android:textColor="@color/white"
         android:textSize="50dp" />
 
@@ -31,6 +31,5 @@
         android:layout_marginLeft="630dp"
         android:scaleType="fitXY"
         app:srcCompat="@drawable/lemon_small" />
-
 
 </LinearLayout>
