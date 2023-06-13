@@ -36,13 +36,14 @@ class MainActivity : AppCompatActivity() {
     private var countRumCoke = 0
     private var countLemonade = 0
     private var countCola = 0
-    val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
     private var buttonPressed = false
+    lateinit var recyclerView: RecyclerView
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
 
         var showPopUp = findViewById<ImageButton>(R.id.imageButton)
         //getting the recyclerview by its id
@@ -77,7 +78,7 @@ class MainActivity : AppCompatActivity() {
         yesButton.setOnClickListener {
             buttonPressed == true
             dialog.hide()
-            SendRequest("action", "calibration").execute()
+            SendRequest("action", "test").execute()
             //TODO("change above request to drink request (alongside other options)")
             confirmationPopUp()
         }
