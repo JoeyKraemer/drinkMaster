@@ -21,7 +21,7 @@
         android:layout_marginBottom="75dp"
         android:baselineAligned="false"
         android:fontFamily="@font/share_regular"
-        android:text="Your drink has been finished ."
+        android:text="Your drink has been finished."
         android:textColor="@color/white"
         android:textSize="45dp" />
 

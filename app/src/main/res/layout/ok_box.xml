@@ -16,7 +16,7 @@
         android:id="@+id/topText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="115dp"
+        android:layout_marginLeft="150dp"
         android:layout_marginTop="80dp"
         android:baselineAligned="false"
         android:fontFamily="@font/share_regular"
@@ -28,12 +28,12 @@
         android:id="@+id/bottomText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="110dp"
+        android:layout_marginLeft="80dp"
         android:layout_marginTop="80dp"
         android:layout_marginBottom="75dp"
         android:baselineAligned="false"
         android:fontFamily="@font/share_regular"
-        android:text="Your drink will be prepared shortly"
+        android:text="Your drink will be prepared shortly."
         android:textColor="@color/white"
         android:textSize="45dp" />
 
@@ -42,7 +42,7 @@
         android:id="@+id/lemon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="630dp"
+        android:layout_marginLeft="710dp"
         android:scaleType="fitXY"
         app:srcCompat="@drawable/lemon_small" />
 
