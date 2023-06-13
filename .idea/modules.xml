@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Tile_and_background.iml" filepath="$PROJECT_DIR$/.idea/modules/Tile_and_background.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Tile_and_background.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Tile_and_background.app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Tile_and_background.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Tile_and_background.app.androidTest.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Tile_and_background.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Tile_and_background.app.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Tile_and_background.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Tile_and_background.app.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ProjectDrinkMaster.iml" filepath="$PROJECT_DIR$/.idea/modules/ProjectDrinkMaster.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/ProjectDrinkMaster.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/ProjectDrinkMaster.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/ProjectDrinkMaster.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/ProjectDrinkMaster.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/ProjectDrinkMaster.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/ProjectDrinkMaster.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/ProjectDrinkMaster.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/ProjectDrinkMaster.app.unitTest.iml" />
     </modules>
   </component>
 </project>

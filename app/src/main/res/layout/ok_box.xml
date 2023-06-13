@@ -22,7 +22,7 @@
         android:fontFamily="@font/share_regular"
         android:text="Thank you for your order."
         android:textColor="@color/white"
-        android:textSize="50dp" />
+        android:textSize="45dp" />
 
     <TextView
         android:id="@+id/bottomText"
@@ -30,12 +30,12 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="110dp"
         android:layout_marginTop="80dp"
+        android:layout_marginBottom="75dp"
         android:baselineAligned="false"
         android:fontFamily="@font/share_regular"
         android:text="Your drink will be prepared shortly"
         android:textColor="@color/white"
-        android:textSize="50dp" />
-
+        android:textSize="45dp" />
 
 
     <ImageView

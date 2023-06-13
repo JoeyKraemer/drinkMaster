@@ -18,17 +18,18 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="105dp"
         android:layout_marginTop="80dp"
+        android:layout_marginBottom="75dp"
         android:baselineAligned="false"
         android:fontFamily="@font/share_regular"
         android:text="Your drink has been finished ."
         android:textColor="@color/white"
-        android:textSize="50dp" />
+        android:textSize="45dp" />
 
     <ImageView
         android:id="@+id/lemon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="630dp"
+        android:layout_marginLeft="640dp"
         android:scaleType="fitXY"
         app:srcCompat="@drawable/lemon_small" />
 

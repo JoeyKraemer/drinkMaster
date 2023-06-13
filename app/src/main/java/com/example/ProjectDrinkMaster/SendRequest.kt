@@ -17,7 +17,7 @@ class SendRequest (key: String, value: String, url: String = MainActivity.url) :
 
         with(url.openConnection() as HttpURLConnection){
             requestMethod = "GET"
-            Log.d("networkRequest","\nSent 'GET' request to URL : $url; Response Code : $responseCode")
+//            Log.d("networkRequest","\nSent 'GET' request to URL : $url; Response Code : $responseCode")
         }
         return "done"
     }

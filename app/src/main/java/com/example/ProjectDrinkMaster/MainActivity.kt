@@ -144,7 +144,7 @@ class MainActivity : AppCompatActivity() {
         drinkAdapter.notifyDataSetChanged()
 
     }
-
+/*
     fun RecyclerView?.getCurrentPosition() : Int {
         return (this?.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
     }
@@ -159,7 +159,7 @@ class MainActivity : AppCompatActivity() {
         return countMocktail
         buttonPressed == false
     }
-/*
+
     public fun getOrderLemoade(): Int {
         if (buttonPressed === true) {
             if (getCurrentPositon() == 1) {
