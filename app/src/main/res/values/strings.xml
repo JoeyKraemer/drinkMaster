@@ -1,4 +1,11 @@
 <resources>
-    <string name="app_name">Tile and background</string>
+    <string name="app_name">Project DrinkMaster</string>
     <string name="title_activity_ok_box">ok_box</string>
+    <string-array name="tilteOptions">
+        <item>Gin n Tonic</item>
+        <item>Lemonade</item>
+        <item>Rum cola</item>
+        <item>Cola lemonade</item>
+    </string-array>
+
 </resources>
