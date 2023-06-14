@@ -26,6 +26,22 @@ class MainActivity : AppCompatActivity() {
     companion object {
         const val url = "http://192.168.0.102:5000/"
         const val fileName = "drinkValues.json"
+
+        // reads off the drinkList, the return can be used with jsonObject.get("drink1")
+        public fun readOffDrinkValues(packageName : String = "com.example.ProjectDrinkMaster"): JSONObject {
+            val fr = FileReader("/data/data/$packageName/$fileName")
+            val bfReader = BufferedReader(fr)
+            val stringBuilder = StringBuilder()
+            var line = bfReader.readLine()
+            while (line != null) {
+                stringBuilder.append(line).append("\n")
+                line = bfReader.readLine()
+            }
+            bfReader.close()
+            val response = stringBuilder.toString()
+
+            return JSONObject(response)
+        }
     }
 
     private lateinit var binding: Activity
@@ -150,22 +166,6 @@ class MainActivity : AppCompatActivity() {
         val value = jsonObject.getInt("drink$drink") + 1
         jsonObject.put("drink$drink", value)
         writeToDrinkValueFile(jsonObject)
-    }
-
-    // reads off the drinkList, the return can be used with jsonObject.get("drink1")
-    public fun readOffDrinkValues(): JSONObject {
-        val fr = FileReader("/data/data/$packageName/$fileName")
-        val bfReader = BufferedReader(fr)
-        val stringBuilder = StringBuilder()
-        var line = bfReader.readLine()
-        while (line != null) {
-            stringBuilder.append(line).append("\n")
-            line = bfReader.readLine()
-        }
-        bfReader.close()
-        val response = stringBuilder.toString()
-
-        return JSONObject(response)
     }
 
     private fun prepareDiffernetDrinks() {

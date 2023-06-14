@@ -24,7 +24,7 @@ class AdminActivity : AppCompatActivity() {
     // size of graph in dp
     val graphHeight = 600
 
-    val pincode = 7338
+    val pincode = 1234
 
     private lateinit var dialog: AlertDialog
 
@@ -68,18 +68,20 @@ class AdminActivity : AppCompatActivity() {
 
 
         // ===== INIT GRAPH ======
-        // randomly create values for graph
 
-        for (i in (0..3)) {
-            graphBarLengths += (0..10).random()
+        // get amount of drinks sold for graph
+        val data = MainActivity.readOffDrinkValues()
+        for (i in (1..4)) {
+            graphBarLengths += data.getInt("drink$i")
         }
 
         // find graph bars and change their color
-        graphBars += findViewById<ImageView>(R.id.drinkBar0)
-        graphBars += findViewById<ImageView>(R.id.drinkBar1)
-        graphBars += findViewById<ImageView>(R.id.drinkBar2)
-        graphBars += findViewById<ImageView>(R.id.drinkBar3)
+        graphBars.add(findViewById<ImageView>(R.id.drinkBar0))
+        graphBars.add(findViewById<ImageView>(R.id.drinkBar1))
+        graphBars.add(findViewById<ImageView>(R.id.drinkBar2))
+        graphBars.add(findViewById<ImageView>(R.id.drinkBar3))
 
+        // assign colors to graph bars (this should be separated into a pref file at some point
         graphBars[0].setColorFilter(Color.parseColor("#30D5C8"))
         graphBars[1].setColorFilter(Color.parseColor("#ADD8E6"))
         graphBars[2].setColorFilter(Color.parseColor("#FFC0CB"))
