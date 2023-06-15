@@ -4,7 +4,6 @@ from flask import render_template
 from flask import Flask
 from flask import request
 from grbl_test import main as grbl
-from unlock import main as unlock
 
 app = Flask(__name__)
 
@@ -14,9 +13,10 @@ def index():
 		grbl()
 		return render_template("index.html")
 	elif request.method == "GET":
-		if request.args.get("hello"):
-			v = request.args.get("hello");
-			return render_template("hello.html", v)
+		if request.args.get("action"):
+			v = request.args.get("action");
+			if v == "calibration":
+				grbl()
 		else:
 			return render_template("index.html")
 	
