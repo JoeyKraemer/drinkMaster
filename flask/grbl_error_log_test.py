@@ -18,16 +18,22 @@ def index():
             v = request.args.get("action")
             if v == "calibration":
                 calibration()
+                return render_template("index.html")
             elif v == "goToUser":
                 action("goToUser")
+                return render_template("index.html")
             elif v == "DRINK1":
                 action("DRINKNAME")
+                return render_template("index.html")
             elif v == "DRINK2":
                 action("DRINKNAME")
+                return render_template("index.html")
             elif v == "DRINK3":
                 action("DRINKNAME")
+                return render_template("index.html")
             elif v == "DRINK4":
                 action("DRINKNAME")
+                return render_template("index.html")
         else:
             return render_template("index.html")
 
@@ -53,9 +59,10 @@ def sendToGRBL(serial,file):
         #showError(grbl_out,serial)
         print('Response: ') 
         print(grbl_out)
-    
     file.close()
     serial.close()
+
+    return 
 
 def action(drink):
     s = serial.Serial('/dev/ttyUSB0',115200)
@@ -63,21 +70,29 @@ def action(drink):
     sendToGRBL(s,f)
 
 def calibration():
-    s = serial.Serial('/dev/ttyUSB0',115200)
-    f = open('GCODE/homingY.gcode','r')
-    sendToGRBL(s,f)
+    i = 0
+    if i == 0:
+        s = serial.Serial('/dev/ttyUSB0',115200)
+        f = open('GCODE/homingY.gcode','r')
+        sendToGRBL(s,f)
+        i = 1
 
-    # s = serial.Serial('/dev/ttyUSB0',115200)
-    # f = open('GCODE/homingX.gcode','r')
-    # sendToGRBL(s,f)
-    
-    # s = serial.Serial('/dev/ttyUSB0',115200)
-    # f = open('GCODE/homingZ.gcode','r')
-    # sendToGRBL(s,f)
+    if i == 1:
+        s = serial.Serial('/dev/ttyUSB0',115200)
+        f = open('GCODE/homingX.gcode','r')
+        sendToGRBL(s,f)
+        i == 2
 
-    # s = serial.Serial('/dev/ttyUSB0',115200)
-    # f = open('GCODE/goToUser.grbl.gcode','r')
-    # sendToGRBL(s,f)
+    if i == 2:
+        s = serial.Serial('/dev/ttyUSB0',115200)
+        f = open('GCODE/homingZ.gcode','r')
+        sendToGRBL(s,f)
+        i = 3
+
+    if i == 3:
+        s = serial.Serial('/dev/ttyUSB0',115200)
+        f = open('GCODE/goToUser.grbl.gcode','r')
+        sendToGRBL(s,f)
 
 def main():
     app.run(debug=True, host="0.0.0.0", use_reloader=False)
