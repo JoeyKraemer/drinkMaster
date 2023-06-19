@@ -3,6 +3,8 @@ package com.example.ProjectDrinkMaster
 import android.graphics.Color
 import android.graphics.PorterDuff
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
@@ -10,8 +12,11 @@ import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import java.lang.Thread.sleep
+import kotlin.concurrent.thread
 
 class AdminActivity : AppCompatActivity() {
 
@@ -90,7 +95,46 @@ class AdminActivity : AppCompatActivity() {
 
         // add values to graph
         resizeGraph()
+
     }
+
+    // executes after the pin is entered (extension of OnCreate)
+    fun onPinEntered(){
+
+        // ===== ERROR RECEIVER =====
+
+        thread(true, name="error finder") {
+            while (true){
+
+                val pageString = readRequest(MainActivity.url, "").execute().get()
+                if(pageString == null){
+                    Log.e("error finder", "could not get webpage, retrying in 30 seconds")
+                    sleep(30000)
+                    continue
+                }
+
+                val regex = "<div id=(?:\"|')?error(?:\"|')? ?> ?(.*) ?</div>".toRegex()      // <div id=error> bla bla </div>
+                val results = regex.find(pageString)?.groupValues
+
+                if(results == null) {
+                    Log.e("error finder", "page does not contain error window")
+                }
+                else {
+                    if (results.size == 2) {
+                        if (results[1] != "") {
+                            Handler(Looper.getMainLooper()).post {
+                                createErrorBox(results[1])
+                            }
+                            break
+                        }
+                    }
+                }
+
+                sleep(5000)
+            }
+        }
+    }
+
 
     // ===== GRAPH LOGIC =====
 
@@ -131,6 +175,7 @@ class AdminActivity : AppCompatActivity() {
         return sizes
     }
 
+
     // ===== PINCODE LOGIC =====
 
     // text watcher for the pinCode popup
@@ -157,6 +202,7 @@ class AdminActivity : AppCompatActivity() {
                             //Last character is inserted
                             if (validateCode(getCode())) {
                                 dialog.hide()
+                                onPinEntered()
                             } else {
                                 for (ii in keycodeDigitElements.indices) {
                                     keycodeDigitElements[ii].setText("")
@@ -184,6 +230,7 @@ class AdminActivity : AppCompatActivity() {
         dialog = builder.create()
         dialog.setCancelable(false)
         dialog.setCanceledOnTouchOutside(false)
+
 
         // makes it so that it returns when you press the back button
         dialog.setOnKeyListener { dialog, keyCode, event ->
@@ -234,4 +281,17 @@ class AdminActivity : AppCompatActivity() {
     fun validateCode(code: String): Boolean {
         return (code == pincode.toString())
     }
+
+
+    // ==== ERROR POPUP ====
+
+    fun createErrorBox(errorMsg:String?){
+        val builder = AlertDialog.Builder(this)
+        val dialogView = LayoutInflater.from(this).inflate(R.layout.error_box, null)
+        builder.setView(dialogView)
+        dialog = builder.create()
+        dialogView.findViewById<TextView>(R.id.errorText).text = errorMsg
+        dialog.show()
+    }
+
 }
