@@ -67,17 +67,17 @@ def calibration():
     f = open('GCODE/homingY.gcode','r')
     sendToGRBL(s,f)
 
-    s = serial.Serial('/dev/ttyUSB0',115200)
-    f = open('GCODE/homingX.gcode','r')
-    sendToGRBL(s,f)
+    # s = serial.Serial('/dev/ttyUSB0',115200)
+    # f = open('GCODE/homingX.gcode','r')
+    # sendToGRBL(s,f)
     
-    s = serial.Serial('/dev/ttyUSB0',115200)
-    f = open('GCODE/homingZ.gcode','r')
-    sendToGRBL(s,f)
+    # s = serial.Serial('/dev/ttyUSB0',115200)
+    # f = open('GCODE/homingZ.gcode','r')
+    # sendToGRBL(s,f)
 
-    s = serial.Serial('/dev/ttyUSB0',115200)
-    f = open('GCODE/goToUser.grbl.gcode','r')
-    sendToGRBL(s,f)
+    # s = serial.Serial('/dev/ttyUSB0',115200)
+    # f = open('GCODE/goToUser.grbl.gcode','r')
+    # sendToGRBL(s,f)
 
 def main():
     app.run(debug=True, host="0.0.0.0", use_reloader=False)
