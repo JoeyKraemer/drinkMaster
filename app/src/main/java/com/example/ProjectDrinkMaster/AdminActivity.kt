@@ -10,6 +10,7 @@ import android.text.TextWatcher
 import android.util.Log
 import android.view.KeyEvent
 import android.view.LayoutInflater
+import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
@@ -46,26 +47,22 @@ class AdminActivity : AppCompatActivity() {
         setContentView(R.layout.activity_admin)
 
         // ===== INIT BUTTONS ======
-        /*
 
-        TODO("link buttons to clickListeners")
-        // get buttons
-        val rebootPiButton = findViewById<Button>(R.id.rebootPiButton)
-        val rebootMachineButton = findViewById<Button>(R.id.rebootMachineButton)
-        val calibrateButton = findViewById<Button>(R.id.calibrateButton)
-         */
+        val rebootPiButton = findViewById<Button>(R.id.RebootPiButton)
+        val rebootMachineButton = findViewById<Button>(R.id.RestartMachineButton)
+        val calibrateButton = findViewById<Button>(R.id.CalibrateMachineButton)
 
-        /*
+
         rebootPiButton.setOnClickListener(){
-            sendRequest("action", "rebootPi").execute()
+            SendRequest("action", "rebootPi").execute()
         }
         rebootMachineButton.setOnClickListener(){
-            sendRequest("action", "rebootPlatform").execute()
+            SendRequest("action", "rebootPlatform").execute()
         }
         calibrateButton.setOnClickListener(){
-            sendRequest("action", "calibrate").execute()
+            SendRequest("action", "calibrate").execute()
         }
-        */
+
 
         // ===== INIT KEYCODE ======
         // create pop up password

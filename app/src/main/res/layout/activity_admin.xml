@@ -86,4 +86,44 @@
         app:layout_constraintVertical_bias="0.776"
         app:srcCompat="@drawable/graph" />
 
+    <Button
+        android:id="@+id/RebootPiButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="87dp"
+        android:text="reboot pi"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/CalibrateMachineButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="51dp"
+        android:layout_marginTop="89dp"
+        android:text="calibrate machine"
+        app:layout_constraintStart_toEndOf="@+id/RebootPiButton"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/RestartMachineButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="51dp"
+        android:layout_marginTop="87dp"
+        android:text="restart machine"
+        app:layout_constraintStart_toEndOf="@+id/CalibrateMachineButton"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/ReleaseCupButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="62dp"
+        android:layout_marginTop="83dp"
+        android:text="release cup"
+        app:layout_constraintStart_toEndOf="@+id/RestartMachineButton"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
