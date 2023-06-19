@@ -60,7 +60,7 @@ def sendToGRBL(serial,file,delay):
         print(type(grbl_out))
         print('Response: ') 
         print(grbl_out)
-        if "Alarm" in grbl_out:
+        if "Alarm" in grbl_out.decode('UTF-8'):
             print("ALALALLALALALALLALALALLALALALALALA")
     time.sleep(delay)
     print(grbl_out)
