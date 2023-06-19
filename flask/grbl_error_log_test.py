@@ -38,7 +38,7 @@ def index():
             return render_template("index.html")
 
 def showError(error, sp):
-    if error.find("Alarm") > 0:
+    if "Alarm" in error:
         sp.close()
         return render_template("error.html", error=error)
 
@@ -59,6 +59,8 @@ def sendToGRBL(serial,file,delay):
         showError(grbl_out,serial)
         print('Response: ') 
         print(grbl_out)
+        if "Alarm" in grbl_out:
+            print("ALALALLALALALALLALALALLALALALALALA")
     time.sleep(delay)
     print(grbl_out)
     file.close()
