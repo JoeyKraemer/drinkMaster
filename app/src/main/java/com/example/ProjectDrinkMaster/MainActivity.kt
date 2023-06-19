@@ -16,6 +16,11 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import org.json.JSONObject
+import java.io.BufferedReader
+import java.io.BufferedWriter
+import java.io.FileReader
+import java.io.FileWriter
 
 
 class MainActivity : AppCompatActivity() {
@@ -23,6 +28,7 @@ class MainActivity : AppCompatActivity() {
     // global variables
     companion object {
         const val url = "http://192.168.0.102:5000/"
+        const val fileName = "drinkValues.json"
     }
 
     private lateinit var binding: Activity
@@ -40,7 +46,6 @@ class MainActivity : AppCompatActivity() {
     private var countLemonade = 0
     private var countCola = 0
     private var buttonPressed = false
-    private val recyclerView = ""
 
     @SuppressLint("MissingInflatedId", "ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -69,6 +74,7 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this@MainActivity, AdminActivity::class.java)
             startActivity(intent);
         }
+
     }
 
     private fun showPop() {
@@ -82,7 +88,7 @@ class MainActivity : AppCompatActivity() {
         yesButton.setOnClickListener {
             buttonPressed == true
             dialog.hide()
-            SendRequest("action", "calibration").execute()
+            SendRequest("action", "test").execute()
             //TODO("change above request to drink request (alongside other options)")
             confirmationPopUp()
         }
@@ -112,6 +118,56 @@ class MainActivity : AppCompatActivity() {
         customView.postDelayed(
             { dialog.hide() }, 5000
         )
+    }
+
+    // === FILE I/O ===
+
+    // overrides and resets the drink value file (all values become 0)
+    public fun newDrinkValueFile(){
+        val jsonObject = JSONObject()
+        jsonObject.put("drink1", 0)
+        jsonObject.put("drink2", 0)
+        jsonObject.put("drink3", 0)
+        jsonObject.put("drink4", 0)
+
+        val userString = jsonObject.toString()
+        val fileWriter = FileWriter("/data/data/$packageName/$fileName")
+        val bufferedWriter = BufferedWriter(fileWriter)
+        bufferedWriter.write(userString)
+        bufferedWriter.close()
+    }
+
+    // overrides drink value file
+    public fun writeToDrinkValueFile(jsonObject: JSONObject){
+        val userString = jsonObject.toString()
+        val fileWriter = FileWriter("/data/data/$packageName/$fileName")
+        val bufferedWriter = BufferedWriter(fileWriter)
+        bufferedWriter.write(userString)
+        bufferedWriter.close()
+    }
+
+    // add +1 to a drink. "drink" is an int from 1 to 4 corresponding to drink1 to drink4
+    public fun addOneToDrinkValue(drink:Int){
+        val jsonObject = readOffDrinkValues()
+        val value = jsonObject.getInt("drink$drink") + 1
+        jsonObject.put("drink$drink", value)
+        writeToDrinkValueFile(jsonObject)
+    }
+
+    // reads off the drinkList, the return can be used with jsonObject.get("drink1")
+    public fun readOffDrinkValues(): JSONObject {
+        val fr = FileReader("/data/data/$packageName/$fileName")
+        val bfReader = BufferedReader(fr)
+        val stringBuilder = StringBuilder()
+        var line = bfReader.readLine()
+        while (line != null) {
+            stringBuilder.append(line).append("\n")
+            line = bfReader.readLine()
+        }
+        bfReader.close()
+        val response = stringBuilder.toString()
+
+        return JSONObject(response)
     }
 
     private fun prepareDiffernetDrinks() {

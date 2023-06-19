@@ -1,27 +1,22 @@
 package com.example.ProjectDrinkMaster
 
+import android.graphics.Color
+import android.graphics.PorterDuff
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.KeyEvent
 import android.view.LayoutInflater
-import android.view.View
-import android.widget.Button
 import android.widget.EditText
-import android.widget.ImageButton
 import android.widget.ImageView
-import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.material3.AlertDialog
 import androidx.appcompat.app.AlertDialog
-import com.example.ProjectDrinkMaster.R
-import com.example.ProjectDrinkMaster.readRequest
-import kotlin.random.Random
+import androidx.appcompat.app.AppCompatActivity
 
 class AdminActivity : AppCompatActivity() {
 
     private val editTextArray: ArrayList<EditText> = ArrayList(NUM_OF_DIGITS)
+
     companion object {
         const val NUM_OF_DIGITS = 4
     }
@@ -75,14 +70,21 @@ class AdminActivity : AppCompatActivity() {
         // ===== INIT GRAPH ======
         // randomly create values for graph
 
-        for(i in (0..3)){
+        for (i in (0..3)) {
             graphBarLengths += (0..10).random()
         }
 
+        // find graph bars and change their color
         graphBars += findViewById<ImageView>(R.id.drinkBar0)
         graphBars += findViewById<ImageView>(R.id.drinkBar1)
         graphBars += findViewById<ImageView>(R.id.drinkBar2)
         graphBars += findViewById<ImageView>(R.id.drinkBar3)
+
+        graphBars[0].setColorFilter(Color.parseColor("#30D5C8"))
+        graphBars[1].setColorFilter(Color.parseColor("#ADD8E6"))
+        graphBars[2].setColorFilter(Color.parseColor("#FFC0CB"))
+        graphBars[3].setColorFilter(Color.parseColor("#0000CC"))
+
 
         // add values to graph
         resizeGraph()
@@ -94,18 +96,18 @@ class AdminActivity : AppCompatActivity() {
     private fun resizeGraph() {
         // find the highest number
         var highest = 0
-        for (i in graphBarLengths.indices){
-            if (graphBarLengths[i] > highest){
+        for (i in graphBarLengths.indices) {
+            if (graphBarLengths[i] > highest) {
                 highest = graphBarLengths[i]
             }
         }
-        if (highest == 0){
+        if (highest == 0) {
             return
         }
         var sizes = calcScaled(graphHeight, highest, graphBarLengths)
 
-        for(i in sizes.indices){
-            if(sizes[i] == 0){
+        for (i in sizes.indices) {
+            if (sizes[i] == 0) {
                 sizes[i] = 10
             }
             graphBars[i].layoutParams.height = sizes[i]
@@ -114,12 +116,15 @@ class AdminActivity : AppCompatActivity() {
     }
 
     // calculate the actual size of the graph bar based on the formula of part/whole*max
-    private fun calcScaled(height: Int, highest: Int, values: ArrayList<Int>): ArrayList<Int>{
+    private fun calcScaled(height: Int, highest: Int, values: ArrayList<Int>): ArrayList<Int> {
         var sizes = ArrayList<Int>(values.size)
-        for(i in values.indices){
-            Log.d("math", values[i].toDouble().toString() + " / " + highest.toString() + " * " + height + " = ")
-            Log.d("math",(values[i].toDouble()/highest*height).toString())
-            sizes += (values[i].toDouble()/highest*height).toInt()
+        for (i in values.indices) {
+            Log.d("math",
+                values[i].toDouble()
+                    .toString() + " / " + highest.toString() + " * " + height + " = "
+            )
+            Log.d("math", (values[i].toDouble() / highest * height).toString())
+            sizes += (values[i].toDouble() / highest * height).toInt()
         }
         return sizes
     }
@@ -127,10 +132,10 @@ class AdminActivity : AppCompatActivity() {
     // ===== PINCODE LOGIC =====
 
     // text watcher for the pinCode popup
-    private val textWatcher = object : TextWatcher{
+    private val textWatcher = object : TextWatcher {
         override fun afterTextChanged(s: Editable?) {
 
-            var numTemp : String
+            var numTemp: String
 
             (0 until keycodeDigitElements.size) // iterates through every value in keycodeDigitSize
                 .forEach { i ->
@@ -148,11 +153,10 @@ class AdminActivity : AppCompatActivity() {
                             return
                         } else {
                             //Last character is inserted
-                            if(validateCode(getCode())){
+                            if (validateCode(getCode())) {
                                 dialog.hide()
-                            }
-                            else{
-                                for(ii in keycodeDigitElements.indices){
+                            } else {
+                                for (ii in keycodeDigitElements.indices) {
                                     keycodeDigitElements[ii].setText("")
                                 }
                                 keycodeDigitElements[0].requestFocus()
@@ -171,17 +175,17 @@ class AdminActivity : AppCompatActivity() {
         }
     }
 
-    private fun showPasswordDialog(){
+    private fun showPasswordDialog() {
         val builder = AlertDialog.Builder(this)
         val dialogView = LayoutInflater.from(this).inflate(R.layout.pincode_pop_up, null)
         builder.setView(dialogView)
         dialog = builder.create()
-        dialog.setCancelable(false);
-        dialog.setCanceledOnTouchOutside(false);
+        dialog.setCancelable(false)
+        dialog.setCanceledOnTouchOutside(false)
 
         // makes it so that it returns when you press the back button
         dialog.setOnKeyListener { dialog, keyCode, event ->
-            if(keyCode == KeyEvent.KEYCODE_BACK){
+            if (keyCode == KeyEvent.KEYCODE_BACK) {
                 finish()
                 return@setOnKeyListener true
             }
@@ -196,7 +200,7 @@ class AdminActivity : AppCompatActivity() {
         keycodeDigitElements += dialogView.findViewById<EditText>(R.id.code4)
 
         //add text change listener
-        for(i in keycodeDigitElements.indices){
+        for (i in keycodeDigitElements.indices) {
             keycodeDigitElements[i].addTextChangedListener(textWatcher)
 
             // add backspace key listener
@@ -216,16 +220,16 @@ class AdminActivity : AppCompatActivity() {
         keycodeDigitElements[0].requestFocus()
     }
 
-    fun getCode() : String{
+    fun getCode(): String {
         var code = ""
-        for (i in keycodeDigitElements.indices){
+        for (i in keycodeDigitElements.indices) {
             val digit = keycodeDigitElements[i].text.toString().trim { it <= ' ' }
             code += digit
         }
         return code
     }
 
-    fun validateCode(code:String) : Boolean{
+    fun validateCode(code: String): Boolean {
         return (code == pincode.toString())
     }
 }
