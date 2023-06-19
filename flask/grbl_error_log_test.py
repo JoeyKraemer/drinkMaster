@@ -78,19 +78,19 @@ def calibration():
 
     if i == 1:
         s = serial.Serial('/dev/ttyUSB0',115200)
-        f = open('GCODE/homingX.gcode','r')
+        f = open('GCODE/homingZ.gcode','r')
         sendToGRBL(s,f)
         i = 2
 
     if i == 2:
         s = serial.Serial('/dev/ttyUSB0',115200)
-        f = open('GCODE/homingZ.gcode','r')
+        f = open('GCODE/homingX.gcode','r')
         sendToGRBL(s,f)
         i = 3
 
     if i == 3:
         s = serial.Serial('/dev/ttyUSB0',115200)
-        f = open('GCODE/goToUser.grbl.gcode','r')
+        f = open('GCODE/goToUser.gcode','r')
         sendToGRBL(s,f)
 
 def main():
