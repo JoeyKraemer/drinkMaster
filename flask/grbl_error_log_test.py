@@ -65,7 +65,7 @@ def sendToGRBL(serial,file):
 
 def action(drink):
     s = serial.Serial('/dev/ttyUSB0',115200)
-    f = open('GCODE/XXXXX.gcode','r')
+    f = open('GCODE/' + drink + '.gcode','r')
     sendToGRBL(s,f)
 
 def calibration():
