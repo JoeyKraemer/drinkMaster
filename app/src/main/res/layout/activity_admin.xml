@@ -116,8 +116,8 @@
 
     <ImageButton
         android:id="@+id/restartRaspberryPiButton"
-        android:layout_width="340dp"
-        android:layout_height="170dp"
+        android:layout_width="240dp"
+        android:layout_height="160dp"
         android:layout_marginTop="24dp"
         app:layout_constraintEnd_toStartOf="@+id/CalibrateMachineButton"
         app:layout_constraintStart_toStartOf="parent"
@@ -126,8 +126,8 @@
 
     <ImageButton
         android:id="@+id/CalibrateMachineButton"
-        android:layout_width="340dp"
-        android:layout_height="170dp"
+        android:layout_width="250dp"
+        android:layout_height="160dp"
         android:layout_marginTop="24dp"
         app:layout_constraintEnd_toStartOf="@+id/RestartMachineButton"
         app:layout_constraintStart_toEndOf="@+id/restartRaspberryPiButton"
@@ -136,8 +136,8 @@
 
     <ImageButton
         android:id="@+id/RestartMachineButton"
-        android:layout_width="340dp"
-        android:layout_height="170dp"
+        android:layout_width="250dp"
+        android:layout_height="160dp"
         android:layout_marginTop="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/CalibrateMachineButton"
