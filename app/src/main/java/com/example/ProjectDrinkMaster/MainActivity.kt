@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView
 import org.json.JSONObject
 import java.io.BufferedReader
 import java.io.BufferedWriter
+import java.io.File
 import java.io.FileReader
 import java.io.FileWriter
 import java.lang.Thread.sleep
@@ -141,6 +142,12 @@ class MainActivity : AppCompatActivity() {
                 sleep(5000)
             }
         }
+
+        // check if /data/data/$packageName/$fileName exists, if not, makes a new file
+        val file = File("/data/data/$packageName/$fileName")
+        if(!file.exists()){
+            newDrinkValueFile()
+        }
     }
 
     private fun showPop() {
@@ -154,7 +161,7 @@ class MainActivity : AppCompatActivity() {
         yesButton.setOnClickListener {
             buttonPressed == true
             dialog.hide()
-            SendRequest("action", "test").execute()
+            SendRequest("action", "test").start()
             //TODO("change above request to drink request (alongside other options)")
             confirmationPopUp()
         }

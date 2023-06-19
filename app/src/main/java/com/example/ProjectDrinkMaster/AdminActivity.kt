@@ -54,13 +54,13 @@ class AdminActivity : AppCompatActivity() {
 
 
         rebootPiButton.setOnClickListener(){
-            SendRequest("action", "rebootPi").execute()
+            SendRequest("action", "rebootPi").start()
         }
         rebootMachineButton.setOnClickListener(){
-            SendRequest("action", "rebootPlatform").execute()
+            SendRequest("action", "rebootPlatform").start()
         }
         calibrateButton.setOnClickListener(){
-            SendRequest("action", "calibrate").execute()
+            SendRequest("action", "calibrate").start()
         }
 
 
