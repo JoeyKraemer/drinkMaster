@@ -34,7 +34,7 @@ def index():
 def showError(error : str,sp):
     foo = "Lalala"
     foo = error
-    if error.find("Alarm"):
+    if foo.find("Alarm"):
         sp.close()
         return render_template("error.html", error=error)
 
