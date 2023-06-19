@@ -48,6 +48,7 @@ def sendToGRBL(serial,file):
         print (l)
         l = l + '\n'
         serial.write(l.encode())
+        time.sleep(1)
         grbl_out = serial.readline().strip() # Wait for grbl response with carriage return
         #showError(grbl_out,serial)
         print('Response: ') 
@@ -64,10 +65,10 @@ def calibration():
     s = serial.Serial('/dev/ttyUSB0',115200)
     f = open('GCODE/homingY.gcode','r')
     sendToGRBL(s,f)
-    
-    s = serial.Serial('/dev/ttyUSB0',115200)
-    f = open('GCODE/homingX.gcode','r')
-    sendToGRBL(s,f)
+    if sendToGRBL:
+        s = serial.Serial('/dev/ttyUSB0',115200)
+        f = open('GCODE/homingX.gcode','r')
+        sendToGRBL(s,f)
     
     s = serial.Serial('/dev/ttyUSB0',115200)
     f = open('GCODE/homingZ.gcode','r')
