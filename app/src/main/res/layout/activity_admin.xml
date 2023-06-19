@@ -30,60 +30,59 @@
         android:id="@+id/drinkBar0"
         android:layout_width="75dp"
         android:layout_height="160dp"
-        android:layout_marginBottom="112dp"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.276"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/graphbar" />
 
     <ImageView
         android:id="@+id/drinkBar1"
         android:layout_width="75dp"
         android:layout_height="160dp"
-        android:layout_marginBottom="112dp"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.42"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/graphbar" />
 
     <ImageView
         android:id="@+id/drinkBar2"
         android:layout_width="75dp"
         android:layout_height="160dp"
-        android:layout_marginBottom="112dp"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.575"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/graphbar" />
 
     <ImageView
         android:id="@+id/drinkBar3"
         android:layout_width="75dp"
         android:layout_height="160dp"
-        android:layout_marginBottom="112dp"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.717"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/graphbar" />
 
     <ImageView
         android:id="@+id/imageView8"
-        android:layout_width="1341dp"
-        android:layout_height="343dp"
+        android:layout_width="913dp"
+        android:layout_height="328dp"
         app:layout_constraintBottom_toBottomOf="parent"
+
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.776"
         app:srcCompat="@drawable/graph" />
 
     <Button
