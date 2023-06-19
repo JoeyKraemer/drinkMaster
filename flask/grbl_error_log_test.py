@@ -79,7 +79,7 @@ def calibration():
     if i == 1:
         s = serial.Serial('/dev/ttyUSB0',115200)
         f = open('GCODE/homingZ.gcode','r')
-        sendToGRBL(s,f,6)
+        sendToGRBL(s,f,8)
         i = 2
 
     if i == 2:
