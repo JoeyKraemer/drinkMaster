@@ -42,31 +42,31 @@ import time
 def main():
 
 # Open grbl serial port
-	s = serial.Serial('/dev/ttyUSB0',115200)
+    s = serial.Serial('/dev/ttyUSB0',115200)
 
 # Open g-code file
-	f = open('/GCODE/homing.gcode','r');
+    f = open('/GCODE/homing.gcode','r');
 
 # Wake up grbl
-	a = "\r\n\r\n"
-	s.write(a.encode())
-	time.sleep(2)   # Wait for grbl to initialize 
-	s.flushInput()  # Flush startup text in serial input
+    a = "\r\n\r\n"
+    s.write(a.encode())
+    time.sleep(2)   # Wait for grbl to initialize 
+    s.flushInput()  # Flush startup text in serial input
 
 # Stream g-code to grbl
-	for line in f:
-    		l = line.strip() # Strip all EOL characters for consistency
-    		print ('Sending: ') 
-    		print (l)
-    		l = l + '\n'
-    		s.write(l.encode())
-    		grbl_out = s.readline() # Wait for grbl response with carriage return
-    		print('Response: ') 
-    		print(grbl_out.strip())
+    for line in f:
+            l = line.strip() # Strip all EOL characters for consistency
+            print ('Sending: ') 
+            print (l)
+            l = l + '\n'
+            s.write(l.encode())
+            grbl_out = s.readline() # Wait for grbl response with carriage return
+            print('Response: ') 
+            print(grbl_out.strip())
 
 # Close file and serial port
-	s.close()    
+    s.close()
 
 if __name__ == "__main__":
-	main()
+    main()
 

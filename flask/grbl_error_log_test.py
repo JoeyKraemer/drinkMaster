@@ -19,22 +19,22 @@ def index():
             if v == "calibration":
                 calibration()
             elif v == "goToUser":
-                main("goToUser")
+                action("goToUser")
             elif v == "DRINK1":
-                main("DRINKNAME")
+                action("DRINKNAME")
             elif v == "DRINK2":
-                main("DRINKNAME")
+                action("DRINKNAME")
             elif v == "DRINK3":
-                main("DRINKNAME")
+                action("DRINKNAME")
             elif v == "DRINK4":
-                main("DRINKNAME")
+                action("DRINKNAME")
         else:
             return render_template("index.html")
 
 def showError(error,sp):
     if error.find("Alarm"):
         sp.close()
-        return render_template("error.html")
+        return render_template("error.html", error=error)
 
 def sendToGRBL(serial,file):
     a = "\r\n\r\n"
@@ -54,7 +54,7 @@ def sendToGRBL(serial,file):
         print(grbl_out)
     serial.close()
 
-def main(drink):
+def action(drink):
     s = serial.Serial('/dev/ttyUSB0',115200)
     f = open('/GCODE/'+ drink +'.gcode','r')
     sendToGRBL(s,f)
@@ -69,6 +69,9 @@ def calibration():
     sendToGRBL(s,f)
     f = open('/GCODE/goToUser.grbl.gcode','r')
     sendToGRBL(s,f)
+
+def main():
+    app.run(debug=True, host="0.0.0.0", use_reloader=False)
 
 if __name__ == "__main__":
     main()
