@@ -31,7 +31,7 @@ def index():
         else:
             return render_template("index.html")
 
-def showError(error,sp):
+def showError(error : str,sp):
     foo = "Lalala"
     foo = error
     if error.find("Alarm"):
