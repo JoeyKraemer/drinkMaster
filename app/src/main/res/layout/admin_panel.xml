@@ -11,7 +11,7 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:layout_marginTop="5dp"
@@ -27,7 +27,7 @@
             android:textStyle="normal" />
 
         <ImageView
-            android:id="@+id/imageView10"
+            android:id="@+id/LogoImage"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_marginLeft="10dp"
@@ -35,7 +35,7 @@
             app:srcCompat="@drawable/logo" />
 
         <ImageButton
-            android:id="@+id/imageButton5"
+            android:id="@+id/restartRaspberryPiButton"
             android:layout_width="340dp"
             android:layout_height="170dp"
             android:layout_marginLeft="70dp"
@@ -43,7 +43,7 @@
             app:srcCompat="@drawable/restart_pi_button" />
 
         <ImageButton
-            android:id="@+id/imageButton6"
+            android:id="@+id/CalibrateMachineButton"
             android:layout_width="340dp"
             android:layout_height="170dp"
             android:layout_marginLeft="470dp"
@@ -51,7 +51,7 @@
             app:srcCompat="@drawable/calibrate_button" />
 
         <ImageButton
-            android:id="@+id/imageButton7"
+            android:id="@+id/RestartMachineButton"
             android:layout_width="340dp"
             android:layout_height="170dp"
             android:layout_marginLeft="870dp"
