@@ -2,19 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-<<<<<<< HEAD
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/drinkMaster.ProjectDrinkMaster.iml" filepath="$PROJECT_DIR$/.idea/modules/drinkMaster.ProjectDrinkMaster.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/drinkMaster.ProjectDrinkMaster.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/drinkMaster.ProjectDrinkMaster.app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/drinkMaster.ProjectDrinkMaster.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/drinkMaster.ProjectDrinkMaster.app.androidTest.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/drinkMaster.ProjectDrinkMaster.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/drinkMaster.ProjectDrinkMaster.app.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/drinkMaster.ProjectDrinkMaster.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/drinkMaster.ProjectDrinkMaster.app.unitTest.iml" />
-=======
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ProjectDrinkMaster.iml" filepath="$PROJECT_DIR$/.idea/modules/ProjectDrinkMaster.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/ProjectDrinkMaster.iml" filepath="$PROJECT_DIR$/.idea/ProjectDrinkMaster.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/ProjectDrinkMaster.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/ProjectDrinkMaster.app.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/ProjectDrinkMaster.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/ProjectDrinkMaster.app.androidTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/ProjectDrinkMaster.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/ProjectDrinkMaster.app.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/ProjectDrinkMaster.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/ProjectDrinkMaster.app.unitTest.iml" />
->>>>>>> 26b359b72c6a24cd65623d83c1ea6ce2777b1bd2
     </modules>
   </component>
 </project>
