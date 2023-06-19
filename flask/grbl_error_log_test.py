@@ -54,7 +54,7 @@ def sendToGRBL(serial,file,delay):
         print (l)
         l = l + '\n'
         serial.write(l.encode())
-        time.sleep(0.5)
+        
         grbl_out = serial.readline().strip() # Wait for grbl response with carriage return
         #showError(grbl_out,serial)
         print(type(grbl_out))
@@ -62,6 +62,7 @@ def sendToGRBL(serial,file,delay):
         print(grbl_out)
         if "ALARM" in grbl_out.decode('UTF-8'):
             print("ALALALLALALALALLALALALLALALALALALA")
+        time.sleep(0.75)
     time.sleep(delay)
     print(grbl_out)
     file.close()
