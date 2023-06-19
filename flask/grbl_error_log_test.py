@@ -62,11 +62,9 @@ def action(drink):
 def calibration():
     s = serial.Serial('/dev/ttyUSB0',115200)
     f = open('GCODE/homingY.gcode','r')
-    s = serial.Serial('/dev/ttyUSB0',115200)
     sendToGRBL(s,f)
     s = serial.Serial('/dev/ttyUSB0',115200)
     f = open('GCODE/homingX.gcode','r')
-    s = serial.Serial('/dev/ttyUSB0',115200)
     sendToGRBL(s,f)
     s = serial.Serial('/dev/ttyUSB0',115200)
     f = open('GCODE/homingZ.gcode','r')
