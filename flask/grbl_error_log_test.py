@@ -64,15 +64,15 @@ def calibration():
     s = serial.Serial('/dev/ttyUSB0',115200)
     f = open('GCODE/homingY.gcode','r')
     sendToGRBL(s,f)
-    time.sleep(2)
+    
     s = serial.Serial('/dev/ttyUSB0',115200)
     f = open('GCODE/homingX.gcode','r')
     sendToGRBL(s,f)
-    time.sleep(2)
+    
     s = serial.Serial('/dev/ttyUSB0',115200)
     f = open('GCODE/homingZ.gcode','r')
     sendToGRBL(s,f)
-    time.sleep(2)
+
     s = serial.Serial('/dev/ttyUSB0',115200)
     f = open('GCODE/goToUser.grbl.gcode','r')
     sendToGRBL(s,f)
