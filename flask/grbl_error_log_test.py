@@ -31,10 +31,8 @@ def index():
         else:
             return render_template("index.html")
 
-def showError(error : str,sp):
-    foo = "Lalala"
-    foo = error
-    if foo.find("Alarm"):
+def showError(error, sp):
+    if error.find("Alarm"):
         sp.close()
         return render_template("error.html", error=error)
 
@@ -51,8 +49,9 @@ def sendToGRBL(serial,file):
         l = l + '\n'
         serial.write(l.encode())
         grbl_out = serial.readline().strip() # Wait for grbl response with carriage return
-        print(grbl_out.decode("UTF-8"))
-        showError(grbl_out,serial)
+        log = grbl_out.decode("UTF-8")
+        print(log)
+        showError(log,serial)
         print('Response: ') 
         print(grbl_out)
     serial.close()
