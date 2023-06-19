@@ -5,12 +5,15 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -21,6 +24,9 @@ import java.io.BufferedReader
 import java.io.BufferedWriter
 import java.io.FileReader
 import java.io.FileWriter
+import java.lang.Thread.sleep
+import java.util.Calendar
+import kotlin.concurrent.thread
 
 
 class MainActivity : AppCompatActivity() {
@@ -29,6 +35,23 @@ class MainActivity : AppCompatActivity() {
     companion object {
         const val url = "http://192.168.0.102:5000/"
         const val fileName = "drinkValues.json"
+        var errormsgs = ArrayList<Array<String>>()
+
+        // reads off the drinkList, the return can be used with jsonObject.get("drink1")
+        public fun readOffDrinkValues(packageName : String = "com.example.ProjectDrinkMaster"): JSONObject {
+            val fr = FileReader("/data/data/$packageName/$fileName")
+            val bfReader = BufferedReader(fr)
+            val stringBuilder = StringBuilder()
+            var line = bfReader.readLine()
+            while (line != null) {
+                stringBuilder.append(line).append("\n")
+                line = bfReader.readLine()
+            }
+            bfReader.close()
+            val response = stringBuilder.toString()
+
+            return JSONObject(response)
+        }
     }
 
     private lateinit var binding: Activity
@@ -41,10 +64,6 @@ class MainActivity : AppCompatActivity() {
     private var drinkList = ArrayList<ItemsViewModel>()
     private lateinit var drinkAdapter: CustomAdapter
     private lateinit var getInterface: OnOrderButtonPress
-    private var countGin = 0
-    private var countRumCoke = 0
-    private var countLemonade = 0
-    private var countCola = 0
     private var buttonPressed = false
 
 
@@ -84,6 +103,44 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent);
         }
 
+        var lastError = ""
+        thread(true, name="error finder") { // thread for pinging the server in order to find new errors
+            while (true){
+
+                val pageString = readRequest(MainActivity.url, "").execute().get()
+                if(pageString == null){
+                    Log.e("error finder", "could not get webpage, retrying in 30 seconds")
+                    sleep(30000)
+                    continue
+                }
+
+                val regex = "<div id=(?:\"|')?error(?:\"|')? ?> ?(.*) ?</div>".toRegex()      // <div id=error> bla bla </div>
+                val results = regex.find(pageString)?.groupValues
+
+                if(results == null) {
+                    Log.e("error finder", "page does not contain error window")
+                }
+                else {
+                    if (results.size == 2) { // if there's something between the ><
+                        if (results[1] != "") { // if result 1 (the middle of the ><) is not empty
+                            if(lastError != results[1]) { // if it's not the same as the last error
+                                Handler(Looper.getMainLooper()).post {
+                                    lastError = results[1]
+                                    errormsgs.add(  // add the error message with both the date and msg
+                                        arrayOf(
+                                            Calendar.getInstance().time.toString(),
+                                            results[1]
+                                        )
+                                    )
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                sleep(5000)
+            }
+        }
     }
 
     private fun showPop() {
@@ -130,24 +187,24 @@ class MainActivity : AppCompatActivity() {
     }
 
     public fun getGin() {
-        countGin++
+        addOneToDrinkValue(1)
     }
 
     public fun getRum() {
-        countRumCoke++
+        addOneToDrinkValue(2)
     }
 
     public fun getLemmonade() {
-        countLemonade++
+        addOneToDrinkValue(3)
     }
 
     public fun getCoke() {
-        countCola++
+        addOneToDrinkValue(4)
     }
     // === FILE I/O ===
 
     // overrides and resets the drink value file (all values become 0)
-    public fun newDrinkValueFile() {
+    private fun newDrinkValueFile() {
         val jsonObject = JSONObject()
         jsonObject.put("drink1", 0)
         jsonObject.put("drink2", 0)
@@ -162,7 +219,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     // overrides drink value file
-    public fun writeToDrinkValueFile(jsonObject: JSONObject) {
+    private fun writeToDrinkValueFile(jsonObject: JSONObject) {
         val userString = jsonObject.toString()
         val fileWriter = FileWriter("/data/data/$packageName/$fileName")
         val bufferedWriter = BufferedWriter(fileWriter)
@@ -171,27 +228,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     // add +1 to a drink. "drink" is an int from 1 to 4 corresponding to drink1 to drink4
-    public fun addOneToDrinkValue(drink: Int) {
+    private fun addOneToDrinkValue(drink: Int) {
         val jsonObject = readOffDrinkValues()
         val value = jsonObject.getInt("drink$drink") + 1
         jsonObject.put("drink$drink", value)
         writeToDrinkValueFile(jsonObject)
-    }
-
-    // reads off the drinkList, the return can be used with jsonObject.get("drink1")
-    public fun readOffDrinkValues(): JSONObject {
-        val fr = FileReader("/data/data/$packageName/$fileName")
-        val bfReader = BufferedReader(fr)
-        val stringBuilder = StringBuilder()
-        var line = bfReader.readLine()
-        while (line != null) {
-            stringBuilder.append(line).append("\n")
-            line = bfReader.readLine()
-        }
-        bfReader.close()
-        val response = stringBuilder.toString()
-
-        return JSONObject(response)
     }
 
     private fun prepareDiffernetDrinks() {
@@ -230,28 +271,3 @@ class MainActivity : AppCompatActivity() {
     }
 
 }
-
-/*
-    public fun getOrderRum(): Int {
-        if (buttonPressed === true) {
-            if (getCurrentPositon() == 2) {
-                countRumCoke++
-                return countRumCoke
-            }
-        }
-        return countRumCoke
-        buttonPressed == false
-    }
-
-    public fun getOrderCola(): Int {
-        if (buttonPressed === true) {
-            if (getCurrentPositon() == 3) {
-                countCola++
-                return countCola
-            }
-        }
-        return countCola
-        buttonPressed == false
-    }
-}
-     */

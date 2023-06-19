@@ -3,15 +3,21 @@ package com.example.ProjectDrinkMaster
 import android.graphics.Color
 import android.graphics.PorterDuff
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.KeyEvent
 import android.view.LayoutInflater
+import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import java.lang.Thread.sleep
+import kotlin.concurrent.thread
 
 class AdminActivity : AppCompatActivity() {
 
@@ -24,7 +30,7 @@ class AdminActivity : AppCompatActivity() {
     // size of graph in dp
     val graphHeight = 600
 
-    val pincode = 7338
+    val pincode = 1234
 
     private lateinit var dialog: AlertDialog
 
@@ -41,26 +47,22 @@ class AdminActivity : AppCompatActivity() {
         setContentView(R.layout.activity_admin)
 
         // ===== INIT BUTTONS ======
-        /*
 
-        TODO("link buttons to clickListeners")
-        // get buttons
-        val rebootPiButton = findViewById<Button>(R.id.rebootPiButton)
-        val rebootMachineButton = findViewById<Button>(R.id.rebootMachineButton)
-        val calibrateButton = findViewById<Button>(R.id.calibrateButton)
-         */
+        val rebootPiButton = findViewById<Button>(R.id.RebootPiButton)
+        val rebootMachineButton = findViewById<Button>(R.id.RestartMachineButton)
+        val calibrateButton = findViewById<Button>(R.id.CalibrateMachineButton)
 
-        /*
+
         rebootPiButton.setOnClickListener(){
-            sendRequest("action", "rebootPi").execute()
+            SendRequest("action", "rebootPi").execute()
         }
         rebootMachineButton.setOnClickListener(){
-            sendRequest("action", "rebootPlatform").execute()
+            SendRequest("action", "rebootPlatform").execute()
         }
         calibrateButton.setOnClickListener(){
-            sendRequest("action", "calibrate").execute()
+            SendRequest("action", "calibrate").execute()
         }
-        */
+
 
         // ===== INIT KEYCODE ======
         // create pop up password
@@ -68,18 +70,20 @@ class AdminActivity : AppCompatActivity() {
 
 
         // ===== INIT GRAPH ======
-        // randomly create values for graph
 
-        for (i in (0..3)) {
-            graphBarLengths += (0..10).random()
+        // get amount of drinks sold for graph
+        val data = MainActivity.readOffDrinkValues()
+        for (i in (1..4)) {
+            graphBarLengths += data.getInt("drink$i")
         }
 
         // find graph bars and change their color
-        graphBars += findViewById<ImageView>(R.id.drinkBar0)
-        graphBars += findViewById<ImageView>(R.id.drinkBar1)
-        graphBars += findViewById<ImageView>(R.id.drinkBar2)
-        graphBars += findViewById<ImageView>(R.id.drinkBar3)
+        graphBars.add(findViewById<ImageView>(R.id.drinkBar0))
+        graphBars.add(findViewById<ImageView>(R.id.drinkBar1))
+        graphBars.add(findViewById<ImageView>(R.id.drinkBar2))
+        graphBars.add(findViewById<ImageView>(R.id.drinkBar3))
 
+        // assign colors to graph bars (this should be separated into a pref file at some point
         graphBars[0].setColorFilter(Color.parseColor("#30D5C8"))
         graphBars[1].setColorFilter(Color.parseColor("#ADD8E6"))
         graphBars[2].setColorFilter(Color.parseColor("#FFC0CB"))
@@ -88,7 +92,20 @@ class AdminActivity : AppCompatActivity() {
 
         // add values to graph
         resizeGraph()
+
     }
+
+    // executes after the pin is entered (extension of OnCreate)
+    fun onPinEntered(){
+
+        if(MainActivity.errormsgs.isNotEmpty()){
+            var text = MainActivity.errormsgs.last()[0] + " " + MainActivity.errormsgs.last()[1]
+
+            createErrorBox(text)
+        }
+
+    }
+
 
     // ===== GRAPH LOGIC =====
 
@@ -129,6 +146,7 @@ class AdminActivity : AppCompatActivity() {
         return sizes
     }
 
+
     // ===== PINCODE LOGIC =====
 
     // text watcher for the pinCode popup
@@ -155,6 +173,7 @@ class AdminActivity : AppCompatActivity() {
                             //Last character is inserted
                             if (validateCode(getCode())) {
                                 dialog.hide()
+                                onPinEntered()
                             } else {
                                 for (ii in keycodeDigitElements.indices) {
                                     keycodeDigitElements[ii].setText("")
@@ -182,6 +201,7 @@ class AdminActivity : AppCompatActivity() {
         dialog = builder.create()
         dialog.setCancelable(false)
         dialog.setCanceledOnTouchOutside(false)
+
 
         // makes it so that it returns when you press the back button
         dialog.setOnKeyListener { dialog, keyCode, event ->
@@ -232,4 +252,17 @@ class AdminActivity : AppCompatActivity() {
     fun validateCode(code: String): Boolean {
         return (code == pincode.toString())
     }
+
+
+    // ==== ERROR POPUP ====
+
+    fun createErrorBox(errorMsg:String?){
+        val builder = AlertDialog.Builder(this)
+        val dialogView = LayoutInflater.from(this).inflate(R.layout.error_box, null)
+        builder.setView(dialogView)
+        val dialog = builder.create()
+        dialogView.findViewById<TextView>(R.id.errorText).text = errorMsg
+        dialog.show()
+    }
+
 }
