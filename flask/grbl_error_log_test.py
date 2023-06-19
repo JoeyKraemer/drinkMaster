@@ -52,6 +52,7 @@ def sendToGRBL(serial,file):
         #showError(grbl_out,serial)
         print('Response: ') 
         print(grbl_out)
+    file.close()
     serial.close()
 
 def action(drink):
