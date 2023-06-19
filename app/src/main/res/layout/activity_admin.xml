@@ -86,4 +86,62 @@
         app:layout_constraintVertical_bias="0.776"
         app:srcCompat="@drawable/graph" />
 
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/border"
+        android:fontFamily="@font/share_regular"
+        android:shadowColor="@color/black"
+        android:shadowDx="6"
+        android:shadowDy="6"
+        android:shadowRadius="3"
+        android:text="Drink Master"
+        android:textAlignment="center"
+        android:textSize="80sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/LogoImage"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo" />
+
+    <ImageButton
+        android:id="@+id/restartRaspberryPiButton"
+        android:layout_width="340dp"
+        android:layout_height="170dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toStartOf="@+id/CalibrateMachineButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        app:srcCompat="@drawable/restart_pi_button" />
+
+    <ImageButton
+        android:id="@+id/CalibrateMachineButton"
+        android:layout_width="340dp"
+        android:layout_height="170dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toStartOf="@+id/RestartMachineButton"
+        app:layout_constraintStart_toEndOf="@+id/restartRaspberryPiButton"
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        app:srcCompat="@drawable/calibrate_button" />
+
+    <ImageButton
+        android:id="@+id/RestartMachineButton"
+        android:layout_width="340dp"
+        android:layout_height="170dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/CalibrateMachineButton"
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        app:srcCompat="@drawable/restart_button" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
