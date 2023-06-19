@@ -65,7 +65,7 @@ def sendToGRBL(serial,file,delay):
     time.sleep(delay)
     print(grbl_out)
     file.close()
-    serial.close()
+    #serial.close()
 
 def action(drink):
     s = serial.Serial('/dev/ttyUSB0',115200)
@@ -73,52 +73,52 @@ def action(drink):
     sendToGRBL(s,f,2)
 
 def calibration():
+    s = serial.Serial('/dev/ttyUSB0',115200)
     i = 0
     if i == 0:
-        s = serial.Serial('/dev/ttyUSB0',115200)
         f = open('GCODE/homingY.gcode','r')
         sendToGRBL(s,f,3)
         i = 1
 
     if i == 1:
-        s = serial.Serial('/dev/ttyUSB0',115200)
+        #s = serial.Serial('/dev/ttyUSB0',115200)
         f = open('GCODE/homingZ.gcode','r')
         sendToGRBL(s,f,12)
         i = 2
 
     if i == 2:
-        s = serial.Serial('/dev/ttyUSB0',115200)
+        #s = serial.Serial('/dev/ttyUSB0',115200)
         f = open('GCODE/homingX.gcode','r')
         sendToGRBL(s,f,2)
         i = 3
 
     if i == 3:
-        s = serial.Serial('/dev/ttyUSB0',115200)
+        #s = serial.Serial('/dev/ttyUSB0',115200)
         f = open('GCODE/pushX.gcode','r')
         sendToGRBL(s,f,1)
         i = 4
     
     if i == 4:
-        s = serial.Serial('/dev/ttyUSB0',115200)
+        #s = serial.Serial('/dev/ttyUSB0',115200)
         f = open('GCODE/pushY.gcode','r')
         sendToGRBL(s,f,1)
         i = 5
     
     if i == 5:
-        s = serial.Serial('/dev/ttyUSB0',115200)
+        #s = serial.Serial('/dev/ttyUSB0',115200)
         f = open('GCODE/pushZ.gcode','r')
         sendToGRBL(s,f,6)
         i = 6
 
     if i == 6:
-        s = serial.Serial('/dev/ttyUSB0',115200)
+        #s = serial.Serial('/dev/ttyUSB0',115200)
         f = open('GCODE/goToUser.gcode','r')
         sendToGRBL(s,f,10)
+    
+    s.close()
 
 def main():
     app.run(debug=True, host="0.0.0.0", use_reloader=False)
 
 if __name__ == "__main__":
     main()
-
-
