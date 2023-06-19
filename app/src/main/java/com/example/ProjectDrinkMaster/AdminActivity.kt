@@ -16,6 +16,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.github.mikephil.charting.charts.BarChart
+import com.github.mikephil.charting.data.BarData
+import com.github.mikephil.charting.data.BarDataSet
+import com.github.mikephil.charting.data.BarEntry
 import java.lang.Thread.sleep
 import kotlin.concurrent.thread
 
@@ -40,6 +44,10 @@ class AdminActivity : AppCompatActivity() {
 
     private var graphBars = ArrayList<ImageView>(4)
 
+    lateinit var barChart: BarChart
+    lateinit var barData: BarData
+    lateinit var barDataSet: BarDataSet
+    lateinit var barEntriesList: ArrayList<BarEntry>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -77,21 +85,16 @@ class AdminActivity : AppCompatActivity() {
             graphBarLengths += data.getInt("drink$i")
         }
 
-        // find graph bars and change their color
-        graphBars.add(findViewById<ImageView>(R.id.drinkBar0))
-        graphBars.add(findViewById<ImageView>(R.id.drinkBar1))
-        graphBars.add(findViewById<ImageView>(R.id.drinkBar2))
-        graphBars.add(findViewById<ImageView>(R.id.drinkBar3))
-
-        // assign colors to graph bars (this should be separated into a pref file at some point
-        graphBars[0].setColorFilter(Color.parseColor("#30D5C8"))
-        graphBars[1].setColorFilter(Color.parseColor("#ADD8E6"))
-        graphBars[2].setColorFilter(Color.parseColor("#FFC0CB"))
-        graphBars[3].setColorFilter(Color.parseColor("#0000CC"))
-
-
-        // add values to graph
-        resizeGraph()
+        // create graph
+        barChart = findViewById(R.id.idBarChart)
+        getBarChartData()
+        barDataSet = BarDataSet(barEntriesList, "Bar Chart Data")
+        barData = BarData(barDataSet)
+        barChart.data = barData
+        barDataSet.valueTextColor = Color.BLACK
+        barDataSet.setColor(resources.getColor(R.color.darkBeige))
+        barDataSet.valueTextSize = 16f
+        barChart.description.isEnabled = false
 
     }
 
@@ -109,41 +112,16 @@ class AdminActivity : AppCompatActivity() {
 
     // ===== GRAPH LOGIC =====
 
-    // will change the graph bar image sizes, depending on the values in graphBarLengths (designed in use with "fitXY")
-    private fun resizeGraph() {
-        // find the highest number
-        var highest = 0
-        for (i in graphBarLengths.indices) {
-            if (graphBarLengths[i] > highest) {
-                highest = graphBarLengths[i]
-            }
-        }
-        if (highest == 0) {
-            return
-        }
-        var sizes = calcScaled(graphHeight, highest, graphBarLengths)
+    private fun getBarChartData() {
+        barEntriesList = ArrayList()
 
-        for (i in sizes.indices) {
-            if (sizes[i] == 0) {
-                sizes[i] = 10
-            }
-            graphBars[i].layoutParams.height = sizes[i]
-            // find a way to update the view if it doesn't.
-        }
-    }
+        // on below line we are adding data
+        // to our bar entries list
+        barEntriesList.add(BarEntry(1f, graphBarLengths[0].toFloat()))
+        barEntriesList.add(BarEntry(2f, graphBarLengths[1].toFloat()))
+        barEntriesList.add(BarEntry(3f, graphBarLengths[2].toFloat()))
+        barEntriesList.add(BarEntry(4f, graphBarLengths[3].toFloat()))
 
-    // calculate the actual size of the graph bar based on the formula of part/whole*max
-    private fun calcScaled(height: Int, highest: Int, values: ArrayList<Int>): ArrayList<Int> {
-        var sizes = ArrayList<Int>(values.size)
-        for (i in values.indices) {
-            Log.d("math",
-                values[i].toDouble()
-                    .toString() + " / " + highest.toString() + " * " + height + " = "
-            )
-            Log.d("math", (values[i].toDouble() / highest * height).toString())
-            sizes += (values[i].toDouble() / highest * height).toInt()
-        }
-        return sizes
     }
 
 

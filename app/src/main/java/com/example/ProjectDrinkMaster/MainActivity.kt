@@ -85,7 +85,6 @@ class MainActivity : AppCompatActivity() {
 
 
         drinkAdapter.setOnOrderClick {
-            showPop()
             if ((recyclerView.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition() === 0) {
                 getGin()
             } else if ((recyclerView.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition() === 1) {
@@ -95,6 +94,7 @@ class MainActivity : AppCompatActivity() {
             } else {
                 getCoke()
             }
+            showPop()
         }
 
         // setting button to get into the admin page
