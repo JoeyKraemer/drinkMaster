@@ -23,7 +23,7 @@ def index():
                 action("goToUser")
                 return render_template("index.html")
             elif v == "DRINK1":
-                action("homingZ")
+                action('homingZ')
                 return render_template("index.html")
             elif v == "DRINK2":
                 action("DRINKNAME")
