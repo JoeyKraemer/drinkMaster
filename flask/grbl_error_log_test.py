@@ -38,7 +38,7 @@ def index():
             return render_template("index.html")
 
 def showError(error, sp):
-    if error.find("Alarm"):
+    if error.find("Alarm") > 0:
         sp.close()
         return render_template("error.html", error=error)
 
