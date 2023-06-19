@@ -49,7 +49,7 @@ def sendToGRBL(serial,file):
         l = l + '\n'
         serial.write(l.encode())
         grbl_out = serial.readline().strip # Wait for grbl response with carriage return
-        showError(grbl_out)
+        showError(grbl_out,serial)
         print('Response: ') 
         print(grbl_out)
     serial.close()
