@@ -59,7 +59,7 @@ def sendToGRBL(serial,file):
         #showError(grbl_out,serial)
         print('Response: ') 
         print(grbl_out)
-    time.sleep(5)
+    time.sleep(2)
     file.close()
     serial.close()
 
