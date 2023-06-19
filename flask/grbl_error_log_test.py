@@ -42,7 +42,7 @@ def showError(error, sp):
         sp.close()
         return render_template("error.html", error=error)
 
-def sendToGRBL(serial,file):
+def sendToGRBL(serial,file,delay):
     a = "\r\n\r\n"
     serial.write(a.encode())
     time.sleep(2)   # Wait for grbl to initialize 
@@ -59,7 +59,7 @@ def sendToGRBL(serial,file):
         #showError(grbl_out,serial)
         print('Response: ') 
         print(grbl_out)
-    time.sleep(2)
+    time.sleep(delay)
     file.close()
     serial.close()
 
@@ -73,37 +73,37 @@ def calibration():
     if i == 0:
         s = serial.Serial('/dev/ttyUSB0',115200)
         f = open('GCODE/homingY.gcode','r')
-        sendToGRBL(s,f)
+        sendToGRBL(s,f,2)
         i = 1
 
     if i == 1:
         s = serial.Serial('/dev/ttyUSB0',115200)
         f = open('GCODE/homingZ.gcode','r')
-        sendToGRBL(s,f)
+        sendToGRBL(s,f,4)
         i = 2
 
     if i == 2:
         s = serial.Serial('/dev/ttyUSB0',115200)
         f = open('GCODE/homingX.gcode','r')
-        sendToGRBL(s,f)
+        sendToGRBL(s,f,1)
         i = 3
 
     if i == 3:
         s = serial.Serial('/dev/ttyUSB0',115200)
         f = open('GCODE/pushX.gcode','r')
-        sendToGRBL(s,f)
+        sendToGRBL(s,f,1)
         i = 4
 
     if i == 4:
         s = serial.Serial('/dev/ttyUSB0',115200)
         f = open('GCODE/pushZ.gcode','r')
-        sendToGRBL(s,f)
+        sendToGRBL(s,f,1)
         i = 5
 
     if i == 5:
         s = serial.Serial('/dev/ttyUSB0',115200)
         f = open('GCODE/goToUser.gcode','r')
-        sendToGRBL(s,f)
+        sendToGRBL(s,f,10)
 
 def main():
     app.run(debug=True, host="0.0.0.0", use_reloader=False)
