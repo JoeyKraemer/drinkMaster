@@ -60,6 +60,7 @@ def sendToGRBL(serial,file,delay):
         print('Response: ') 
         print(grbl_out)
     time.sleep(delay)
+    print(grbl_out)
     file.close()
     serial.close()
 
