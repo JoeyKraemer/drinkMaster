@@ -53,6 +53,7 @@ def sendToGRBL(serial,file):
         #showError(grbl_out,serial)
         print('Response: ') 
         print(grbl_out)
+    
     file.close()
     serial.close()
 
@@ -65,10 +66,10 @@ def calibration():
     s = serial.Serial('/dev/ttyUSB0',115200)
     f = open('GCODE/homingY.gcode','r')
     sendToGRBL(s,f)
-    if sendToGRBL:
-        s = serial.Serial('/dev/ttyUSB0',115200)
-        f = open('GCODE/homingX.gcode','r')
-        sendToGRBL(s,f)
+
+    s = serial.Serial('/dev/ttyUSB0',115200)
+    f = open('GCODE/homingX.gcode','r')
+    sendToGRBL(s,f)
     
     s = serial.Serial('/dev/ttyUSB0',115200)
     f = open('GCODE/homingZ.gcode','r')
