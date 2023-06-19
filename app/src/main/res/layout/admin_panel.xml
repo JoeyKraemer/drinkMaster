@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F6F7FB"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/border"
+            android:fontFamily="@font/share_regular"
+            android:shadowColor="@color/black"
+            android:shadowDx="6"
+            android:shadowDy="6"
+            android:shadowRadius="3"
+            android:text="Drink Master"
+            android:textAlignment="center"
+            android:textSize="80sp"
+            android:textStyle="normal" />
+
+        <ImageView
+            android:id="@+id/LogoImage"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            app:srcCompat="@drawable/logo" />
+
+        <ImageButton
+            android:id="@+id/restartRaspberryPiButton"
+            android:layout_width="340dp"
+            android:layout_height="170dp"
+            android:layout_marginLeft="70dp"
+            android:layout_marginTop="215dp"
+            app:srcCompat="@drawable/restart_pi_button" />
+
+        <ImageButton
+            android:id="@+id/CalibrateMachineButton"
+            android:layout_width="340dp"
+            android:layout_height="170dp"
+            android:layout_marginLeft="470dp"
+            android:layout_marginTop="215dp"
+            app:srcCompat="@drawable/calibrate_button" />
+
+        <ImageButton
+            android:id="@+id/RestartMachineButton"
+            android:layout_width="340dp"
+            android:layout_height="170dp"
+            android:layout_marginLeft="870dp"
+            android:layout_marginTop="215dp"
+            app:srcCompat="@drawable/restart_button" />
+
+    </FrameLayout>
+
+</LinearLayout>

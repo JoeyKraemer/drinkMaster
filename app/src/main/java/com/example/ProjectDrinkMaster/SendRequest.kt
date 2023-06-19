@@ -26,6 +26,8 @@ class SendRequest (key: String, value: String, url: String = MainActivity.url) :
 
         } catch (e: ProtocolException){
             Log.e("sendRequest", e.toString())
+        with(url.openConnection() as HttpURLConnection){
+            requestMethod = "GET"Log.d("networkRequest","\nSent 'GET' request to URL : $url; Response Code : $responseCode")
 
         }
     }
