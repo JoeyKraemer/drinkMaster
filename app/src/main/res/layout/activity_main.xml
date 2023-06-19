@@ -14,6 +14,7 @@
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="0dp">
 
+
         <TextView
             android:id="@+id/title"
             android:layout_width="match_parent"
@@ -33,13 +34,13 @@
             android:layout_height="75dp"
             app:srcCompat="@drawable/mint" />
 
+
         <ImageView
             android:id="@+id/lemon"
             android:layout_width="76dp"
             android:layout_height="75dp"
             android:layout_marginLeft="1200dp"
             app:srcCompat="@drawable/lemon" />
-
 
         <ImageView
             android:id="@+id/mocktail"
@@ -57,6 +58,7 @@
             app:srcCompat="@drawable/ice" />
 
     </FrameLayout>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"

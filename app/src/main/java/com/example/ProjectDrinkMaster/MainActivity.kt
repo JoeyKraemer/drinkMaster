@@ -1,15 +1,19 @@
 package com.example.ProjectDrinkMaster
 
 import android.annotation.SuppressLint
-import  android.app.Activity
+import android.app.Activity
+import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -30,20 +34,19 @@ class MainActivity : AppCompatActivity() {
     lateinit var text: Array<String>
     private var drinkList = ArrayList<ItemsViewModel>()
     private lateinit var drinkAdapter: CustomAdapter
-
-    // private lateinit var test : ItemsViewModel
-    private var countMocktail: Int = 0
+    private lateinit var getInterface : OnOrderButtonPress
+    private var countGin = 0
     private var countRumCoke = 0
     private var countLemonade = 0
     private var countCola = 0
-    val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
     private var buttonPressed = false
+    private val recyclerView = ""
 
-    @SuppressLint("MissingInflatedId")
+    @SuppressLint("MissingInflatedId", "ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         var showPopUp = findViewById<ImageButton>(R.id.imageButton)
         //getting the recyclerview by its id
         drinkAdapter = CustomAdapter(drinkList)
@@ -54,7 +57,9 @@ class MainActivity : AppCompatActivity() {
         recyclerView.adapter = drinkAdapter
         prepareDiffernetDrinks()
 
+
         drinkAdapter.setOnOrderClick {
+            Toast.makeText(this@MainActivity,"" + (recyclerView.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition(),Toast.LENGTH_LONG).show()
             showPop()
         }
 
@@ -115,7 +120,7 @@ class MainActivity : AppCompatActivity() {
                     "\n" +
                     "Crafting a Gin and Tonic is simple yet satisfying. It typically involves combining gin, tonic water, and a hint of citrus, usually a slice of lime or lemon. The real magic happens when the flavors mingle, creating a crisp and invigorating beverage that is perfect for any occasion.",
             R.drawable.gin,
-            "Aada",
+            "Gin n Tonic",
             R.drawable.ordergintonic
         )
         drinkList.add(drink)
@@ -144,32 +149,9 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun RecyclerView?.getCurrentPosition() : Int {
-        return (this?.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
-    }
+}
 
-    public fun getOrderTimsGin(): Int {
-        if (buttonPressed === true) {
-        if ( recyclerView.getCurrentPosition() === 0) {
-                countMocktail++
-                return countMocktail
-            }
-        }
-        return countMocktail
-        buttonPressed == false
-    }
 /*
-    public fun getOrderLemoade(): Int {
-        if (buttonPressed === true) {
-            if (getCurrentPositon() == 1) {
-                countLemonade++
-                return countLemonade
-            }
-        }
-        return countLemonade
-        buttonPressed == false
-    }
-
     public fun getOrderRum(): Int {
         if (buttonPressed === true) {
             if (getCurrentPositon() == 2) {
@@ -191,8 +173,5 @@ class MainActivity : AppCompatActivity() {
         return countCola
         buttonPressed == false
     }
-
- */
 }
-
-
+     */
