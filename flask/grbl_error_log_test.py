@@ -54,7 +54,7 @@ def sendToGRBL(serial,file,delay):
         print (l)
         l = l + '\n'
         serial.write(l.encode())
-        time.sleep(1)
+        time.sleep(0.5)
         grbl_out = serial.readline().strip() # Wait for grbl response with carriage return
         #showError(grbl_out,serial)
         print('Response: ') 
