@@ -40,12 +40,13 @@ class MainActivity : AppCompatActivity() {
     lateinit var text: Array<String>
     private var drinkList = ArrayList<ItemsViewModel>()
     private lateinit var drinkAdapter: CustomAdapter
-    private lateinit var getInterface : OnOrderButtonPress
+    private lateinit var getInterface: OnOrderButtonPress
     private var countGin = 0
     private var countRumCoke = 0
     private var countLemonade = 0
     private var countCola = 0
     private var buttonPressed = false
+
 
     @SuppressLint("MissingInflatedId", "ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -64,8 +65,16 @@ class MainActivity : AppCompatActivity() {
 
 
         drinkAdapter.setOnOrderClick {
-            Toast.makeText(this@MainActivity,"" + (recyclerView.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition(),Toast.LENGTH_LONG).show()
             showPop()
+            if ((recyclerView.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition() === 0) {
+                getGin()
+            } else if ((recyclerView.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition() === 1) {
+                getLemmonade()
+            } else if ((recyclerView.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition() === 2) {
+                getRum()
+            } else {
+                getCoke()
+            }
         }
 
         // setting button to get into the admin page
@@ -120,10 +129,25 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
+    public fun getGin() {
+        countGin++
+    }
+
+    public fun getRum() {
+        countRumCoke++
+    }
+
+    public fun getLemmonade() {
+        countLemonade++
+    }
+
+    public fun getCoke() {
+        countCola++
+    }
     // === FILE I/O ===
 
     // overrides and resets the drink value file (all values become 0)
-    public fun newDrinkValueFile(){
+    public fun newDrinkValueFile() {
         val jsonObject = JSONObject()
         jsonObject.put("drink1", 0)
         jsonObject.put("drink2", 0)
@@ -138,7 +162,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     // overrides drink value file
-    public fun writeToDrinkValueFile(jsonObject: JSONObject){
+    public fun writeToDrinkValueFile(jsonObject: JSONObject) {
         val userString = jsonObject.toString()
         val fileWriter = FileWriter("/data/data/$packageName/$fileName")
         val bufferedWriter = BufferedWriter(fileWriter)
@@ -147,7 +171,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     // add +1 to a drink. "drink" is an int from 1 to 4 corresponding to drink1 to drink4
-    public fun addOneToDrinkValue(drink:Int){
+    public fun addOneToDrinkValue(drink: Int) {
         val jsonObject = readOffDrinkValues()
         val value = jsonObject.getInt("drink$drink") + 1
         jsonObject.put("drink$drink", value)
