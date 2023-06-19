@@ -96,6 +96,12 @@ def calibration():
 
     if i == 4:
         s = serial.Serial('/dev/ttyUSB0',115200)
+        f = open('GCODE/pushZ.gcode','r')
+        sendToGRBL(s,f)
+        i = 5
+
+    if i == 5:
+        s = serial.Serial('/dev/ttyUSB0',115200)
         f = open('GCODE/goToUser.gcode','r')
         sendToGRBL(s,f)
 
