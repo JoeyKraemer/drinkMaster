@@ -25,6 +25,8 @@ class CustomAdapter( private val mList: List<ItemsViewModel>) : RecyclerView.Ada
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         //infales the card_view_desgin view
         val view = LayoutInflater.from(parent.context).inflate(R.layout.recycler_view,parent,false)
+        val lp = view.layoutParams
+        lp.width - parent.measuredHeight / 3
         return ViewHolder(view)
     }
 
