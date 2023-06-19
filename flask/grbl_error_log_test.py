@@ -57,6 +57,7 @@ def sendToGRBL(serial,file,delay):
         time.sleep(0.5)
         grbl_out = serial.readline().strip() # Wait for grbl response with carriage return
         #showError(grbl_out,serial)
+        print(type(grbl_out))
         print('Response: ') 
         print(grbl_out)
         if "Alarm" in grbl_out:
