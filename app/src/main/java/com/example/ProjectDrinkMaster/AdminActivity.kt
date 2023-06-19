@@ -101,38 +101,12 @@ class AdminActivity : AppCompatActivity() {
     // executes after the pin is entered (extension of OnCreate)
     fun onPinEntered(){
 
-        // ===== ERROR RECEIVER =====
+        if(MainActivity.errormsgs.isNotEmpty()){
+            var text = MainActivity.errormsgs.last()[0] + " " + MainActivity.errormsgs.last()[1]
 
-        thread(true, name="error finder") {
-            while (true){
-
-                val pageString = readRequest(MainActivity.url, "").execute().get()
-                if(pageString == null){
-                    Log.e("error finder", "could not get webpage, retrying in 30 seconds")
-                    sleep(30000)
-                    continue
-                }
-
-                val regex = "<div id=(?:\"|')?error(?:\"|')? ?> ?(.*) ?</div>".toRegex()      // <div id=error> bla bla </div>
-                val results = regex.find(pageString)?.groupValues
-
-                if(results == null) {
-                    Log.e("error finder", "page does not contain error window")
-                }
-                else {
-                    if (results.size == 2) {
-                        if (results[1] != "") {
-                            Handler(Looper.getMainLooper()).post {
-                                createErrorBox(results[1])
-                            }
-                            break
-                        }
-                    }
-                }
-
-                sleep(5000)
-            }
+            createErrorBox(text)
         }
+
     }
 
 
@@ -289,7 +263,7 @@ class AdminActivity : AppCompatActivity() {
         val builder = AlertDialog.Builder(this)
         val dialogView = LayoutInflater.from(this).inflate(R.layout.error_box, null)
         builder.setView(dialogView)
-        dialog = builder.create()
+        val dialog = builder.create()
         dialogView.findViewById<TextView>(R.id.errorText).text = errorMsg
         dialog.show()
     }
