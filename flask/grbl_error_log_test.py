@@ -59,10 +59,9 @@ def sendToGRBL(serial,file):
         #showError(grbl_out,serial)
         print('Response: ') 
         print(grbl_out)
+    time.sleep(10)
     file.close()
     serial.close()
-
-    return 
 
 def action(drink):
     s = serial.Serial('/dev/ttyUSB0',115200)
