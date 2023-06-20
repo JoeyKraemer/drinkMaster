@@ -30,6 +30,7 @@ def index():
                 action("DRINKNAME")
             elif v == "freeCup":
                 action("freeCup")
+            return render_template("index.html")
         else:
             return render_template("index.html")
 
