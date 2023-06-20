@@ -34,6 +34,9 @@ def index():
             elif v == "DRINK4":
                 action("DRINKNAME")
                 return render_template("index.html")
+            elif v == "freeCup":
+                action("freeCup")
+                return render_template("index.html")
         else:
             return render_template("index.html")
 
