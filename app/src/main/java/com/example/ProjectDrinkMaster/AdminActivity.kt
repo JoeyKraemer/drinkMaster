@@ -3,15 +3,25 @@ package com.example.ProjectDrinkMaster
 import android.graphics.Color
 import android.graphics.PorterDuff
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.KeyEvent
 import android.view.LayoutInflater
+import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.github.mikephil.charting.charts.BarChart
+import com.github.mikephil.charting.data.BarData
+import com.github.mikephil.charting.data.BarDataSet
+import com.github.mikephil.charting.data.BarEntry
+import java.lang.Thread.sleep
+import kotlin.concurrent.thread
 
 class AdminActivity : AppCompatActivity() {
 
@@ -24,7 +34,7 @@ class AdminActivity : AppCompatActivity() {
     // size of graph in dp
     val graphHeight = 600
 
-    val pincode = 7338
+    val pincode = 1234
 
     private lateinit var dialog: AlertDialog
 
@@ -34,6 +44,10 @@ class AdminActivity : AppCompatActivity() {
 
     private var graphBars = ArrayList<ImageView>(4)
 
+    lateinit var barChart: BarChart
+    lateinit var barData: BarData
+    lateinit var barDataSet: BarDataSet
+    lateinit var barEntriesList: ArrayList<BarEntry>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,26 +55,22 @@ class AdminActivity : AppCompatActivity() {
         setContentView(R.layout.activity_admin)
 
         // ===== INIT BUTTONS ======
-        /*
 
-        TODO("link buttons to clickListeners")
-        // get buttons
-        val rebootPiButton = findViewById<Button>(R.id.rebootPiButton)
-        val rebootMachineButton = findViewById<Button>(R.id.rebootMachineButton)
-        val calibrateButton = findViewById<Button>(R.id.calibrateButton)
-         */
+        val rebootPiButton = findViewById<Button>(R.id.RebootPiButton)
+        val rebootMachineButton = findViewById<Button>(R.id.RestartMachineButton)
+        val calibrateButton = findViewById<Button>(R.id.CalibrateMachineButton)
 
-        /*
+
         rebootPiButton.setOnClickListener(){
-            sendRequest("action", "rebootPi").execute()
+            SendRequest("action", "rebootPi").start()
         }
         rebootMachineButton.setOnClickListener(){
-            sendRequest("action", "rebootPlatform").execute()
+            SendRequest("action", "rebootPlatform").start()
         }
         calibrateButton.setOnClickListener(){
-            sendRequest("action", "calibrate").execute()
+            SendRequest("action", "calibrate").start()
         }
-        */
+
 
         // ===== INIT KEYCODE ======
         // create pop up password
@@ -68,66 +78,52 @@ class AdminActivity : AppCompatActivity() {
 
 
         // ===== INIT GRAPH ======
-        // randomly create values for graph
 
-        for (i in (0..3)) {
-            graphBarLengths += (0..10).random()
+        // get amount of drinks sold for graph
+        val data = MainActivity.readOffDrinkValues()
+        for (i in (1..4)) {
+            graphBarLengths += data.getInt("drink$i")
         }
 
-        // find graph bars and change their color
-        graphBars += findViewById<ImageView>(R.id.drinkBar0)
-        graphBars += findViewById<ImageView>(R.id.drinkBar1)
-        graphBars += findViewById<ImageView>(R.id.drinkBar2)
-        graphBars += findViewById<ImageView>(R.id.drinkBar3)
+        // create graph
+        barChart = findViewById(R.id.idBarChart)
+        getBarChartData()
+        barDataSet = BarDataSet(barEntriesList, "Bar Chart Data")
+        barData = BarData(barDataSet)
+        barChart.data = barData
+        barDataSet.valueTextColor = Color.BLACK
+        barDataSet.setColor(resources.getColor(R.color.darkBeige))
+        barDataSet.valueTextSize = 16f
+        barChart.description.isEnabled = false
 
-        graphBars[0].setColorFilter(Color.parseColor("#30D5C8"))
-        graphBars[1].setColorFilter(Color.parseColor("#ADD8E6"))
-        graphBars[2].setColorFilter(Color.parseColor("#FFC0CB"))
-        graphBars[3].setColorFilter(Color.parseColor("#0000CC"))
-
-
-        // add values to graph
-        resizeGraph()
     }
+
+    // executes after the pin is entered (extension of OnCreate)
+    fun onPinEntered(){
+
+        if(MainActivity.errormsgs.isNotEmpty()){
+            var text = MainActivity.errormsgs.last()[0] + " " + MainActivity.errormsgs.last()[1]
+
+            createErrorBox(text)
+        }
+
+    }
+
 
     // ===== GRAPH LOGIC =====
 
-    // will change the graph bar image sizes, depending on the values in graphBarLengths (designed in use with "fitXY")
-    private fun resizeGraph() {
-        // find the highest number
-        var highest = 0
-        for (i in graphBarLengths.indices) {
-            if (graphBarLengths[i] > highest) {
-                highest = graphBarLengths[i]
-            }
-        }
-        if (highest == 0) {
-            return
-        }
-        var sizes = calcScaled(graphHeight, highest, graphBarLengths)
+    private fun getBarChartData() {
+        barEntriesList = ArrayList()
 
-        for (i in sizes.indices) {
-            if (sizes[i] == 0) {
-                sizes[i] = 10
-            }
-            graphBars[i].layoutParams.height = sizes[i]
-            // find a way to update the view if it doesn't.
-        }
+        // on below line we are adding data
+        // to our bar entries list
+        barEntriesList.add(BarEntry(1f, graphBarLengths[0].toFloat()))
+        barEntriesList.add(BarEntry(2f, graphBarLengths[1].toFloat()))
+        barEntriesList.add(BarEntry(3f, graphBarLengths[2].toFloat()))
+        barEntriesList.add(BarEntry(4f, graphBarLengths[3].toFloat()))
+
     }
 
-    // calculate the actual size of the graph bar based on the formula of part/whole*max
-    private fun calcScaled(height: Int, highest: Int, values: ArrayList<Int>): ArrayList<Int> {
-        var sizes = ArrayList<Int>(values.size)
-        for (i in values.indices) {
-            Log.d("math",
-                values[i].toDouble()
-                    .toString() + " / " + highest.toString() + " * " + height + " = "
-            )
-            Log.d("math", (values[i].toDouble() / highest * height).toString())
-            sizes += (values[i].toDouble() / highest * height).toInt()
-        }
-        return sizes
-    }
 
     // ===== PINCODE LOGIC =====
 
@@ -155,6 +151,7 @@ class AdminActivity : AppCompatActivity() {
                             //Last character is inserted
                             if (validateCode(getCode())) {
                                 dialog.hide()
+                                onPinEntered()
                             } else {
                                 for (ii in keycodeDigitElements.indices) {
                                     keycodeDigitElements[ii].setText("")
@@ -182,6 +179,7 @@ class AdminActivity : AppCompatActivity() {
         dialog = builder.create()
         dialog.setCancelable(false)
         dialog.setCanceledOnTouchOutside(false)
+
 
         // makes it so that it returns when you press the back button
         dialog.setOnKeyListener { dialog, keyCode, event ->
@@ -232,4 +230,17 @@ class AdminActivity : AppCompatActivity() {
     fun validateCode(code: String): Boolean {
         return (code == pincode.toString())
     }
+
+
+    // ==== ERROR POPUP ====
+
+    fun createErrorBox(errorMsg:String?){
+        val builder = AlertDialog.Builder(this)
+        val dialogView = LayoutInflater.from(this).inflate(R.layout.error_box, null)
+        builder.setView(dialogView)
+        val dialog = builder.create()
+        dialogView.findViewById<TextView>(R.id.errorText).text = errorMsg
+        dialog.show()
+    }
+
 }
