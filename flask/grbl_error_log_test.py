@@ -12,7 +12,7 @@ app = Flask(__name__)
 def index():
     if request.method == "POST":
         main()
-        return render_template("index.html")
+        return render_template("index.html", error = "")
     elif request.method == "GET":
         if request.args.get("action"):
             v = request.args.get("action")
@@ -30,9 +30,9 @@ def index():
                 action("DRINKNAME")
             elif v == "freeCup":
                 action("freeCup")
-            return render_template("index.html")
+            return render_template("index.html", error = "")
         else:
-            return render_template("index.html")
+            return render_template("index.html", error = "")
 
 def sendToGRBL(serial,file,delay):
     a = "\r\n\r\n"
@@ -63,7 +63,7 @@ def action(drink):
     f = open('GCODE/' + drink + '.gcode','r')
     sendToGRBL(s,f,2)
     
-    return render_template("index.html")
+    return render_template("index.html", error = "")
 
 def calibration():
     i = 0
