@@ -92,6 +92,4 @@
         app:layout_constraintTop_toBottomOf="@+id/title"
         app:srcCompat="@drawable/calibrate_button" />
 
-
 </androidx.constraintlayout.widget.ConstraintLayout>
-

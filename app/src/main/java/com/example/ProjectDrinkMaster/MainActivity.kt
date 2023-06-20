@@ -18,7 +18,9 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.SnapHelper
 import org.json.JSONObject
 import java.io.BufferedReader
 import java.io.BufferedWriter
@@ -35,7 +37,7 @@ class MainActivity : AppCompatActivity() {
 
     // global variables
     companion object {
-        const val url = "http://192.168.0.102:5000/"
+        const val url = "http://192.168.0.103:5000/"
         const val fileName = "drinkValues.json"
         var errormsgs = ArrayList<Array<String>>()
 
@@ -86,6 +88,8 @@ class MainActivity : AppCompatActivity() {
         recyclerView.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         recyclerView.adapter = drinkAdapter
+        val snapHelper : SnapHelper = LinearSnapHelper()
+        snapHelper.attachToRecyclerView(recyclerView)
         prepareDiffernetDrinks()
 
 

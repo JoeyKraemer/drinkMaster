@@ -15,6 +15,7 @@ import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.github.mikephil.charting.charts.BarChart
@@ -60,6 +61,7 @@ class AdminActivity : AppCompatActivity() {
         val rebootPiButton = findViewById<ImageButton>(R.id.RestartRaspberryPiButton)
         val rebootMachineButton = findViewById<ImageButton>(R.id.RestartMachineButton)
         val calibrateButton = findViewById<ImageButton>(R.id.CalibrateMachineButton)
+        val openCup  = findViewById(R.id.ReleaseCupButton) as ImageButton
 
 
         rebootPiButton.setOnClickListener(){
@@ -68,8 +70,14 @@ class AdminActivity : AppCompatActivity() {
         rebootMachineButton.setOnClickListener(){
             SendRequest("action", "rebootPlatform").start()
         }
-        calibrateButton.setOnClickListener(){
-            SendRequest("action", "calibrate").start()
+
+        calibrateButton.setOnClickListener{
+            Toast.makeText(this@AdminActivity,"tedst",Toast.LENGTH_SHORT).show()
+            SendRequest("action", "calibration").start()
+        }
+
+        openCup.setOnClickListener{
+            SendRequest("action","openCup")
         }
 
 
