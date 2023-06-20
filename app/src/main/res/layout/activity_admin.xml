@@ -8,34 +8,40 @@
 
 
     <ImageButton
-        android:id="@+id/imageButton4"
+        android:id="@+id/ReleaseCupButton"
         android:layout_width="290dp"
         android:layout_height="180dp"
-        android:layout_marginStart="972dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="24dp"
+        android:layout_marginEnd="25dp"
         android:clickable="true"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/RestartMachineButton"
         app:layout_constraintTop_toBottomOf="@+id/title"
         app:srcCompat="@drawable/release_cup_button" />
 
     <ImageButton
-        android:id="@+id/imageButton3"
+        android:id="@+id/RestartMachineButton"
         android:layout_width="290dp"
         android:layout_height="180dp"
-        android:layout_marginStart="656dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
         android:clickable="true"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/ReleaseCupButton"
+        app:layout_constraintStart_toEndOf="@+id/CalibrateMachineButton"
         app:layout_constraintTop_toBottomOf="@+id/title"
         app:srcCompat="@drawable/restart_button" />
 
     <ImageButton
-        android:id="@+id/imageButton2"
+        android:id="@+id/RestartRaspberryPiButton"
         android:layout_width="290dp"
         android:layout_height="180dp"
-        android:layout_marginStart="30dp"
+        android:layout_marginStart="25dp"
         android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
         android:clickable="true"
+        app:layout_constraintEnd_toStartOf="@+id/CalibrateMachineButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title"
         app:srcCompat="@drawable/restart_pi_button" />
@@ -49,13 +55,10 @@
         app:layout_constraintStart_toStartOf="parent" />
 
 
-
-
     <TextView
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:layout_marginTop="5dp"
         android:background="@drawable/border"
         android:fontFamily="@font/share_regular"
         android:shadowColor="@color/black"
@@ -74,19 +77,20 @@
         android:id="@+id/LogoImage"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:layout_marginTop="5dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo" />
 
     <ImageButton
-        android:id="@+id/imageButton11"
+        android:id="@+id/CalibrateMachineButton"
         android:layout_width="290dp"
         android:layout_height="180dp"
-        android:layout_marginStart="348dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
         android:clickable="true"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/RestartMachineButton"
+        app:layout_constraintStart_toEndOf="@+id/RestartRaspberryPiButton"
         app:layout_constraintTop_toBottomOf="@+id/title"
         app:srcCompat="@drawable/calibrate_button" />
 
