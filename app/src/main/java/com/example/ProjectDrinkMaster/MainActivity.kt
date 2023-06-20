@@ -101,7 +101,6 @@ class MainActivity : AppCompatActivity() {
                 getCoke()
             }
             showPop()
-
         }
 
         // setting button to get into the admin page
