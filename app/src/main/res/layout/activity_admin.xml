@@ -48,6 +48,7 @@
 
     <ImageButton
         android:id="@+id/restartRaspberryPiButton"
+        android:clickable="true"
         android:layout_width="280dp"
         android:layout_height="180dp"
         app:srcCompat="@drawable/restart_pi_button"
@@ -56,6 +57,7 @@
 
     <ImageButton
         android:id="@+id/CalibrateMachineButton"
+        android:clickable="true"
         android:layout_width="290dp"
         android:layout_height="180dp"
         app:srcCompat="@drawable/calibrate_button"
@@ -64,6 +66,7 @@
 
     <ImageButton
         android:id="@+id/RestartMachineButton"
+        android:clickable="true"
         android:layout_width="290dp"
         android:layout_height="180dp"
         app:srcCompat="@drawable/restart_button"
@@ -72,6 +75,7 @@
 
     <ImageButton
         android:id="@+id/imageButton2"
+        android:clickable="true"
         android:layout_width="290dp"
         android:layout_height="180dp"
         app:srcCompat="@drawable/release_cup_button"

@@ -12,6 +12,7 @@ import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
@@ -55,10 +56,10 @@ class AdminActivity : AppCompatActivity() {
         setContentView(R.layout.activity_admin)
 
         // ===== INIT BUTTONS ======
-
-        val rebootPiButton = findViewById<Button>(R.id.RebootPiButton)
-        val rebootMachineButton = findViewById<Button>(R.id.RestartMachineButton)
-        val calibrateButton = findViewById<Button>(R.id.CalibrateMachineButton)
+        //Bernardo: Yohan these are imageButton
+        val rebootPiButton = findViewById<ImageButton>(R.id.restartRaspberryPiButton)
+        val rebootMachineButton = findViewById<ImageButton>(R.id.RestartMachineButton)
+        val calibrateButton = findViewById<ImageButton>(R.id.CalibrateMachineButton)
 
 
         rebootPiButton.setOnClickListener(){
