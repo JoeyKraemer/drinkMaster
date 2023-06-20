@@ -60,7 +60,6 @@ def sendToGRBL(serial,file,delay):
         
         grbl_out = serial.readline().strip() # Wait for grbl response with carriage return
         #showError(grbl_out,serial)
-        print(type(grbl_out))
         print('Response: ') 
         print(grbl_out)
         if "ALARM" in grbl_out.decode('UTF-8'):
@@ -112,7 +111,6 @@ def calibration():
         s = serial.Serial('/dev/ttyUSB0',115200)
         f = open('GCODE/pushZ.gcode','r')
         sendToGRBL(s,f,6)
-        time.sleep(2)
         i = 6
 
     if i == 6:
