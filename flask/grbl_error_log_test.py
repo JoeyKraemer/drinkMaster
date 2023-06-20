@@ -18,32 +18,20 @@ def index():
             v = request.args.get("action")
             if v == "calibration":
                 calibration()
-                return render_template("index.html")
             elif v == "goToUser":
                 action("goToUser")
-                return render_template("index.html")
             elif v == "DRINK1":
                 action('freeCup')
-                return render_template("index.html")
             elif v == "DRINK2":
-                action("DRINK2")
-                return render_template("index.html")
+                action("DRINK2")   
             elif v == "DRINK3":
                 action("DRINKNAME")
-                return render_template("index.html")
             elif v == "DRINK4":
                 action("DRINKNAME")
-                return render_template("index.html")
             elif v == "freeCup":
                 action("freeCup")
-                return render_template("index.html")
         else:
             return render_template("index.html")
-
-def showError(error, sp):
-    if "Alarm" in error:
-        sp.close()
-        return render_template("error.html", error=error)
 
 def sendToGRBL(serial,file,delay):
     a = "\r\n\r\n"
@@ -57,15 +45,13 @@ def sendToGRBL(serial,file,delay):
         print (l)
         l = l + '\n'
         serial.write(l.encode())
-        
         grbl_out = serial.readline().strip() # Wait for grbl response with carriage return
-        #showError(grbl_out,serial)
-        print(type(grbl_out))
         print('Response: ') 
         print(grbl_out)
         if "ALARM" in grbl_out.decode('UTF-8'):
-            print("ALALALLALALALALLALALALLALALALALALA")
+            return render_template("index.html", error = grbl_out)
         time.sleep(0.75)
+
     time.sleep(delay)
     print(grbl_out)
     file.close()
@@ -75,6 +61,8 @@ def action(drink):
     s = serial.Serial('/dev/ttyUSB0',115200)
     f = open('GCODE/' + drink + '.gcode','r')
     sendToGRBL(s,f,2)
+    
+    return render_template("index.html")
 
 def calibration():
     i = 0
@@ -119,6 +107,7 @@ def calibration():
         f = open('GCODE/goToUser.gcode','r')
         sendToGRBL(s,f,10)
 
+    return render_template("index.html")  
 
 def main():
     app.run(debug=True, host="0.0.0.0", use_reloader=False)
