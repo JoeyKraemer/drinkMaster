@@ -57,7 +57,7 @@ class AdminActivity : AppCompatActivity() {
 
         // ===== INIT BUTTONS ======
         //Bernardo: Yohan these are imageButton
-        val rebootPiButton = findViewById<ImageButton>(R.id.restartRaspberryPiButton)
+        val rebootPiButton = findViewById<ImageButton>(R.id.RestartRaspberryPiButton)
         val rebootMachineButton = findViewById<ImageButton>(R.id.RestartMachineButton)
         val calibrateButton = findViewById<ImageButton>(R.id.CalibrateMachineButton)
 

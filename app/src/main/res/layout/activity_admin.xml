@@ -6,13 +6,57 @@
     android:layout_height="match_parent"
     tools:context=".AdminActivity">
 
+    <ImageButton
+        android:id="@+id/ReleaseCupButton"
+        android:layout_width="290dp"
+        android:layout_height="180dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="25dp"
+        android:clickable="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/RestartMachineButton"
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        app:srcCompat="@drawable/release_cup_button" />
 
+    <ImageButton
+        android:id="@+id/RestartMachineButton"
+        android:layout_width="290dp"
+        android:layout_height="180dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="8dp"
+        android:clickable="true"
+        app:layout_constraintEnd_toStartOf="@+id/ReleaseCupButton"
+        app:layout_constraintStart_toEndOf="@+id/CalibrateMachineButton"
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        app:srcCompat="@drawable/restart_button" />
+
+    <ImageButton
+        android:id="@+id/RestartRaspberryPiButton"
+        android:layout_width="290dp"
+        android:layout_height="180dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="8dp"
+        android:clickable="true"
+        app:layout_constraintEnd_toStartOf="@+id/CalibrateMachineButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        app:srcCompat="@drawable/restart_pi_button" />
+
+    <com.github.mikephil.charting.charts.BarChart
+        android:id="@+id/idBarChart"
+        android:layout_width="900dp"
+        android:layout_height="400dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:layout_marginTop="5dp"
         android:background="@drawable/border"
         android:fontFamily="@font/share_regular"
         android:shadowColor="@color/black"
@@ -31,54 +75,23 @@
         android:id="@+id/LogoImage"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:layout_marginTop="5dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo" />
 
     <ImageButton
-        android:id="@+id/restartRaspberryPiButton"
-        android:clickable="true"
-        android:layout_width="280dp"
-        android:layout_height="180dp"
-        app:srcCompat="@drawable/restart_pi_button"
-        tools:layout_editor_absoluteX="32dp"
-        tools:layout_editor_absoluteY="124dp" />
-
-    <ImageButton
         android:id="@+id/CalibrateMachineButton"
-        android:clickable="true"
         android:layout_width="290dp"
         android:layout_height="180dp"
-        app:srcCompat="@drawable/calibrate_button"
-        tools:layout_editor_absoluteX="333dp"
-        tools:layout_editor_absoluteY="124dp" />
-
-    <ImageButton
-        android:id="@+id/RestartMachineButton"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="8dp"
         android:clickable="true"
-        android:layout_width="290dp"
-        android:layout_height="180dp"
-        app:srcCompat="@drawable/restart_button"
-        tools:layout_editor_absoluteX="649dp"
-        tools:layout_editor_absoluteY="124dp" />
+        app:layout_constraintEnd_toStartOf="@+id/RestartMachineButton"
+        app:layout_constraintStart_toEndOf="@+id/RestartRaspberryPiButton"
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        app:srcCompat="@drawable/calibrate_button" />
 
-    <ImageButton
-        android:id="@+id/imageButton2"
-        android:clickable="true"
-        android:layout_width="290dp"
-        android:layout_height="180dp"
-        app:srcCompat="@drawable/release_cup_button"
-        tools:layout_editor_absoluteX="959dp"
-        tools:layout_editor_absoluteY="124dp" />
-
-    <com.github.mikephil.charting.charts.BarChart
-        android:id="@+id/idBarChart"
-        android:layout_width="900dp"
-        android:layout_height="400dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
