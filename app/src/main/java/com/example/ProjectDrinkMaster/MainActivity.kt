@@ -28,6 +28,7 @@ import java.io.FileWriter
 import java.lang.Thread.sleep
 import java.util.Calendar
 import kotlin.concurrent.thread
+import kotlin.math.log
 
 
 class MainActivity : AppCompatActivity() {
@@ -39,7 +40,7 @@ class MainActivity : AppCompatActivity() {
         var errormsgs = ArrayList<Array<String>>()
 
         // reads off the drinkList, the return can be used with jsonObject.get("drink1")
-        public fun readOffDrinkValues(packageName : String = "com.example.ProjectDrinkMaster"): JSONObject {
+        public fun readOffDrinkValues(packageName: String = "com.example.ProjectDrinkMaster"): JSONObject {
             val fr = FileReader("/data/data/$packageName/$fileName")
             val bfReader = BufferedReader(fr)
             val stringBuilder = StringBuilder()
@@ -66,6 +67,10 @@ class MainActivity : AppCompatActivity() {
     private lateinit var drinkAdapter: CustomAdapter
     private lateinit var getInterface: OnOrderButtonPress
     private var buttonPressed = false
+    private var totalScrolledPixels = 0
+    private val targetPixels = 500
+    private var shouldScrollToPosition2 = false
+
 
 
     @SuppressLint("MissingInflatedId", "ResourceType")
@@ -85,7 +90,7 @@ class MainActivity : AppCompatActivity() {
 
 
         drinkAdapter.setOnOrderClick {
-            showPop()
+            Log.d("Button pressed", "Button" + (recyclerView.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition())
             if ((recyclerView.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition() === 0) {
                 getGin()
             } else if ((recyclerView.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition() === 1) {
@@ -95,6 +100,8 @@ class MainActivity : AppCompatActivity() {
             } else {
                 getCoke()
             }
+            showPop()
+
         }
 
         // setting button to get into the admin page
@@ -105,26 +112,29 @@ class MainActivity : AppCompatActivity() {
         }
 
         var lastError = ""
-        thread(true, name="error finder") { // thread for pinging the server in order to find new errors
-            while (true){
+        thread(
+            true,
+            name = "error finder"
+        ) { // thread for pinging the server in order to find new errors
+            while (true) {
 
                 val pageString = readRequest(MainActivity.url, "").execute().get()
-                if(pageString == null){
+                if (pageString == null) {
                     Log.e("error finder", "could not get webpage, retrying in 30 seconds")
                     sleep(30000)
                     continue
                 }
 
-                val regex = "<div id=(?:\"|')?error(?:\"|')? ?> ?(.*) ?</div>".toRegex()      // <div id=error> bla bla </div>
+                val regex =
+                    "<div id=(?:\"|')?error(?:\"|')? ?> ?(.*) ?</div>".toRegex()      // <div id=error> bla bla </div>
                 val results = regex.find(pageString)?.groupValues
 
-                if(results == null) {
+                if (results == null) {
                     Log.e("error finder", "page does not contain error window")
-                }
-                else {
+                } else {
                     if (results.size == 2) { // if there's something between the ><
                         if (results[1] != "") { // if result 1 (the middle of the ><) is not empty
-                            if(lastError != results[1]) { // if it's not the same as the last error
+                            if (lastError != results[1]) { // if it's not the same as the last error
                                 Handler(Looper.getMainLooper()).post {
                                     lastError = results[1]
                                     errormsgs.add(  // add the error message with both the date and msg
@@ -133,11 +143,11 @@ class MainActivity : AppCompatActivity() {
                                             results[1]
                                         )
                                     )
-                                    }
                                 }
                             }
                         }
                     }
+                }
 
                 sleep(5000)
             }
@@ -145,9 +155,31 @@ class MainActivity : AppCompatActivity() {
 
         // check if /data/data/$packageName/$fileName exists, if not, makes a new file
         val file = File("/data/data/$packageName/$fileName")
-        if(!file.exists()){
+        if (!file.exists()) {
             newDrinkValueFile()
         }
+
+        recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+
+                //update the total scrolledPixels var
+                totalScrolledPixels +=  dx
+                var y = recyclerView.x
+                if(totalScrolledPixels === targetPixels){
+                    shouldScrollToPosition2 = true
+                    totalScrolledPixels = 0
+                    //recyclerView.layoutManager?.scrollToPosition(5000)
+                    (recyclerView.layoutManager as LinearLayoutManager).scrollToPositionWithOffset(1,0)
+                }
+                //output
+               // Log.d("Scrool", "amounnf of pixels: $totalScrolledPixels")
+                //Log.d("Pos", "Pos:" + (recyclerView.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition())
+            }
+        })
+
+
+
     }
 
     private fun showPop() {
@@ -278,3 +310,4 @@ class MainActivity : AppCompatActivity() {
     }
 
 }
+
