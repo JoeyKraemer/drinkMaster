@@ -7,6 +7,7 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/ProjectDrinkMaster.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/ProjectDrinkMaster.app.androidTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/ProjectDrinkMaster.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/ProjectDrinkMaster.app.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/ProjectDrinkMaster.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/ProjectDrinkMaster.app.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/drinkMaster.ProjectDrinkMaster.iml" filepath="$PROJECT_DIR$/.idea/modules/drinkMaster.ProjectDrinkMaster.iml" />
     </modules>
   </component>
 </project>

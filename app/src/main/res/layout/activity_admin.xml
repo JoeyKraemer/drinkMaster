@@ -6,46 +6,72 @@
     android:layout_height="match_parent"
     tools:context=".AdminActivity">
 
-    <Button
-        android:id="@+id/RebootPiButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="120dp"
-        android:layout_marginTop="87dp"
-        android:text="reboot pi"
+
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/border"
+        android:fontFamily="@font/share_regular"
+        android:shadowColor="@color/black"
+        android:shadowDx="6"
+        android:shadowDy="6"
+        android:shadowRadius="3"
+        android:text="Drink Master"
+        android:textAlignment="center"
+        android:textSize="80sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+    <ImageView
+        android:id="@+id/LogoImage"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo" />
+
+    <ImageButton
+        android:id="@+id/restartRaspberryPiButton"
+        android:clickable="true"
+        android:layout_width="280dp"
+        android:layout_height="180dp"
+        app:srcCompat="@drawable/restart_pi_button"
+        tools:layout_editor_absoluteX="32dp"
+        tools:layout_editor_absoluteY="124dp" />
+
+    <ImageButton
         android:id="@+id/CalibrateMachineButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="51dp"
-        android:layout_marginTop="89dp"
-        android:text="calibrate machine"
-        app:layout_constraintStart_toEndOf="@+id/RebootPiButton"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:clickable="true"
+        android:layout_width="290dp"
+        android:layout_height="180dp"
+        app:srcCompat="@drawable/calibrate_button"
+        tools:layout_editor_absoluteX="333dp"
+        tools:layout_editor_absoluteY="124dp" />
 
-    <Button
+    <ImageButton
         android:id="@+id/RestartMachineButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="51dp"
-        android:layout_marginTop="87dp"
-        android:text="restart machine"
-        app:layout_constraintStart_toEndOf="@+id/CalibrateMachineButton"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:clickable="true"
+        android:layout_width="290dp"
+        android:layout_height="180dp"
+        app:srcCompat="@drawable/restart_button"
+        tools:layout_editor_absoluteX="649dp"
+        tools:layout_editor_absoluteY="124dp" />
 
-    <Button
-        android:id="@+id/ReleaseCupButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="62dp"
-        android:layout_marginTop="83dp"
-        android:text="release cup"
-        app:layout_constraintStart_toEndOf="@+id/RestartMachineButton"
-        app:layout_constraintTop_toTopOf="parent" />
-    
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:clickable="true"
+        android:layout_width="290dp"
+        android:layout_height="180dp"
+        app:srcCompat="@drawable/release_cup_button"
+        tools:layout_editor_absoluteX="959dp"
+        tools:layout_editor_absoluteY="124dp" />
+
     <com.github.mikephil.charting.charts.BarChart
         android:id="@+id/idBarChart"
         android:layout_width="900dp"
