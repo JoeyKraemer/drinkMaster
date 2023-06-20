@@ -90,6 +90,7 @@ class MainActivity : AppCompatActivity() {
         recyclerView.adapter = drinkAdapter
         val snapHelper : SnapHelper = LinearSnapHelper()
         snapHelper.attachToRecyclerView(recyclerView)
+
         prepareDiffernetDrinks()
 
 
