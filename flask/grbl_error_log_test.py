@@ -52,6 +52,9 @@ def sendToGRBL(serial,file,delay):
     serial.flushInput()  # Flush startup text in serial input
 
     for line in file:
+        if line == "":
+            time.sleep(0.5)
+            continue
         l = line.strip() # Strip all EOL characters for consistency
         print ('Sending: ') 
         print (l)
