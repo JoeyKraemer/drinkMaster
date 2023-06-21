@@ -113,8 +113,8 @@ def sendToGRBL(gcodeArray):
             s.write(command.encode())
             response = s.readline()
             print('Response: ' + response.decode())
-            time.sleep(0.8)
-            print(s.inWaiting())
+            #time.sleep(0.8)
+            print('Buffer',s.inWaiting())
         s.close()
 
 def restartPi():
