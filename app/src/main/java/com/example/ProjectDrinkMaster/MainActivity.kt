@@ -336,6 +336,10 @@ class MainActivity : AppCompatActivity() {
         }, 5000)
     }
 
+    private fun QrCode(){
+
+    }
+
     //the following funtions will add 1 drink to the bars
     fun getGin() {
         addOneToDrinkValue(1)
@@ -360,7 +364,6 @@ class MainActivity : AppCompatActivity() {
         jsonObject.getJSONObject("drinks").getJSONObject("drink$drink").put("sold", value)
         writeToDrinkValueFile(jsonObject)
     }
-
 
     //here we store what values are suppose to be shown
     private fun prepareDifferentDrinks() {
