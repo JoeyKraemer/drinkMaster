@@ -120,10 +120,9 @@ def sendToGRBL(gcodeArray):
             time.sleep(0.8)
             buffer += s.inWaiting()
             
-        # print(buffer)
-        # while buffer > 4 :
-        #     time.sleep(0.25)
-        #     buffer -= 4
+        print(buffer)
+        substring_whatever = command[:-3]
+        print(substring_whatever)
         time.sleep(5)
         s.close()
 
