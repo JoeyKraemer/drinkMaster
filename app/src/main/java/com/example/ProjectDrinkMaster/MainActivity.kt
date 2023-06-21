@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
         var errormsgs = ArrayList<Array<String>>()
 
         // reads off the drinkList, the return can be used with jsonObject.get("drink1")
-        public fun readOffDrinkValues(packageName: String = "com.example.ProjectDrinkMaster"): JSONObject {
+        fun readOffDrinkValues(packageName: String = "com.example.ProjectDrinkMaster"): JSONObject {
             val fr = FileReader("/data/data/$packageName/$fileName")
             val bfReader = BufferedReader(fr)
             val stringBuilder = StringBuilder()
@@ -67,7 +67,7 @@ class MainActivity : AppCompatActivity() {
     private var totalScrolledPixels = 0
     private val targetPixels = 500
     private var shouldScrollToPosition2 = false
-    private var time : Long = 3000
+    private var time: Long = 3000
 
     @SuppressLint("MissingInflatedId", "ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -112,7 +112,7 @@ class MainActivity : AppCompatActivity() {
         val mintIcon = findViewById<ImageView>(R.id.mint)
         mintIcon.setOnClickListener { view ->
             val intent = Intent(this@MainActivity, AdminActivity::class.java)
-            startActivity(intent);
+            startActivity(intent)
         }
 
         var lastError = ""
@@ -122,7 +122,7 @@ class MainActivity : AppCompatActivity() {
         ) { // thread for pinging the server in order to find new errors
             while (true) {
 
-                val pageString = readRequest(MainActivity.url, "").execute().get()
+                val pageString = readRequest(url, "").execute().get()
                 if (pageString == null) {
                     Log.e("error finder", "could not get webpage, retrying in 30 seconds")
                     sleep(30000)
@@ -230,19 +230,19 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
-    public fun getGin() {
+    fun getGin() {
         addOneToDrinkValue(1)
     }
 
-    public fun getRum() {
+    fun getRum() {
         addOneToDrinkValue(2)
     }
 
-    public fun getLemmonade() {
+    fun getLemmonade() {
         addOneToDrinkValue(3)
     }
 
-    public fun getCoke() {
+    fun getCoke() {
         addOneToDrinkValue(4)
     }
     // === FILE I/O ===
@@ -314,7 +314,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    public fun getTime() : Long{
+    fun getTime(): Long {
         return time
     }
 
