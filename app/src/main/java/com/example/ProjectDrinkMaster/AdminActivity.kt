@@ -1,5 +1,6 @@
 package com.example.ProjectDrinkMaster
 
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.PorterDuff
 import android.os.Bundle
@@ -67,17 +68,22 @@ class AdminActivity : AppCompatActivity() {
 
         rebootPiButton.setOnClickListener {
             SendRequest("action", "rebootPi").start()
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
         }
         rebootMachineButton.setOnClickListener {
+            dialog.hide()
             SendRequest("action", "rebootPlatform").start()
         }
 
         calibrateButton.setOnClickListener {
-            Toast.makeText(this@AdminActivity, "tedst", Toast.LENGTH_SHORT).show()
+            dialog.hide()
             SendRequest("action", "calibration").start()
         }
 
         openCup.setOnClickListener {
+            dialog.hide()
             SendRequest("action", "freeCup")
         }
         backButton.setOnClickListener {
@@ -115,7 +121,8 @@ class AdminActivity : AppCompatActivity() {
         if (MainActivity.errormsgs.isNotEmpty()) {
             var text = MainActivity.errormsgs.last()[0] + " " + MainActivity.errormsgs.last()[1]
 
-            createErrorBox(text)
+            //
+        // createErrorBox(text)
         }
 
     }
@@ -234,13 +241,16 @@ class AdminActivity : AppCompatActivity() {
         return (code == pincode.toString())
     }
 
-    // ==== ERROR POPUP ====
-    fun createErrorBox(errorMsg: String?) {
+    // ==== ERROR POPUP ====//
+
+    /*fun createErrorBox(errorMsg: String?) {
         val builder = AlertDialog.Builder(this)
         val dialogView = LayoutInflater.from(this).inflate(R.layout.error_box, null)
         builder.setView(dialogView)
-        val dialog = builder.create()
+        val dialog2 = builder.create()
         dialogView.findViewById<TextView>(R.id.errorText).text = errorMsg
-        dialog.show()
+        dialog2.show()
     }
+
+*/
 }

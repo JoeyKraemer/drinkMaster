@@ -81,6 +81,7 @@ class MainActivity : AppCompatActivity() {
         recyclerView.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         recyclerView.adapter = drinkAdapter
+        // our snap helper class and initializing it for our Linear Snap Helper.
         val snapHelper: SnapHelper = LinearSnapHelper()
         snapHelper.attachToRecyclerView(recyclerView)
 
@@ -91,6 +92,7 @@ class MainActivity : AppCompatActivity() {
                 "Button pressed",
                 "Button" + (recyclerView.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
             )
+            //depending on what button has been pressed called differnet function
             if ((recyclerView.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition() === 0) {
                 getGin()
                 SendRequest("action", "DRINK1").start()
@@ -180,13 +182,12 @@ class MainActivity : AppCompatActivity() {
                 }
                 //output
                  Log.d("Scrool", "amounnf of pixels: $totalScrolledPixels")
-                Log.d("Pos", "Pos:" + (recyclerView.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition())
             }
         })
-
     }
 
     private fun showPop() {
+        //creating the alert box
         val builder = AlertDialog.Builder(this)
         val customView = LayoutInflater.from(this).inflate(R.layout.receipt_pop_up, null)
         builder.setView(customView)
@@ -308,7 +309,7 @@ class MainActivity : AppCompatActivity() {
         drink = ItemsViewModel(
             "Lemonade is a classic and refreshing beverage that embodies the bright and tangy flavors of fresh lemons. With its simple yet irresistible blend of lemon juice, water, and sweetener, lemonade has been a beloved thirst-quencher for generations.",
             R.drawable.lemonade,
-            "Lemonde",
+            "Lemonade",
             R.drawable.orderlemonade
         )
         drinkList.add(drink)
