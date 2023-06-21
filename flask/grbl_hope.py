@@ -83,11 +83,8 @@ def sendToGRBL(gcodeArray):
             print('Response: ' + response.decode())
             time.sleep(0.8)
         
-        while 1:
-            tdata = s.read()
-            time.sleep(0.5)              
-            data_left = s.inWaiting()  
-            tdata += s.read(data_left) 
+        s.readline()
+        s.readline()
 
         s.close()
 
