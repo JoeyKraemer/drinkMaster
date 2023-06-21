@@ -49,12 +49,20 @@ def index():
 def action (drink):
     #gcode commands stored in arrays
     goToUser = ["$X","G0 F15000","G92 Y0 X0 Z0","G0 X0150","G0 Z-2200","G0 Y-0350"]
+
     homeY = ["$X","G92 X0 Y0 Z0","G0 F15000","G0 Y2000"]
     homeX = ["$X","G0 F15000","G0 X-2000"]
     homeZ = ["$X","G0 F15000","G0 Z1000","G0 Z1000","G0 Z9999"]
+
     pushY = ["$X","G0 F15000","G0 Y-0010"]
     pushX = ["$X","G0 F15000","G0 X0010"]
     pushZ = ["$X","G92 Z0","G0 F15000","G0 Z-0700"]
+
+    freeCup = []
+    drink1 = []
+    drink2 = ["$X", "G92 X0 Y0 Z0", "G1 F9000", "G1 Z1600", "G0 F15000", "G0 Y80", "G0 X100"]
+    drink3 = []
+    drink4 = []
 
    
     if drink == "calibration":
@@ -64,41 +72,17 @@ def action (drink):
     elif drink == "goToUser":
         sendToGRBL(goToUser)
         print(drink+": Perfectly executed")
-    # elif drink == "freeCup":
-    #     sendToGRBL(freeCup)
-    # elif drink == "drink1":
-    #     sendToGRBL(drink1)
-    # elif drink == "drink2":
-    #     sendToGRBL(drink2)
-    # elif drink == "drink3":
-    #     sendToGRBL(drink3)
-    # elif drink == "drink4":
-    #     sendToGRBL(drink4)
+    elif drink == "freeCup":
+        sendToGRBL(freeCup)
+    elif drink == "drink1":
+        sendToGRBL(drink1)
+    elif drink == "drink2":
+        sendToGRBL(drink2)
+    elif drink == "drink3":
+        sendToGRBL(drink3)
+    elif drink == "drink4":
+        sendToGRBL(drink4)
 
-# def sendToGRBL(gcodeArray):
-#     buffer = []
-#     for movement in gcodeArray:
-#         s = serial.Serial('/dev/ttyUSB0',115200)
-#         a = "\r\n\r\n"
-#         s.write(a.encode())
-#         time.sleep(2)
-#         s.flushInput()
-#         for command in movement:
-#             print('Sending: ' + command)
-#             command += '\n'
-#             buffer.append(len(command)+1)
-#             response = ""
-#             while sum(buffer) >= RX_BUFFER_SIZE-1 | s.inWaiting() :
-#                 outTemp = s.readline()
-#                 print("I am in the loop")
-#                 if outTemp.find('ok') < 0 and outTemp.find('error') < 0 :
-#                     print(" Debug: ",outTemp)
-#                 else: 
-#                     response += outTemp
-#                     print(response)
-#             s.write(command.encode())
-#             time.sleep(0.8)
-#         s.close()
 
 def sendToGRBL(gcodeArray):
     for movement in gcodeArray:
