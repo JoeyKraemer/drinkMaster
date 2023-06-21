@@ -84,7 +84,7 @@ def sendToGRBL(gcodeArray):
             time.sleep(0.8)
         
         while s.inWaiting():
-            time.sleep(.1)
+            s.read()
 
         s.close()
 
