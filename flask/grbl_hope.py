@@ -40,8 +40,7 @@ def index():
                 action("freeCup")
                 return render_template("index.html")
             elif v == "rebootPi":
-                os.system("sudo reboot")
-                exit()
+                restartPi()
                 return render_template("index.html")
                 
         else:
@@ -102,6 +101,9 @@ def sendToGRBL(gcodeArray):
             time.sleep(0.8)
         s.close()
 
+def restartPi():
+    os.system("sudo reboot")
+    exit()
 
 def main():
     app.run(debug=True, host="0.0.0.0", use_reloader=False)
