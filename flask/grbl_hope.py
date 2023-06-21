@@ -44,7 +44,7 @@ def action (drink):
     goToUser = ["$X","G0 F15000","G92 Y0 X0 Z0","G0 X150","G0 Z-2500","G0 Y-320"]
     homeY = ["$X","G92 X0 Y0 Z0","G0 F15000","G0 Y2000"]
     homeX = ["$X","G0 F15000","G0 X-2000"]
-    homeZ = ["$X","G0 F15000","G0 Z7000"]
+    homeZ = ["$X","G0 F15000","G0 Z10000"]
     pushY = ["$X","G0 F15000","G0 Y-10"]
     pushX = ["$X","G0 F15000","G0 X10"]
     pushZ = ["$X","G92 Z0","G0 F15000","G0 Z-700"]
@@ -82,11 +82,13 @@ def sendToGRBL(gcodeArray):
             response = s.readline()
             print('Response: ' + response.decode())
             time.sleep(0.8)
-        time.sleep(5)
+        
+        while s.inWaiting():
+            time.sleep(.1)
+
         s.close()
 
-        
-    
+
 def main():
     app.run(debug=True, host="0.0.0.0", use_reloader=False)
 
