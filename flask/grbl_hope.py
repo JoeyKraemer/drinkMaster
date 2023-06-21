@@ -60,7 +60,7 @@ def action (drink):
 
     freeCup = []
     drink1 = []
-    drink2 = ["$X", "G92 X0 Y0 Z0", "G1 F9000", "G1 Z1800", "G0 F15000", "G0 Y0060", "G0 X0150"]
+    drink2 = ["$X", "G92 X0 Y0 Z0", "G1 F9000", "G1 Z1800", "G0 F15000", "G0 Y0070", "G0 X0180"]
     drink3 = []
     drink4 = []
 
