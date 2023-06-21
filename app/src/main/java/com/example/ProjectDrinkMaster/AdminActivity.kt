@@ -57,14 +57,14 @@ class AdminActivity : AppCompatActivity() {
 
         // ===== INIT BUTTONS ======
         //Bernardo: Yohan these are imageButton
-        val rebootPiButton = findViewById<ImageButton>(R.id.restartRaspberryPiButton)
+       // val rebootPiButton = findViewById<ImageButton>(R.id.restartRaspberryPiButton)
         val rebootMachineButton = findViewById<ImageButton>(R.id.RestartMachineButton)
         val calibrateButton = findViewById<ImageButton>(R.id.CalibrateMachineButton)
 
 
-        rebootPiButton.setOnClickListener(){
-            SendRequest("action", "rebootPi").start()
-        }
+       /// rebootPiButton.setOnClickListener(){
+           // SendRequest("action", "rebootPi").start()
+        //}
         rebootMachineButton.setOnClickListener(){
             SendRequest("action", "rebootPlatform").start()
         }
