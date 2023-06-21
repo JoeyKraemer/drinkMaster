@@ -71,9 +71,9 @@ def action (drink):
 def startCOM():
     s = serial.Serial('/dev/ttyUSB0',115200)
     time.sleep(0.5)
-    serial.write("\r\n\r\n")
+    s.write("\r\n\r\n")
     time.sleep(2)
-    serial.flushInput() 
+    s.flushInput() 
 
     return s 
 
