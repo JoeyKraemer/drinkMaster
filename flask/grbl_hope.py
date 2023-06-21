@@ -77,7 +77,7 @@ def action (drink):
     elif drink == "drink1":
         sendToGRBL(drink1)
     elif drink == "drink2":
-        sendToGRBL(drink2)
+        sendToGRBL([drink2])
     elif drink == "drink3":
         sendToGRBL(drink3)
     elif drink == "drink4":
@@ -104,9 +104,9 @@ def sendToGRBL(gcodeArray):
             print('Response: ' + response.decode())
             time.sleep(0.8)
             
-        # print("BUFFER MUFFER ",substring_whatever)
-        # time.sleep(int(substring_whatever) / 1000)
-        time.sleep(5)
+        print("BUFFER MUFFER ",substring_whatever)
+        time.sleep(int(substring_whatever) / 1000)
+        # time.sleep(5)
         s.close()
 
 def restartPi():
