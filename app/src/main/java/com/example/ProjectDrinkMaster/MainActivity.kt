@@ -233,11 +233,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     public fun getRum() {
-        addOneToDrinkValue(2)
+        addOneToDrinkValue(3)
     }
 
     public fun getLemmonade() {
-        addOneToDrinkValue(3)
+        addOneToDrinkValue(2)
     }
 
     public fun getCoke() {
