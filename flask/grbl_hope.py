@@ -119,11 +119,12 @@ def sendToGRBL(gcodeArray):
             print('Response: ' + response.decode())
             time.sleep(0.8)
             buffer += s.inWaiting()
-            if command.find("Z") > 0:
-                buffer +=24
+            print(buffer)
+            if command.find("Z") == 3:
+                time.sleep(3.5)
         print(buffer)
         while buffer > 4 :
-            time.sleep(0.5)
+            time.sleep(0.25)
             buffer -= 4
         s.close()
 
