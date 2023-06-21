@@ -28,7 +28,7 @@ def index():
                 action('freeCup')
                 return render_template("index.html")
             elif v == "DRINK2":
-                action("DRINK2")
+                action("drink2")
                 return render_template("index.html")   
             elif v == "DRINK3":
                 action("DRINKNAME")
