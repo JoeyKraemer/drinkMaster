@@ -70,9 +70,32 @@ def action (drink):
     # elif drink == "drink4":
     #     sendToGRBL(drink4)
 
+# def sendToGRBL(gcodeArray):
+#     buffer = []
+#     for movement in gcodeArray:
+#         s = serial.Serial('/dev/ttyUSB0',115200)
+#         a = "\r\n\r\n"
+#         s.write(a.encode())
+#         time.sleep(2)
+#         s.flushInput()
+#         for command in movement:
+#             print('Sending: ' + command)
+#             command += '\n'
+#             buffer.append(len(command)+1)
+#             response = ""
+#             while sum(buffer) >= RX_BUFFER_SIZE-1 | s.inWaiting() :
+#                 outTemp = s.readline()
+#                 print("I am in the loop")
+#                 if outTemp.find('ok') < 0 and outTemp.find('error') < 0 :
+#                     print(" Debug: ",outTemp)
+#                 else: 
+#                     response += outTemp
+#                     print(response)
+#             s.write(command.encode())
+#             time.sleep(0.8)
+#         s.close()
+
 def sendToGRBL(gcodeArray):
-    
-    buffer = []
     for movement in gcodeArray:
         s = serial.Serial('/dev/ttyUSB0',115200)
         a = "\r\n\r\n"
@@ -82,18 +105,12 @@ def sendToGRBL(gcodeArray):
         for command in movement:
             print('Sending: ' + command)
             command += '\n'
-            buffer.append(len(command)+1)
-            response = ""
-            while sum(buffer) >= RX_BUFFER_SIZE-1 | s.inWaiting() :
-                outTemp = s.readline()
-                print("I am in the loop")
-                if outTemp.find('ok') < 0 and outTemp.find('error') < 0 :
-                    print(" Debug: ",outTemp)
-                else: 
-                    response += outTemp
-                    print(response)
             s.write(command.encode())
+            response = s.readline()
+            print('Response: ' + response.decode())
             time.sleep(0.8)
+            print(s.inWaiting())
+        
         s.close()
 
 
