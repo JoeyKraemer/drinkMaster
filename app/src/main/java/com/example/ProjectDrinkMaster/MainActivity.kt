@@ -2,23 +2,21 @@ package com.example.ProjectDrinkMaster
 
 import android.annotation.SuppressLint
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.SnapHelper
 import org.json.JSONObject
 import java.io.BufferedReader
 import java.io.BufferedWriter
@@ -34,12 +32,12 @@ class MainActivity : AppCompatActivity() {
 
     // global variables
     companion object {
-        const val url = "http://192.168.0.102:5000/"
+        const val url = "http://192.168.0.103:5000/"
         const val fileName = "drinkValues.json"
         var errormsgs = ArrayList<Array<String>>()
 
         // reads off the drinkList, the return can be used with jsonObject.get("drink1")
-        public fun readOffDrinkValues(packageName : String = "com.example.ProjectDrinkMaster"): JSONObject {
+        fun readOffDrinkValues(packageName: String = "com.example.ProjectDrinkMaster"): JSONObject {
             val fr = FileReader("/data/data/$packageName/$fileName")
             val bfReader = BufferedReader(fr)
             val stringBuilder = StringBuilder()
@@ -66,7 +64,10 @@ class MainActivity : AppCompatActivity() {
     private lateinit var drinkAdapter: CustomAdapter
     private lateinit var getInterface: OnOrderButtonPress
     private var buttonPressed = false
-
+    private var totalScrolledPixels = 0
+    private val targetPixels = 500
+    private var shouldScrollToPosition2 = false
+    private var time: Long = 3000
 
     @SuppressLint("MissingInflatedId", "ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -81,18 +82,28 @@ class MainActivity : AppCompatActivity() {
         recyclerView.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         recyclerView.adapter = drinkAdapter
+        val snapHelper: SnapHelper = LinearSnapHelper()
+        snapHelper.attachToRecyclerView(recyclerView)
+
         prepareDiffernetDrinks()
 
-
         drinkAdapter.setOnOrderClick {
+            Log.d(
+                "Button pressed",
+                "Button" + (recyclerView.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
+            )
             if ((recyclerView.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition() === 0) {
                 getGin()
+                SendRequest("action", "DRINK1").start()
             } else if ((recyclerView.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition() === 1) {
+                SendRequest("action", "DRINK2").start()
                 getLemmonade()
             } else if ((recyclerView.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition() === 2) {
                 getRum()
+                SendRequest("action", "DRINK3").start()
             } else {
                 getCoke()
+                SendRequest("action", "DRINK4").start()
             }
             showPop()
         }
@@ -101,30 +112,33 @@ class MainActivity : AppCompatActivity() {
         val mintIcon = findViewById<ImageView>(R.id.mint)
         mintIcon.setOnClickListener { view ->
             val intent = Intent(this@MainActivity, AdminActivity::class.java)
-            startActivity(intent);
+            startActivity(intent)
         }
 
         var lastError = ""
-        thread(true, name="error finder") { // thread for pinging the server in order to find new errors
-            while (true){
+        thread(
+            true,
+            name = "error finder"
+        ) { // thread for pinging the server in order to find new errors
+            while (true) {
 
-                val pageString = readRequest(MainActivity.url, "").execute().get()
-                if(pageString == null){
+                val pageString = readRequest(url, "").execute().get()
+                if (pageString == null) {
                     Log.e("error finder", "could not get webpage, retrying in 30 seconds")
                     sleep(30000)
                     continue
                 }
 
-                val regex = "<div id=(?:\"|')?error(?:\"|')? ?> ?(.*) ?</div>".toRegex()      // <div id=error> bla bla </div>
+                val regex =
+                    "<div id=(?:\"|')?error(?:\"|')? ?> ?(.*) ?</div>".toRegex()      // <div id=error> bla bla </div>
                 val results = regex.find(pageString)?.groupValues
 
-                if(results == null) {
+                if (results == null) {
                     Log.e("error finder", "page does not contain error window")
-                }
-                else {
+                } else {
                     if (results.size == 2) { // if there's something between the ><
                         if (results[1] != "") { // if result 1 (the middle of the ><) is not empty
-                            if(lastError != results[1]) { // if it's not the same as the last error
+                            if (lastError != results[1]) { // if it's not the same as the last error
                                 Handler(Looper.getMainLooper()).post {
                                     lastError = results[1]
                                     errormsgs.add(  // add the error message with both the date and msg
@@ -133,11 +147,11 @@ class MainActivity : AppCompatActivity() {
                                             results[1]
                                         )
                                     )
-                                    }
                                 }
                             }
                         }
                     }
+                }
 
                 sleep(5000)
             }
@@ -145,9 +159,32 @@ class MainActivity : AppCompatActivity() {
 
         // check if /data/data/$packageName/$fileName exists, if not, makes a new file
         val file = File("/data/data/$packageName/$fileName")
-        if(!file.exists()){
+        if (!file.exists()) {
             newDrinkValueFile()
         }
+
+        recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+
+                //update the total scrolledPixels var
+                totalScrolledPixels += dx
+                var y = recyclerView.x
+                if (totalScrolledPixels === targetPixels) {
+                    shouldScrollToPosition2 = true
+                    totalScrolledPixels = 0
+                    //recyclerView.layoutManager?.scrollToPosition(5000)
+                    (recyclerView.layoutManager as LinearLayoutManager).scrollToPositionWithOffset(
+                        1,
+                        0
+                    )
+                }
+                //output
+                // Log.d("Scrool", "amounnf of pixels: $totalScrolledPixels")
+                //Log.d("Pos", "Pos:" + (recyclerView.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition())
+            }
+        })
+
     }
 
     private fun showPop() {
@@ -181,7 +218,7 @@ class MainActivity : AppCompatActivity() {
         customView.postDelayed({
             dialog.hide()
             finishedPopUpBox()
-        }, 10000)
+        }, time)
     }
 
     private fun finishedPopUpBox() {
@@ -195,19 +232,19 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
-    public fun getGin() {
+    fun getGin() {
         addOneToDrinkValue(1)
     }
 
-    public fun getRum() {
+    fun getRum() {
         addOneToDrinkValue(2)
     }
 
-    public fun getLemmonade() {
+    fun getLemmonade() {
         addOneToDrinkValue(3)
     }
 
-    public fun getCoke() {
+    fun getCoke() {
         addOneToDrinkValue(4)
     }
     // === FILE I/O ===
@@ -277,6 +314,10 @@ class MainActivity : AppCompatActivity() {
         drinkList.add(drink)
         drinkAdapter.notifyDataSetChanged()
 
+    }
+
+    fun getTime(): Long {
+        return time
     }
 
 }

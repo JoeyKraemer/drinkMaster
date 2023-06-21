@@ -37,6 +37,13 @@
         android:textColor="@color/white"
         android:textSize="45dp" />
 
+    <ProgressBar
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="665dp"
+        android:layout_height="39dp"
+        android:layout_marginLeft="30dp"
+        android:indeterminate="true"
+        android:indeterminateTint="@color/black" />
 
     <ImageView
         android:id="@+id/lemon"
