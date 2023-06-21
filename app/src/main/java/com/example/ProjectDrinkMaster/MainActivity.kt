@@ -390,7 +390,7 @@ class MainActivity : AppCompatActivity() {
         drink = ItemsViewModel(
             desc4,
             R.drawable.lemonade,
-            desc4,
+            name4,
             R.drawable.orderlemonade
         )
         drinkList.add(drink)
