@@ -41,13 +41,13 @@ def index():
         
 def action (drink):
     #gcode commands stored in arrays
-    goToUser = ["$x","G0 F15000","G92 Y0 X0 Z0","G0 X150","G0 Z-2500","G0 Y-320"]
+    goToUser = ["$X","G0 F15000","G92 Y0 X0 Z0","G0 X150","G0 Z-2500","G0 Y-320"]
     homeY = ["$X","G92 X0 Y0 Z0","G0 F15000","G0 Y2000"]
-    homeX = ["$x","G0 F15000","G0 X-2000"]
-    homeZ = ["$x","G0 F15000","G0 Z7000"]
-    pushY = ["$x","G0 F15000","G0 Y-10"]
-    pushX = ["$x","G0 F15000","G0 X10"]
-    pushZ = ["$x","G0 F15000","G0 Z-700"]
+    homeX = ["$X","G0 F15000","G0 X-2000"]
+    homeZ = ["$X","G0 F15000","G0 Z7000"]
+    pushY = ["$X","G0 F15000","G0 Y-10"]
+    pushX = ["$X","G0 F15000","G0 X10"]
+    pushZ = ["$X","G0 F15000","G0 Z-700"]
 
    
     if drink == "calibration":
@@ -68,19 +68,13 @@ def action (drink):
     # elif drink == "drink4":
     #     sendToGRBL(drink4)
 
-def startCOM():
-    s = serial.Serial('/dev/ttyUSB0',115200)
-    time.sleep(0.5)
-    a = "\r\n\r\n"
-    s.write(a.encode())
-    time.sleep(2)
-    s.flushInput() 
-
-    return s 
-
 def sendToGRBL(gcodeArray):
-    s = startCOM()
     for movement in gcodeArray:
+        s = serial.Serial('/dev/ttyUSB0',115200)
+        a = "\r\n\r\n"
+        s.write(a.encode())
+        time.sleep(2)
+        s.flushInput() 
         for command in movement:
             print('Sending: ' + command)
             s.write(command.encode())
@@ -89,9 +83,8 @@ def sendToGRBL(gcodeArray):
             # print("read works")
             # print('Response: ' + response)
             time.sleep(0.8)
-        
         s.close()
-        startCOM()
+        
     
 def main():
     app.run(debug=True, host="0.0.0.0", use_reloader=False)
