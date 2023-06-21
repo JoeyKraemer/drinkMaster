@@ -188,11 +188,11 @@ class MainActivity : AppCompatActivity() {
 
     private fun showPop() {
         val builder = AlertDialog.Builder(this)
-        val customView = LayoutInflater.from(this).inflate(R.layout.receipt_pop_up, null)
+        val customView = LayoutInflater.from(this).inflate(R.layout.pop_up, null)
         builder.setView(customView)
         val dialog = builder.create()
         dialog.show()
-        /*val noButton = customView.findViewById(R.id.buttonNo) as Button
+        val noButton = customView.findViewById(R.id.buttonNo) as Button
         val yesButton = customView.findViewById(R.id.buttonYes) as Button
         yesButton.setOnClickListener {
             buttonPressed == true
@@ -205,7 +205,7 @@ class MainActivity : AppCompatActivity() {
             dialog.hide()
         }
 
-         */
+
     }
 
     private fun confirmationPopUp() {
@@ -226,10 +226,23 @@ class MainActivity : AppCompatActivity() {
         builder.setView(customView)
         val dialog = builder.create()
         dialog.show()
-        customView.postDelayed(
-            { dialog.hide() }, 5000
-        )
+        customView.postDelayed({
+            dialog.hide()
+            receiptPopUpBox()
+        }, 5000)
     }
+
+    private fun receiptPopUpBox() {
+        val builder = AlertDialog.Builder(this)
+        val customView = LayoutInflater.from(this).inflate(R.layout.receipt_pop_up, null)
+        builder.setView(customView)
+        val dialog = builder.create()
+        dialog.show()
+        customView.postDelayed({
+            dialog.hide()
+        }, 5000)
+    }
+
     //the following funtions will add 1 drink to the bars
     fun getGin() {
         addOneToDrinkValue(1)
