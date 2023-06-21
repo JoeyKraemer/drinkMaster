@@ -47,7 +47,7 @@ def action (drink):
     homeZ = ["$X","G0 F15000","G0 Z7000"]
     pushY = ["$X","G0 F15000","G0 Y-10"]
     pushX = ["$X","G0 F15000","G0 X10"]
-    pushZ = ["$X","G0 F15000","G0 Z-700"]
+    pushZ = ["$X","G92 Z0","G0 F15000","G0 Z-700"]
 
    
     if drink == "calibration":
