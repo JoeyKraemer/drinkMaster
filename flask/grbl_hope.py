@@ -123,7 +123,7 @@ def sendToGRBL(gcodeArray):
             
         print(buffer)
         print("BUFFER MUFFER ",substring_whatever)
-        time.sleep(int(substring_whatever) / 100)
+        time.sleep(int(substring_whatever) / 1000)
         s.close()
 
 def restartPi():
