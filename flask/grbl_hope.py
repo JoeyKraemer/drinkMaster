@@ -113,6 +113,7 @@ def sendToGRBL(gcodeArray):
 
         for command in movement:
             print('Sending: ' + command)
+            substring_whatever = command[-4:]
             command += '\n'
             s.write(command.encode())
             response = s.readline()
@@ -121,7 +122,6 @@ def sendToGRBL(gcodeArray):
             buffer += s.inWaiting()
             
         print(buffer)
-        substring_whatever = command[-4:]
         print("BUFFER MUFFER ",substring_whatever)
         time.sleep(5)
         s.close()
