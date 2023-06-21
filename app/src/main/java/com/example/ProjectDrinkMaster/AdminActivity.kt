@@ -1,5 +1,6 @@
 package com.example.ProjectDrinkMaster
 
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.PorterDuff
 import android.os.Bundle
@@ -62,6 +63,7 @@ class AdminActivity : AppCompatActivity() {
         val rebootMachineButton = findViewById<ImageButton>(R.id.RestartMachineButton)
         val calibrateButton = findViewById<ImageButton>(R.id.CalibrateMachineButton)
         val openCup  = findViewById(R.id.ReleaseCupButton) as ImageButton
+        val accesDrinksButton = findViewById<ImageButton>(R.id.accessDrinksButton)
 
 
         rebootPiButton.setOnClickListener(){
@@ -78,6 +80,11 @@ class AdminActivity : AppCompatActivity() {
 
         openCup.setOnClickListener{
             SendRequest("action","openCup")
+        }
+
+        accesDrinksButton.setOnClickListener{
+            val intent = Intent(this@AdminActivity, DrinksActivity::class.java)
+            startActivity(intent);
         }
 
 

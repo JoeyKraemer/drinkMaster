@@ -41,6 +41,8 @@ class MainActivity : AppCompatActivity() {
         const val fileName = "drinkValues.json"
         var errormsgs = ArrayList<Array<String>>()
 
+
+        // ===== FILE I/O =====
         // reads off the drinkList, the return can be used with jsonObject.get("drink1")
         public fun readOffDrinkValues(packageName: String = "com.example.ProjectDrinkMaster"): JSONObject {
             val fr = FileReader("/data/data/$packageName/$fileName")
@@ -55,6 +57,30 @@ class MainActivity : AppCompatActivity() {
             val response = stringBuilder.toString()
 
             return JSONObject(response)
+        }
+
+        // overrides and resets the drink value file (all values become 0)
+        public fun newDrinkValueFile(packageName: String = "com.example.ProjectDrinkMaster") {
+            val jsonObject = JSONObject()
+            jsonObject.put("drink1", 0)
+            jsonObject.put("drink2", 0)
+            jsonObject.put("drink3", 0)
+            jsonObject.put("drink4", 0)
+
+            val userString = jsonObject.toString()
+            val fileWriter = FileWriter("/data/data/$packageName/$fileName")
+            val bufferedWriter = BufferedWriter(fileWriter)
+            bufferedWriter.write(userString)
+            bufferedWriter.close()
+        }
+
+        // overrides drink value file
+        public fun writeToDrinkValueFile(jsonObject: JSONObject, packageName: String = "com.example.ProjectDrinkMaster") {
+            val userString = jsonObject.toString()
+            val fileWriter = FileWriter("/data/data/$packageName/$fileName")
+            val bufferedWriter = BufferedWriter(fileWriter)
+            bufferedWriter.write(userString)
+            bufferedWriter.close()
         }
     }
 
@@ -242,31 +268,6 @@ class MainActivity : AppCompatActivity() {
 
     public fun getCoke() {
         addOneToDrinkValue(4)
-    }
-    // === FILE I/O ===
-
-    // overrides and resets the drink value file (all values become 0)
-    private fun newDrinkValueFile() {
-        val jsonObject = JSONObject()
-        jsonObject.put("drink1", 0)
-        jsonObject.put("drink2", 0)
-        jsonObject.put("drink3", 0)
-        jsonObject.put("drink4", 0)
-
-        val userString = jsonObject.toString()
-        val fileWriter = FileWriter("/data/data/$packageName/$fileName")
-        val bufferedWriter = BufferedWriter(fileWriter)
-        bufferedWriter.write(userString)
-        bufferedWriter.close()
-    }
-
-    // overrides drink value file
-    private fun writeToDrinkValueFile(jsonObject: JSONObject) {
-        val userString = jsonObject.toString()
-        val fileWriter = FileWriter("/data/data/$packageName/$fileName")
-        val bufferedWriter = BufferedWriter(fileWriter)
-        bufferedWriter.write(userString)
-        bufferedWriter.close()
     }
 
     // add +1 to a drink. "drink" is an int from 1 to 4 corresponding to drink1 to drink4
