@@ -85,9 +85,9 @@ def sendToGRBL(gcodeArray):
             print('Sending: ' + command)
             s.write(command.encode())
             print("write works")
-            response = s.read()
-            print("read works")
-            print('Response: ' + response)
+            # response = s.read()
+            # print("read works")
+            # print('Response: ' + response)
             time.sleep(0.8)
         
         s.close()
