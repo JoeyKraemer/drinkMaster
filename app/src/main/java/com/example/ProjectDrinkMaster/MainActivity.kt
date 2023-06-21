@@ -40,6 +40,7 @@ class MainActivity : AppCompatActivity() {
 
         // ===== FILE I/O =====
         // reads off the drinkList, the return can be used with jsonObject.get("drink1")
+
         public fun readOffDrinkValueFile(packageName: String = "com.example.ProjectDrinkMaster"): JSONObject {
             val fr = FileReader("/data/data/$packageName/$fileName")
             val bfReader = BufferedReader(fr)
@@ -114,7 +115,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private lateinit var binding: Activity
-
     //recycling view
     private lateinit var newRecyclerView: RecyclerView
     lateinit var heading: Array<String>
@@ -127,7 +127,7 @@ class MainActivity : AppCompatActivity() {
     private var totalScrolledPixels = 0
     private val targetPixels = 500
     private var shouldScrollToPosition2 = false
-    private var time : Long = 3000
+    private var time: Long = 3000
 
     @SuppressLint("MissingInflatedId", "ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -172,7 +172,7 @@ class MainActivity : AppCompatActivity() {
         val mintIcon = findViewById<ImageView>(R.id.mint)
         mintIcon.setOnClickListener { view ->
             val intent = Intent(this@MainActivity, AdminActivity::class.java)
-            startActivity(intent);
+            startActivity(intent)
         }
 
         var lastError = ""
@@ -182,7 +182,7 @@ class MainActivity : AppCompatActivity() {
         ) { // thread for pinging the server in order to find new errors
             while (true) {
 
-                val pageString = readRequest(MainActivity.url, "").execute().get()
+                val pageString = readRequest(url, "").execute().get()
                 if (pageString == null) {
                     Log.e("error finder", "could not get webpage, retrying in 30 seconds")
                     sleep(30000)
@@ -240,8 +240,8 @@ class MainActivity : AppCompatActivity() {
                     )
                 }
                 //output
-                // Log.d("Scrool", "amounnf of pixels: $totalScrolledPixels")
-                //Log.d("Pos", "Pos:" + (recyclerView.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition())
+                 Log.d("Scrool", "amounnf of pixels: $totalScrolledPixels")
+                Log.d("Pos", "Pos:" + (recyclerView.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition())
             }
         })
 
@@ -249,11 +249,11 @@ class MainActivity : AppCompatActivity() {
 
     private fun showPop() {
         val builder = AlertDialog.Builder(this)
-        val customView = LayoutInflater.from(this).inflate(R.layout.pop_up, null)
+        val customView = LayoutInflater.from(this).inflate(R.layout.receipt_pop_up, null)
         builder.setView(customView)
         val dialog = builder.create()
         dialog.show()
-        val noButton = customView.findViewById(R.id.buttonNo) as Button
+        /*val noButton = customView.findViewById(R.id.buttonNo) as Button
         val yesButton = customView.findViewById(R.id.buttonYes) as Button
         yesButton.setOnClickListener {
             buttonPressed == true
@@ -265,6 +265,8 @@ class MainActivity : AppCompatActivity() {
         noButton.setOnClickListener {
             dialog.hide()
         }
+
+         */
     }
 
     private fun confirmationPopUp() {
@@ -289,20 +291,20 @@ class MainActivity : AppCompatActivity() {
             { dialog.hide() }, 5000
         )
     }
-
-    public fun getGin() {
+    //the following funtions will add 1 drink to the bars
+    fun getGin() {
         addOneToDrinkValue(1)
     }
 
-    public fun getRum() {
+    fun getRum() {
         addOneToDrinkValue(3)
     }
 
-    public fun getLemmonade() {
+    fun getLemmonade() {
         addOneToDrinkValue(2)
     }
 
-    public fun getCoke() {
+    fun getCoke() {
         addOneToDrinkValue(4)
     }
 
@@ -314,6 +316,8 @@ class MainActivity : AppCompatActivity() {
         writeToDrinkValueFile(jsonObject)
     }
 
+
+    //here we store what values are suppose to be shown
     private fun prepareDifferentDrinks() {
         var drink = ItemsViewModel(
             "Gin and Tonic, a beloved classic cocktail, is a delightful fusion of gin's botanical flavors and the refreshing effervescence of tonic water. This iconic drink originated in the 19th century as a malaria-fighting elixir for British soldiers in India, and it has since become a timeless favorite worldwide.\n" +
@@ -349,7 +353,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    public fun getTime() : Long{
+    fun getTime(): Long {
         return time
     }
 

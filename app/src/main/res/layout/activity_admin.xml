@@ -117,4 +117,3 @@
         app:srcCompat="@drawable/back_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-

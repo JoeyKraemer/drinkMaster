@@ -12,7 +12,6 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-
         <TextView
             android:id="@+id/recyclerViewText"
             android:layout_width="474dp"
@@ -61,7 +60,6 @@
             app:layout_constraintHorizontal_bias="0.477"
             app:layout_constraintStart_toStartOf="parent"
             app:srcCompat="@drawable/ordercolalemon" />
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

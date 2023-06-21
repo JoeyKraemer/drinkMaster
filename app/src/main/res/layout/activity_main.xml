@@ -7,8 +7,6 @@
     android:background="@color/ligthBeige"
     tools:context=".MainActivity">
 
-
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
@@ -20,21 +18,18 @@
         tools:itemCount="4"
         tools:listitem="@layout/recycler_view" />
 
-
-
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/darkBeige"
-            android:fontFamily="@font/share_regular"
-            android:paddingTop="15dp"
-            android:shadowColor="@color/black"
-            android:text="Drink Master"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="48sp" />
-
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/darkBeige"
+        android:fontFamily="@font/share_regular"
+        android:paddingTop="15dp"
+        android:shadowColor="@color/black"
+        android:text="Drink Master"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="48sp" />
 
     <ImageView
         android:id="@+id/mint"
@@ -74,6 +69,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/ice" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

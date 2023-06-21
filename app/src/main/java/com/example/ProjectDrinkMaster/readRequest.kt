@@ -1,4 +1,4 @@
-package com.example.ProjectDrinkMaster;
+package com.example.ProjectDrinkMaster
 
 import android.os.AsyncTask
 import android.util.Log
@@ -9,7 +9,7 @@ import java.util.concurrent.TimeoutException
 
 // task to read an entire page
 // normal usage: readRequest(url,page).execute().get()
-class readRequest (url: String, page: String) : AsyncTask<Void, Void, String>() {
+class readRequest(url: String, page: String) : AsyncTask<Void, Void, String>() {
     private val url = url
     private val page = page
     override fun doInBackground(vararg params: Void?): String? {
@@ -19,7 +19,7 @@ class readRequest (url: String, page: String) : AsyncTask<Void, Void, String>() 
             Log.e("readRequest", e.toString())
             return null
 
-        } catch (e: ProtocolException){
+        } catch (e: ProtocolException) {
             Log.e("readRequest", e.toString())
             return null
         }

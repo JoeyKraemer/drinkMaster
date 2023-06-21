@@ -63,27 +63,26 @@ class AdminActivity : AppCompatActivity() {
         val rebootPiButton = findViewById<ImageButton>(R.id.RestartRaspberryPiButton)
         val rebootMachineButton = findViewById<ImageButton>(R.id.RestartMachineButton)
         val calibrateButton = findViewById<ImageButton>(R.id.CalibrateMachineButton)
-        val openCup  = findViewById(R.id.ReleaseCupButton) as ImageButton
         val accesDrinksButton = findViewById<ImageButton>(R.id.accessDrinksButton)
-        val backButton = findViewById(R.id.BackButton) as ImageButton
+        val openCup = findViewById<ImageButton>(R.id.ReleaseCupButton)
+        val backButton = findViewById<ImageButton>(R.id.BackButton)
 
-
-        rebootPiButton.setOnClickListener(){
+        rebootPiButton.setOnClickListener {
             SendRequest("action", "rebootPi").start()
         }
-        rebootMachineButton.setOnClickListener(){
+        rebootMachineButton.setOnClickListener {
             SendRequest("action", "rebootPlatform").start()
         }
 
-        calibrateButton.setOnClickListener{
-            Toast.makeText(this@AdminActivity,"tedst",Toast.LENGTH_SHORT).show()
+        calibrateButton.setOnClickListener {
+            Toast.makeText(this@AdminActivity, "tedst", Toast.LENGTH_SHORT).show()
             SendRequest("action", "calibration").start()
         }
 
-        openCup.setOnClickListener{
-            SendRequest("action","freeCup")
+        openCup.setOnClickListener {
+            SendRequest("action", "freeCup")
         }
-        backButton.setOnClickListener{
+        backButton.setOnClickListener {
             finish()
         }
 
@@ -97,9 +96,7 @@ class AdminActivity : AppCompatActivity() {
         // create pop up password
         showPasswordDialog()
 
-
         // ===== INIT GRAPH ======
-
         // get amount of drinks sold for graph
         val data = MainActivity.readOffDrinkValueFile().getJSONObject("drinks")
 
@@ -114,16 +111,16 @@ class AdminActivity : AppCompatActivity() {
         barData = BarData(barDataSet)
         barChart.data = barData
         barDataSet.valueTextColor = Color.BLACK
-        barDataSet.setColor(resources.getColor(R.color.darkBeige))
+        barDataSet.color = resources.getColor(R.color.darkBeige)
         barDataSet.valueTextSize = 16f
         barChart.description.isEnabled = false
 
     }
 
     // executes after the pin is entered (extension of OnCreate)
-    fun onPinEntered(){
+    fun onPinEntered() {
 
-        if(MainActivity.errormsgs.isNotEmpty()){
+        if (MainActivity.errormsgs.isNotEmpty()) {
             var text = MainActivity.errormsgs.last()[0] + " " + MainActivity.errormsgs.last()[1]
 
             createErrorBox(text)
@@ -131,24 +128,18 @@ class AdminActivity : AppCompatActivity() {
 
     }
 
-
     // ===== GRAPH LOGIC =====
-
     private fun getBarChartData() {
         barEntriesList = ArrayList()
-
         // on below line we are adding data
         // to our bar entries list
         barEntriesList.add(BarEntry(1f, graphBarLengths[0].toFloat()))
         barEntriesList.add(BarEntry(2f, graphBarLengths[1].toFloat()))
         barEntriesList.add(BarEntry(3f, graphBarLengths[2].toFloat()))
         barEntriesList.add(BarEntry(4f, graphBarLengths[3].toFloat()))
-
     }
 
-
     // ===== PINCODE LOGIC =====
-
     // text watcher for the pinCode popup
     private val textWatcher = object : TextWatcher {
         override fun afterTextChanged(s: Editable?) {
@@ -202,7 +193,6 @@ class AdminActivity : AppCompatActivity() {
         dialog.setCancelable(false)
         dialog.setCanceledOnTouchOutside(false)
 
-
         // makes it so that it returns when you press the back button
         dialog.setOnKeyListener { dialog, keyCode, event ->
             if (keyCode == KeyEvent.KEYCODE_BACK) {
@@ -236,7 +226,6 @@ class AdminActivity : AppCompatActivity() {
                 false
             }
         }
-
         keycodeDigitElements[0].requestFocus()
     }
 
@@ -253,10 +242,8 @@ class AdminActivity : AppCompatActivity() {
         return (code == pincode.toString())
     }
 
-
     // ==== ERROR POPUP ====
-
-    fun createErrorBox(errorMsg:String?){
+    fun createErrorBox(errorMsg: String?) {
         val builder = AlertDialog.Builder(this)
         val dialogView = LayoutInflater.from(this).inflate(R.layout.error_box, null)
         builder.setView(dialogView)
@@ -264,5 +251,4 @@ class AdminActivity : AppCompatActivity() {
         dialogView.findViewById<TextView>(R.id.errorText).text = errorMsg
         dialog.show()
     }
-
 }
