@@ -36,6 +36,7 @@ class CustomAdapter(private val mList: List<ItemsViewModel>) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val ItemsViewModel = mList[position]
         // sets the image to the imageview from our itemHolder class
+        //get the items that need to be changed in the recycler view
         holder.description.text = ItemsViewModel.text
         holder.image.setImageResource(ItemsViewModel.image)
         holder.title.text = ItemsViewModel.title
