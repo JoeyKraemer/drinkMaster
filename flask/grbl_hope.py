@@ -104,8 +104,9 @@ def sendToGRBL(gcodeArray):
             print('Response: ' + response.decode())
             time.sleep(0.8)
             
-        print("BUFFER MUFFER ",substring_whatever)
-        time.sleep(int(substring_whatever) / 1000)
+        # print("BUFFER MUFFER ",substring_whatever)
+        # time.sleep(int(substring_whatever) / 1000)
+        time.sleep(5)
         s.close()
 
 def restartPi():
