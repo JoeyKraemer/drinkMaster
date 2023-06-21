@@ -86,6 +86,7 @@ def sendToGRBL(gcodeArray):
             response = ""
             while sum(buffer) >= RX_BUFFER_SIZE-1 | s.inWaiting() :
                 outTemp = s.readline()
+                print("I am in the loop")
                 if outTemp.find('ok') < 0 and outTemp.find('error') < 0 :
                     print(" Debug: ",outTemp)
                 else: 
