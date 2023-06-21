@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.text.Editable
+import android.text.Html.ImageGetter
 import android.text.TextWatcher
 import android.util.Log
 import android.view.KeyEvent
@@ -64,6 +65,7 @@ class AdminActivity : AppCompatActivity() {
         val calibrateButton = findViewById<ImageButton>(R.id.CalibrateMachineButton)
         val openCup  = findViewById(R.id.ReleaseCupButton) as ImageButton
         val accesDrinksButton = findViewById<ImageButton>(R.id.accessDrinksButton)
+        val backButton = findViewById(R.id.BackButton) as ImageButton
 
 
         rebootPiButton.setOnClickListener(){
@@ -79,7 +81,10 @@ class AdminActivity : AppCompatActivity() {
         }
 
         openCup.setOnClickListener{
-            SendRequest("action","openCup")
+            SendRequest("action","freeCup")
+        }
+        backButton.setOnClickListener{
+            finish()
         }
 
         accesDrinksButton.setOnClickListener{
@@ -96,9 +101,10 @@ class AdminActivity : AppCompatActivity() {
         // ===== INIT GRAPH ======
 
         // get amount of drinks sold for graph
-        val data = MainActivity.readOffDrinkValues()
+        val data = MainActivity.readOffDrinkValueFile().getJSONObject("drinks")
+
         for (i in (1..4)) {
-            graphBarLengths += data.getInt("drink$i")
+            graphBarLengths += data.getJSONObject("drink$i").getInt("sold")
         }
 
         // create graph

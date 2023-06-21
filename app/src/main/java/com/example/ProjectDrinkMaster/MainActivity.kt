@@ -2,25 +2,22 @@ package com.example.ProjectDrinkMaster
 
 import android.annotation.SuppressLint
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.SnapHelper
+import org.json.JSONArray
 import org.json.JSONObject
 import java.io.BufferedReader
 import java.io.BufferedWriter
@@ -30,7 +27,6 @@ import java.io.FileWriter
 import java.lang.Thread.sleep
 import java.util.Calendar
 import kotlin.concurrent.thread
-import kotlin.math.log
 
 
 class MainActivity : AppCompatActivity() {
@@ -44,7 +40,7 @@ class MainActivity : AppCompatActivity() {
 
         // ===== FILE I/O =====
         // reads off the drinkList, the return can be used with jsonObject.get("drink1")
-        public fun readOffDrinkValues(packageName: String = "com.example.ProjectDrinkMaster"): JSONObject {
+        public fun readOffDrinkValueFile(packageName: String = "com.example.ProjectDrinkMaster"): JSONObject {
             val fr = FileReader("/data/data/$packageName/$fileName")
             val bfReader = BufferedReader(fr)
             val stringBuilder = StringBuilder()
@@ -59,13 +55,46 @@ class MainActivity : AppCompatActivity() {
             return JSONObject(response)
         }
 
-        // overrides and resets the drink value file (all values become 0)
         public fun newDrinkValueFile(packageName: String = "com.example.ProjectDrinkMaster") {
             val jsonObject = JSONObject()
-            jsonObject.put("drink1", 0)
-            jsonObject.put("drink2", 0)
-            jsonObject.put("drink3", 0)
-            jsonObject.put("drink4", 0)
+            val nOfDrinks = 4
+            val nOfIngredients = 6
+
+
+            var drinks = JSONObject()
+            var ingredients = JSONObject()
+
+
+            for(i in 1..nOfDrinks){  // adds ingredients
+                var drink = JSONObject()
+                var drinkIngredients = JSONObject()
+                var ingredient1 = JSONObject()
+
+                drink.put("id","$i") // id
+                drink.put("name","drink$i") //name
+
+                ingredient1.put("id",(0..5).random()) //placeholder id
+                ingredient1.put("amount",(1..2).random()) //placeholder amount
+
+                drinkIngredients.put("ingredient1", ingredient1) // adds first ingredient
+
+                drink.put("drinkIngredients",drinkIngredients) // adds ingredients to drink
+                drink.put("sold",0) // adds number of drinks sold
+                drinks.put("drink$i",drink)
+            }
+            jsonObject.put("drinks", drinks)
+
+            for(i in 1 .. nOfIngredients){
+                var ingredient = JSONObject()
+
+                ingredient.put("id", i) // id
+                ingredient.put("name", "ingredient$i") // placeholder name
+                ingredient.put("maxMl", 700) // placeholder max ml
+                ingredient.put("currentMl",700) // placeholder current ml
+                ingredients.put("ingredient$i",ingredient)
+            }
+            jsonObject.put("ingredients", ingredients)
+
 
             val userString = jsonObject.toString()
             val fileWriter = FileWriter("/data/data/$packageName/$fileName")
@@ -98,8 +127,7 @@ class MainActivity : AppCompatActivity() {
     private var totalScrolledPixels = 0
     private val targetPixels = 500
     private var shouldScrollToPosition2 = false
-
-
+    private var time : Long = 3000
 
     @SuppressLint("MissingInflatedId", "ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -114,21 +142,28 @@ class MainActivity : AppCompatActivity() {
         recyclerView.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         recyclerView.adapter = drinkAdapter
-        val snapHelper : SnapHelper = LinearSnapHelper()
+        val snapHelper: SnapHelper = LinearSnapHelper()
         snapHelper.attachToRecyclerView(recyclerView)
-        prepareDiffernetDrinks()
 
+        prepareDifferentDrinks()
 
         drinkAdapter.setOnOrderClick {
-            Log.d("Button pressed", "Button" + (recyclerView.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition())
+            Log.d(
+                "Button pressed",
+                "Button" + (recyclerView.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
+            )
             if ((recyclerView.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition() === 0) {
                 getGin()
+                SendRequest("action", "DRINK1").start()
             } else if ((recyclerView.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition() === 1) {
+                SendRequest("action", "DRINK2").start()
                 getLemmonade()
             } else if ((recyclerView.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition() === 2) {
                 getRum()
+                SendRequest("action", "DRINK3").start()
             } else {
                 getCoke()
+                SendRequest("action", "DRINK4").start()
             }
             showPop()
         }
@@ -193,21 +228,22 @@ class MainActivity : AppCompatActivity() {
                 super.onScrolled(recyclerView, dx, dy)
 
                 //update the total scrolledPixels var
-                totalScrolledPixels +=  dx
+                totalScrolledPixels += dx
                 var y = recyclerView.x
-                if(totalScrolledPixels === targetPixels){
+                if (totalScrolledPixels === targetPixels) {
                     shouldScrollToPosition2 = true
                     totalScrolledPixels = 0
                     //recyclerView.layoutManager?.scrollToPosition(5000)
-                    (recyclerView.layoutManager as LinearLayoutManager).scrollToPositionWithOffset(1,0)
+                    (recyclerView.layoutManager as LinearLayoutManager).scrollToPositionWithOffset(
+                        1,
+                        0
+                    )
                 }
                 //output
-               // Log.d("Scrool", "amounnf of pixels: $totalScrolledPixels")
+                // Log.d("Scrool", "amounnf of pixels: $totalScrolledPixels")
                 //Log.d("Pos", "Pos:" + (recyclerView.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition())
             }
         })
-
-
 
     }
 
@@ -240,7 +276,7 @@ class MainActivity : AppCompatActivity() {
         customView.postDelayed({
             dialog.hide()
             finishedPopUpBox()
-        }, 10000)
+        }, time)
     }
 
     private fun finishedPopUpBox() {
@@ -272,13 +308,13 @@ class MainActivity : AppCompatActivity() {
 
     // add +1 to a drink. "drink" is an int from 1 to 4 corresponding to drink1 to drink4
     private fun addOneToDrinkValue(drink: Int) {
-        val jsonObject = readOffDrinkValues()
-        val value = jsonObject.getInt("drink$drink") + 1
-        jsonObject.put("drink$drink", value)
+        val jsonObject = readOffDrinkValueFile()
+        val value = jsonObject.getJSONObject("drinks").getJSONObject("drink$drink").getInt("sold") + 1
+        jsonObject.getJSONObject("drinks").getJSONObject("drink$drink").put("sold", value)
         writeToDrinkValueFile(jsonObject)
     }
 
-    private fun prepareDiffernetDrinks() {
+    private fun prepareDifferentDrinks() {
         var drink = ItemsViewModel(
             "Gin and Tonic, a beloved classic cocktail, is a delightful fusion of gin's botanical flavors and the refreshing effervescence of tonic water. This iconic drink originated in the 19th century as a malaria-fighting elixir for British soldiers in India, and it has since become a timeless favorite worldwide.\n" +
                     "\n" +
@@ -313,5 +349,8 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-}
+    public fun getTime() : Long{
+        return time
+    }
 
+}

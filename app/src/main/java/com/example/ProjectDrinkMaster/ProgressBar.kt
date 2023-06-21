@@ -5,9 +5,10 @@ import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
 import android.content.Intent
 
-class progressBar : AppCompatActivity() {
+class ProgressBar : AppCompatActivity() {
+    private lateinit var mainActivity: MainActivity
 
-    private val splash_time: Long = 3000
+    public val splash_time: Long = mainActivity.getTime()
     override  fun onCreate (savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.ok_box)
@@ -17,5 +18,9 @@ class progressBar : AppCompatActivity() {
             finish()
          }, splash_time)
 
+    }
+
+    public fun getTime(): Long {
+        return splash_time
     }
 }
