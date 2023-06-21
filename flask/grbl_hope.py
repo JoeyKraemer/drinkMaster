@@ -69,24 +69,21 @@ def action (drink):
     #     sendToGRBL(drink4)
 
 def sendToGRBL(gcodeArray):
-    s = serial.Serial('/dev/ttyUSB0',115200)
-    a = "\r\n\r\n"
-    s.write(a.encode())
-    time.sleep(2)
-    s.flushInput()
-
     for movement in gcodeArray:
+        s = serial.Serial('/dev/ttyUSB0',115200)
+        a = "\r\n\r\n"
+        s.write(a.encode())
+        time.sleep(2)
+        s.flushInput()
         for command in movement:
             print('Sending: ' + command)
             command += '\n'
             s.write(command.encode())
-            print("write works")
             response = s.readline()
-            print("read works")
             print('Response: ' + response.decode())
             time.sleep(0.8)
-        time.sleep(5)
-    s.close()
+        s.close()
+
         
     
 def main():
