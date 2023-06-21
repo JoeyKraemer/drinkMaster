@@ -189,11 +189,11 @@ class MainActivity : AppCompatActivity() {
 
     private fun showPop() {
         val builder = AlertDialog.Builder(this)
-        val customView = LayoutInflater.from(this).inflate(R.layout.pop_up, null)
+        val customView = LayoutInflater.from(this).inflate(R.layout.receipt_pop_up, null)
         builder.setView(customView)
         val dialog = builder.create()
         dialog.show()
-        val noButton = customView.findViewById(R.id.buttonNo) as Button
+        /*val noButton = customView.findViewById(R.id.buttonNo) as Button
         val yesButton = customView.findViewById(R.id.buttonYes) as Button
         yesButton.setOnClickListener {
             buttonPressed == true
@@ -205,6 +205,8 @@ class MainActivity : AppCompatActivity() {
         noButton.setOnClickListener {
             dialog.hide()
         }
+
+         */
     }
 
     private fun confirmationPopUp() {

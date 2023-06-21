@@ -65,7 +65,6 @@ class AdminActivity : AppCompatActivity() {
         val openCup = findViewById<ImageButton>(R.id.ReleaseCupButton)
         val backButton = findViewById<ImageButton>(R.id.BackButton)
 
-
         rebootPiButton.setOnClickListener {
             SendRequest("action", "rebootPi").start()
         }
@@ -84,6 +83,7 @@ class AdminActivity : AppCompatActivity() {
         backButton.setOnClickListener {
             finish()
         }
+
 
         // ===== INIT KEYCODE ======
         // create pop up password
