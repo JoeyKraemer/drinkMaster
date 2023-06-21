@@ -120,7 +120,7 @@ def sendToGRBL(gcodeArray):
             
             buffer += s.inWaiting()
             print(buffer)
-            if buffer > 0 :
+            while buffer > 0 :
                 time.sleep(0.8)
                 buffer -= 4
 
