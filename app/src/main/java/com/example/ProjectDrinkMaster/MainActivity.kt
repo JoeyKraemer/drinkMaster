@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.SnapHelper
 import org.json.JSONArray
+import org.json.JSONException
 import org.json.JSONObject
 import java.io.BufferedReader
 import java.io.BufferedWriter
@@ -73,6 +74,7 @@ class MainActivity : AppCompatActivity() {
 
                 drink.put("id","$i") // id
                 drink.put("name","drink$i") //name
+                drink.put("description", "description$i")
 
                 ingredient1.put("id",(0..5).random()) //placeholder id
                 ingredient1.put("amount",(1..2).random()) //placeholder amount
@@ -332,33 +334,63 @@ class MainActivity : AppCompatActivity() {
 
     //here we store what values are suppose to be shown
     private fun prepareDifferentDrinks() {
+
+        var name1 = ""
+        var desc1 = ""
+        var name2 = ""
+        var desc2 = ""
+        var name3 = ""
+        var desc3 = ""
+        var name4 = ""
+        var desc4 = ""
+
+        try {
+            val data = readOffDrinkValueFile().getJSONObject("drinks")
+
+            name1 = data.getJSONObject("drink1").getString("name")
+            desc1 = data.getJSONObject("drink1").getString("description")
+
+            name2 = data.getJSONObject("drink2").getString("name")
+            desc2 = data.getJSONObject("drink2").getString("description")
+
+            name3 = data.getJSONObject("drink3").getString("name")
+            desc3 = data.getJSONObject("drink3").getString("description")
+
+            name4 = data.getJSONObject("drink4").getString("name")
+            desc4 = data.getJSONObject("drink4").getString("description")
+
+        }
+        catch(e:JSONException){
+            newDrinkValueFile()
+            prepareDifferentDrinks()
+            return
+        }
+
         var drink = ItemsViewModel(
-            "Gin and Tonic, a beloved classic cocktail, is a delightful fusion of gin's botanical flavors and the refreshing effervescence of tonic water. This iconic drink originated in the 19th century as a malaria-fighting elixir for British soldiers in India, and it has since become a timeless favorite worldwide.\n" +
-                    "\n" +
-                    "Crafting a Gin and Tonic is simple yet satisfying. It typically involves combining gin, tonic water, and a hint of citrus, usually a slice of lime or lemon. The real magic happens when the flavors mingle, creating a crisp and invigorating beverage that is perfect for any occasion.",
+            desc1,
             R.drawable.gin,
-            "Gin n Tonic",
+            name1,
             R.drawable.ordergintonic
         )
         drinkList.add(drink)
         drink = ItemsViewModel(
-            "Coke and Cola Max are iconic carbonated beverages that deliver the classic cola experience with their unique twists. Coke captures hearts with its rich, caramel-like flavor and refreshing effervescence, while Cola Max offers an intense taste with zero sugar and added caffeine. Whether you crave the timeless taste of Coke or the extra kick of Cola Max, both beverages provide a satisfying cola experience. Indulge in the perfect duo of Coke and Cola Max for a refreshing and energizing treat.",
+            desc2,
             R.drawable.coke,
-            "Coke Lemon",
+            name2,
             R.drawable.ordercolalemon
         )
         drinkList.add(drink)
         drink = ItemsViewModel(
-            "Rum and Coke is a timeless cocktail that brings together the smooth, rich flavors of rum with the crisp, effervescence of cola. This simple yet delightful drink has been enjoyed by cocktail enthusiasts for decades.",
+            desc3,
             R.drawable.rum,
-            "Rum cola",
+            name3,
             R.drawable.orderrumcola
         )
         drinkList.add(drink)
         drink = ItemsViewModel(
-            "Lemonade is a classic and refreshing beverage that embodies the bright and tangy flavors of fresh lemons. With its simple yet irresistible blend of lemon juice, water, and sweetener, lemonade has been a beloved thirst-quencher for generations.",
+            desc4,
             R.drawable.lemonade,
-            "Lemonde",
+            desc4,
             R.drawable.orderlemonade
         )
         drinkList.add(drink)

@@ -7,11 +7,19 @@
 
     <Button
         android:id="@+id/resetDrinksButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="46dp"
+        android:layout_width="223dp"
+        android:layout_height="55dp"
         android:text="Reset Drinks"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/defaultValuesButton"
+        android:layout_width="218dp"
+        android:layout_height="49dp"
+        android:text="assign default values"
+        app:layout_constraintBottom_toTopOf="@+id/resetDrinksButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
