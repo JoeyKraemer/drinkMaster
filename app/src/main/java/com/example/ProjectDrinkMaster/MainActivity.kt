@@ -2,19 +2,15 @@ package com.example.ProjectDrinkMaster
 
 import android.annotation.SuppressLint
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -30,7 +26,6 @@ import java.io.FileWriter
 import java.lang.Thread.sleep
 import java.util.Calendar
 import kotlin.concurrent.thread
-import kotlin.math.log
 
 
 class MainActivity : AppCompatActivity() {
@@ -72,6 +67,7 @@ class MainActivity : AppCompatActivity() {
     private var totalScrolledPixels = 0
     private val targetPixels = 500
     private var shouldScrollToPosition2 = false
+    private var time : Long = 3000
 
     @SuppressLint("MissingInflatedId", "ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -220,7 +216,7 @@ class MainActivity : AppCompatActivity() {
         customView.postDelayed({
             dialog.hide()
             finishedPopUpBox()
-        }, 10000)
+        }, time)
     }
 
     private fun finishedPopUpBox() {
@@ -316,6 +312,10 @@ class MainActivity : AppCompatActivity() {
         drinkList.add(drink)
         drinkAdapter.notifyDataSetChanged()
 
+    }
+
+    public fun getTime() : Long{
+        return time
     }
 
 }
