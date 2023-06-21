@@ -106,8 +106,8 @@ def sendToGRBL(gcodeArray):
         a = "\r\n\r\n"
         s.write(a.encode())
         time.sleep(2)
-        #s.flushInput()
-        #s.flushOutput()
+        s.flushInput()
+        s.flushOutput()
         
         buffer = 0
 
@@ -119,11 +119,12 @@ def sendToGRBL(gcodeArray):
             print('Response: ' + response.decode())
             time.sleep(0.8)
             buffer += s.inWaiting()
-         
-        # print(buffer)
-        # while buffer > 4 :
-        #     time.sleep(0.25)
-        #     buffer -= 8
+            if command.find("Z") > 0:
+                buffer +=24
+        print(buffer)
+        while buffer > 4 :
+            time.sleep(0.5)
+            buffer -= 4
         s.close()
 
 def restartPi():
