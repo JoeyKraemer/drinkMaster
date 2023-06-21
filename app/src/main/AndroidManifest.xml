@@ -17,6 +17,7 @@
 
         <activity android:name=".AdminActivity"></activity>
         <activity android:name=".DrinksActivity"></activity>
+        <activity android:name=".EditDrinksActivity"></activity>
         <activity
 
             android:name=".ok_box"

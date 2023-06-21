@@ -7,19 +7,44 @@
 
     <Button
         android:id="@+id/resetDrinksButton"
-        android:layout_width="223dp"
-        android:layout_height="55dp"
+        android:layout_width="294dp"
+        android:layout_height="93dp"
+        android:layout_marginBottom="76dp"
         android:text="Reset Drinks"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/defaultValuesButton"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/defaultValuesButton"
-        android:layout_width="218dp"
-        android:layout_height="49dp"
+        android:layout_width="286dp"
+        android:layout_height="90dp"
+        android:layout_marginBottom="76dp"
         android:text="assign default values"
-        app:layout_constraintBottom_toTopOf="@+id/resetDrinksButton"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.865"
+        app:layout_constraintStart_toEndOf="@+id/resetDrinksButton" />
+
+    <Button
+        android:id="@+id/accessEditableDrinksButton"
+        android:layout_width="309dp"
+        android:layout_height="442dp"
+        android:layout_marginTop="52dp"
+        android:text="access drinks"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toStartOf="@+id/accessEditableIngredientsButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/accessEditableIngredientsButton"
+        android:layout_width="309dp"
+        android:layout_height="442dp"
+        android:layout_marginTop="52dp"
+        android:text="access ingredients"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/accessEditableDrinksButton"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
