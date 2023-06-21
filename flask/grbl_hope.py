@@ -116,14 +116,13 @@ def sendToGRBL(gcodeArray):
             s.write(command.encode())
             response = s.readline()
             print('Response: ' + response.decode())
-            #time.sleep(0.8)
-            
+            time.sleep(0.8)
             buffer += s.inWaiting()
-            print(buffer)
-            while buffer > 0 :
-                time.sleep(0.8)
-                buffer -= 4
-
+         
+        print(buffer)
+        while buffer > 4 :
+            time.sleep(1)
+            buffer -= 4
         s.close()
 
 def restartPi():
