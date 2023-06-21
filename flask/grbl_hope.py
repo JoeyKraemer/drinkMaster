@@ -78,6 +78,7 @@ def sendToGRBL(gcodeArray):
     for movement in gcodeArray:
         for command in movement:
             print('Sending: ' + command)
+            command += '\n'
             s.write(command.encode())
             print("write works")
             response = s.read()
