@@ -84,7 +84,7 @@ def sendToGRBL(gcodeArray):
             # print("read works")
             # print('Response: ' + response)
             time.sleep(0.8)
-
+        time.sleep(5)
     s.close()
         
     
