@@ -5,6 +5,8 @@ from flask import render_template
 from flask import Flask
 from flask import request
 
+RX_BUFFER_SIZE = 128
+
 app = Flask(__name__)
 
 @app.route("/", methods=["GET","POST"])
@@ -41,7 +43,7 @@ def index():
         
 def action (drink):
     #gcode commands stored in arrays
-    goToUser = ["$X","G0 F15000","G92 Y0 X0 Z0","G0 X150","G0 Z-2500","G0 Y-320"]
+    goToUser = ["$X","G0 F15000","G92 Y0 X0 Z0","G0 X150","G0 Z-2500","G0 Y-350"]
     homeY = ["$X","G92 X0 Y0 Z0","G0 F15000","G0 Y2000"]
     homeX = ["$X","G0 F15000","G0 X-2000"]
     homeZ = ["$X","G0 F15000","G0 Z10000"]
@@ -69,6 +71,8 @@ def action (drink):
     #     sendToGRBL(drink4)
 
 def sendToGRBL(gcodeArray):
+    
+    buffer = []
     for movement in gcodeArray:
         s = serial.Serial('/dev/ttyUSB0',115200)
         a = "\r\n\r\n"
@@ -78,14 +82,16 @@ def sendToGRBL(gcodeArray):
         for command in movement:
             print('Sending: ' + command)
             command += '\n'
+            buffer.append(len(command)+1)
+            response = ""
+            while sum(buffer) >= RX_BUFFER_SIZE-1 | s.inWaiting() :
+                outTemp = s.readline()
+                if outTemp.find('ok') < 0 and outTemp.find('error') < 0 :
+                    print(" Debug: ",outTemp)
+                else: 
+                    response += outTemp
             s.write(command.encode())
-            response = s.readline()
-            print('Response: ' + response.decode())
             time.sleep(0.8)
-        
-        s.readline()
-        s.readline()
-
         s.close()
 
 
