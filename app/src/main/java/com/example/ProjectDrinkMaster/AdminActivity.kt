@@ -2,17 +2,11 @@ package com.example.ProjectDrinkMaster
 
 import android.content.Intent
 import android.graphics.Color
-import android.graphics.PorterDuff
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.text.Editable
-import android.text.Html.ImageGetter
 import android.text.TextWatcher
-import android.util.Log
 import android.view.KeyEvent
 import android.view.LayoutInflater
-import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.ImageView
@@ -24,8 +18,6 @@ import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
-import java.lang.Thread.sleep
-import kotlin.concurrent.thread
 
 class AdminActivity : AppCompatActivity() {
 
@@ -59,10 +51,10 @@ class AdminActivity : AppCompatActivity() {
         setContentView(R.layout.activity_admin)
 
         // ===== INIT BUTTONS ======
-        //Bernardo: Yohan these are imageButton
         val rebootPiButton = findViewById<ImageButton>(R.id.RestartRaspberryPiButton)
         val rebootMachineButton = findViewById<ImageButton>(R.id.RestartMachineButton)
         val calibrateButton = findViewById<ImageButton>(R.id.CalibrateMachineButton)
+        val accessDrinksButton = findViewById<ImageButton>(R.id.accessDrinksButton)
         val openCup = findViewById<ImageButton>(R.id.ReleaseCupButton)
         val backButton = findViewById<ImageButton>(R.id.BackButton)
 
@@ -90,6 +82,11 @@ class AdminActivity : AppCompatActivity() {
             finish()
         }
 
+        accessDrinksButton.setOnClickListener{
+            val intent = Intent(this@AdminActivity, DrinksActivity::class.java)
+            startActivity(intent);
+        }
+
 
         // ===== INIT KEYCODE ======
         // create pop up password
@@ -97,9 +94,10 @@ class AdminActivity : AppCompatActivity() {
 
         // ===== INIT GRAPH ======
         // get amount of drinks sold for graph
-        val data = MainActivity.readOffDrinkValues()
+        val data = MainActivity.readOffDrinkValueFile().getJSONObject("drinks")
+
         for (i in (1..4)) {
-            graphBarLengths += data.getInt("drink$i")
+            graphBarLengths += data.getJSONObject("drink$i").getInt("sold")
         }
 
         // create graph

@@ -73,11 +73,23 @@
 
     <ImageView
         android:id="@+id/LogoImage"
-        android:layout_width="93dp"
+        android:layout_width="0dp"
         android:layout_height="93dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="100dp"
+        app:layout_constraintStart_toEndOf="@+id/BackButton"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo" />
+
+    <ImageButton
+        android:id="@+id/accessDrinksButton"
+        android:layout_width="297dp"
+        android:layout_height="56dp"
+
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/access_drinks" />
 
     <ImageButton
         android:id="@+id/CalibrateMachineButton"
@@ -100,7 +112,7 @@
         android:backgroundTint="#FFFFFF"
         android:clickable="true"
         android:scaleType="fitCenter"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title"
         app:srcCompat="@drawable/back_button" />
 
