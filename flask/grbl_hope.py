@@ -1,5 +1,6 @@
 import serial
 import time
+import os
 
 from flask import render_template
 from flask import Flask
@@ -38,6 +39,10 @@ def index():
             elif v == "freeCup":
                 action("freeCup")
                 return render_template("index.html")
+            elif v == "rebootPi":
+                restartPi()
+                return render_template("index.html")
+                
         else:
             return render_template("index.html")
         
@@ -113,6 +118,9 @@ def sendToGRBL(gcodeArray):
         
         s.close()
 
+def restartPi():
+    os.system("sudo reboot")
+    exit()
 
 def main():
     app.run(debug=True, host="0.0.0.0", use_reloader=False)
