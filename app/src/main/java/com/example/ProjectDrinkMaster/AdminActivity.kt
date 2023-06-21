@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.text.Editable
+import android.text.Html.ImageGetter
 import android.text.TextWatcher
 import android.util.Log
 import android.view.KeyEvent
@@ -62,6 +63,7 @@ class AdminActivity : AppCompatActivity() {
         val rebootMachineButton = findViewById<ImageButton>(R.id.RestartMachineButton)
         val calibrateButton = findViewById<ImageButton>(R.id.CalibrateMachineButton)
         val openCup  = findViewById(R.id.ReleaseCupButton) as ImageButton
+        val backButton = findViewById(R.id.BackButton) as ImageButton
 
 
         rebootPiButton.setOnClickListener(){
@@ -77,7 +79,10 @@ class AdminActivity : AppCompatActivity() {
         }
 
         openCup.setOnClickListener{
-            SendRequest("action","openCup")
+            SendRequest("action","freeCup")
+        }
+        backButton.setOnClickListener{
+            finish()
         }
 
 

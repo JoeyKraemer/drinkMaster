@@ -73,8 +73,6 @@ class MainActivity : AppCompatActivity() {
     private val targetPixels = 500
     private var shouldScrollToPosition2 = false
 
-
-
     @SuppressLint("MissingInflatedId", "ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -88,22 +86,28 @@ class MainActivity : AppCompatActivity() {
         recyclerView.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         recyclerView.adapter = drinkAdapter
-        val snapHelper : SnapHelper = LinearSnapHelper()
+        val snapHelper: SnapHelper = LinearSnapHelper()
         snapHelper.attachToRecyclerView(recyclerView)
 
         prepareDiffernetDrinks()
 
-
         drinkAdapter.setOnOrderClick {
-            Log.d("Button pressed", "Button" + (recyclerView.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition())
+            Log.d(
+                "Button pressed",
+                "Button" + (recyclerView.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
+            )
             if ((recyclerView.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition() === 0) {
                 getGin()
+                SendRequest("action", "DRINK1").start()
             } else if ((recyclerView.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition() === 1) {
+                SendRequest("action", "DRINK2").start()
                 getLemmonade()
             } else if ((recyclerView.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition() === 2) {
                 getRum()
+                SendRequest("action", "DRINK3").start()
             } else {
                 getCoke()
+                SendRequest("action", "DRINK4").start()
             }
             showPop()
         }
@@ -168,21 +172,22 @@ class MainActivity : AppCompatActivity() {
                 super.onScrolled(recyclerView, dx, dy)
 
                 //update the total scrolledPixels var
-                totalScrolledPixels +=  dx
+                totalScrolledPixels += dx
                 var y = recyclerView.x
-                if(totalScrolledPixels === targetPixels){
+                if (totalScrolledPixels === targetPixels) {
                     shouldScrollToPosition2 = true
                     totalScrolledPixels = 0
                     //recyclerView.layoutManager?.scrollToPosition(5000)
-                    (recyclerView.layoutManager as LinearLayoutManager).scrollToPositionWithOffset(1,0)
+                    (recyclerView.layoutManager as LinearLayoutManager).scrollToPositionWithOffset(
+                        1,
+                        0
+                    )
                 }
                 //output
-               // Log.d("Scrool", "amounnf of pixels: $totalScrolledPixels")
+                // Log.d("Scrool", "amounnf of pixels: $totalScrolledPixels")
                 //Log.d("Pos", "Pos:" + (recyclerView.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition())
             }
         })
-
-
 
     }
 
@@ -314,4 +319,3 @@ class MainActivity : AppCompatActivity() {
     }
 
 }
-
