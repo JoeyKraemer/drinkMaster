@@ -50,6 +50,7 @@ def sendToGRBL(serial,file,delay):
         print('Response: ') 
         print(grbl_out)
         if "ALARM" in grbl_out.decode('UTF-8'):
+            print("ALALALALAL")
             return render_template("index.html", error = grbl_out)
         time.sleep(0.75)
 
