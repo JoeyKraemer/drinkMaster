@@ -73,18 +73,20 @@ def startCOM():
     time.sleep(0.5)
     serial.write("\r\n\r\n")
     time.sleep(2)
-    serial.flushInput()  
+    serial.flushInput() 
+
+    return s 
 
 def sendToGRBL(gcodeArray):
-    startCOM()
+    s = startCOM()
     for movement in gcodeArray:
         for command in movement:
             print('Sending: ' + command)
-            serial.write(command.encode())
-            response = serial.readline().strip()
+            s.write(command.encode())
+            response = s.readline().strip()
             print('Response: ' + response)
             time.sleep(0.8)
-        serial.close()
+        s.close()
         startCOM()
     
 def main():
@@ -92,4 +94,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-    
