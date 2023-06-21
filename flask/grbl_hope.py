@@ -42,6 +42,7 @@ def index():
             elif v == "rebootPi":
                 os.system("sudo reboot")
                 exit()
+                return render_template("index.html")
                 
         else:
             return render_template("index.html")
