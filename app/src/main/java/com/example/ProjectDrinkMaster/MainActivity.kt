@@ -54,7 +54,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private lateinit var binding: Activity
-
     //recycling view
     private lateinit var newRecyclerView: RecyclerView
     lateinit var heading: Array<String>
@@ -180,8 +179,8 @@ class MainActivity : AppCompatActivity() {
                     )
                 }
                 //output
-                // Log.d("Scrool", "amounnf of pixels: $totalScrolledPixels")
-                //Log.d("Pos", "Pos:" + (recyclerView.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition())
+                 Log.d("Scrool", "amounnf of pixels: $totalScrolledPixels")
+                Log.d("Pos", "Pos:" + (recyclerView.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition())
             }
         })
 
