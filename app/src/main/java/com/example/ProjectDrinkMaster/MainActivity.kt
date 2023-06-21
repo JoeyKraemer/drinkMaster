@@ -279,7 +279,7 @@ class MainActivity : AppCompatActivity() {
         writeToDrinkValueFile(jsonObject)
     }
 
-    //here we store what values are suppose to be shown 
+    //here we store what values are suppose to be shown
     private fun prepareDiffernetDrinks() {
         var drink = ItemsViewModel(
             "Gin and Tonic, a beloved classic cocktail, is a delightful fusion of gin's botanical flavors and the refreshing effervescence of tonic water. This iconic drink originated in the 19th century as a malaria-fighting elixir for British soldiers in India, and it has since become a timeless favorite worldwide.\n" +
