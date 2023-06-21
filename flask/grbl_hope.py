@@ -84,9 +84,10 @@ def sendToGRBL(gcodeArray):
         for command in movement:
             print('Sending: ' + command)
             s.write(command.encode())
-            response = s.readline().strip()
+            response = s.readline()
             print('Response: ' + response)
             time.sleep(0.8)
+        
         s.close()
         startCOM()
     
