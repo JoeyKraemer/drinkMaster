@@ -60,7 +60,7 @@ def action (drink):
 
     freeCup = []
     drink1 = []
-    drink2 = ["$X", "G92 X0 Y0 Z0", "G1 F9000", "G1 Z1900", "G0 F15000", "G0 Y0090", "G0 X0110", "G0 Z-130"]
+    drink2 = ["$X", "G92 X0 Y0 Z0", "G1 F9000", "G1 Z1900", "G0 F15000", "G0 Y0090", "G0 X0110", "G0 Z-0130"]
     drink3 = []
     drink4 = []
 
@@ -105,7 +105,7 @@ def sendToGRBL(gcodeArray):
             time.sleep(0.8)
             
         print("BUFFER MUFFER ",substring_whatever)
-        time.sleep(int(substring_whatever) / 1000)
+        time.sleep(abs(int(substring_whatever)) / 1000)
         # time.sleep(5)
         s.close()
 
