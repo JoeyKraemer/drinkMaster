@@ -90,6 +90,7 @@ def sendToGRBL(gcodeArray):
                     print(" Debug: ",outTemp)
                 else: 
                     response += outTemp
+                    print(response)
             s.write(command.encode())
             time.sleep(0.8)
         s.close()
