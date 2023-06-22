@@ -61,9 +61,12 @@ def action (drink):
 
     freeCup = ["$X","G91","G0 F9000","G0 -0500"] # Trigger hardlimit in case the Z-axis is too high
     drink1 = [] # Drink 1
-    drink2 = ["$X","G91","G92 X0 Y0 Z0","G0 F9000","G0 Z1900","G0 F15000","G0 Y0090","G0 X0110","G92 Z0","G0 Z-0850"] # Coke lemon?
+    drink2 = ["$X","G91","G92 X0 Y0 Z0","G0 F9000","G0 Z1900","G0 F15000","G0 Y0090","G0 X0110"] # Coke lemon?
     drink3 = [] # Drink 3
     drink4 = [] # Drink 4
+
+    pushUp = ["G92 Z0","G0 Z-0800"]
+    pushDown = ["G92 Z0", "G0 Z800"]
 
    
     if drink == "calibration":
@@ -79,10 +82,17 @@ def action (drink):
         sendToGRBL([drink1])
     elif drink == "drink2":
         sendToGRBL([drink2])
+        sendToGRBL([pushUp])
+        time.sleep(5)
+        sendToGRBL([pushDown])
     elif drink == "drink3":
         sendToGRBL([drink3])
     elif drink == "drink4":
         sendToGRBL([drink4])
+    elif drink == "pushUp":
+        sendToGRBL([pushUp])
+    elif drink == "pushDown":
+        sendToGRBL([pushDown])
 
 
 def sendToGRBL(gcodeArray):
