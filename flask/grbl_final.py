@@ -67,7 +67,7 @@ def action (drink):
 
     #drinks
     drink1 = [] # Drink 1
-    drink2 = ["$X","G0 F9000","G0 Z1900","G0 F15000","G0 Y0083","G0 X0115","G0 F6000","G0 Z-600"] # Drink 2
+    drink2 = ["$X","G0 F9000","G0 Z1900","G0 F15000","G0 Y0083","G0 X0115","G0 F6000","G0 Z-300"] # Drink 2
     drink3 = [] # Drink 3
     drink4 = [] # Drink 4
    
@@ -141,7 +141,7 @@ def sendToGRBL(drink):
         response = s.readline()
         print('Response: ' + response.decode())
     
-    print("Current position: X",x," Y",y," Z",z)
+    print("Current position: X", str(x), " Y", str(y), " Z", str(z))
     s.close()
 
 def goToUser(x,y,z):
