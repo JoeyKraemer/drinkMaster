@@ -71,8 +71,8 @@ def action (drink):
     drink3 = [] # Drink 3
     drink4 = [] # Drink 4
 
-    # pushUp = ["$X","G92 Z0","G0 F15000", "G0 Z-0800"]
-    # pushDown = ["$X", "G92 Z0","G0 F15000", "G0 Z0800"]
+    pushUp = ["$X","G92 Z0","G0 F15000", "G0 Z-0800"]
+    pushDown = ["$X", "G92 Z0","G0 F15000", "G0 Z0800"]
 
    
     if drink == "calibration":
@@ -87,7 +87,7 @@ def action (drink):
     elif drink == "drink1":
         sendToGRBL([drink1])
     elif drink == "drink2":
-        sendToGRBL(drink2)
+        sendToGRBL([drink2])
     elif drink == "drink3":
         sendToGRBL([drink3])
     elif drink == "drink4":
