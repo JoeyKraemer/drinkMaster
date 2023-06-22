@@ -54,7 +54,7 @@ def index():
         
 def action (drink):
     #gcode commands stored in arrays
-    goToUser = ["$X","G92","G0 Z0","G0 X0","G0 Y0000"]
+    goToUser = ["$X","G0 F10000","G91","G0 Z800","G90""G0 X0000","G0 Y0000"]
 
     goToUserHome = ["$X","G91","G0 F15000","G92 Y0 X0 Z0","G0 X0150","G0 Z-2200","G0 Y-0350"]
     homeY = ["$X","G91","G92 X0 Y0 Z0","G0 F15000","G0 Y2000"]
@@ -65,7 +65,7 @@ def action (drink):
     pushX = ["$X","G91","G0 F15000","G0 X0010"]
     pushZ = ["$X","G91","G92 Z0","G0 F15000","G0 Z-0700"]
 
-    freeCup = ["$X","G91","G0 F9000","G0 -0500"] # Trigger hardlimit in case the Z-axis is too high
+    freeCup = ["$X","G91","G0 F9000","G0 Z-0500"] # Trigger hardlimit in case the Z-axis is too high
     drink1 = [] # Drink 1
     drink2 = ["$X","G91","G92 X0 Y0 Z0","G0 F9000","G0 Z1900","G0 F15000","G0 Y0090","G0 X0110","G0 Z-0800"] # Coke lemon?
     drink3 = [] # Drink 3
