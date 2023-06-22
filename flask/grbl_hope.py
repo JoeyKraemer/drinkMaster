@@ -95,8 +95,8 @@ def sendToGRBL(gcodeArray):
         a = "\r\n\r\n"
         s.write(a.encode())
         time.sleep(2)
-        #s.flushInput()
-        #s.flushOutput()
+        s.flushInput()
+        s.flushOutput()
 
         for command in movement:
             print('Sending: ' + command)
@@ -105,9 +105,8 @@ def sendToGRBL(gcodeArray):
             s.write(command.encode())
             response = s.readline()
             print('Response: ' + response.decode())
-            if command.find("#") > 1:
-                response = s.readline()
-                print('Response: ' + response.decode())
+            response = s.readline()
+            print('Response: ' + response.decode())
             time.sleep(0.8)
             
         print("BUFFER MUFFER ",substring_whatever)
