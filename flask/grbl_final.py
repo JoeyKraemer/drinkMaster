@@ -67,7 +67,7 @@ def action (drink):
 
     #drinks
     drink1 = [] # Drink 1
-    drink2 = ["$X","G0 F9000","G0 Z1900","G0 F15000","G0 Y0083","G0 X0115","G0 F6000","G0 Z-300"] # Drink 2
+    drink2 = ["$X","G0 F9000","G0 Z1900","G0 F15000","G0 Y0083","G0 X0115","G0 F6000","G92 Z0","G0 Z-300"] # Drink 2
     drink3 = [] # Drink 3
     drink4 = [] # Drink 4
    
@@ -177,15 +177,15 @@ def goToUser(x,y,z):
         if "X" in command:
                 substring_whatever = command.split("X")
                 print(substring_whatever[1])
-                x +=substring_whatever[1] 
+                x +=int(substring_whatever[1])
         elif "Y" in command:
             substring_whatever = command.split("Y")
             print(substring_whatever[1])
-            y +=substring_whatever[1] 
+            y +=int(substring_whatever[1]) 
         elif "Z" in command:
             substring_whatever = command.split("Z")
             print(substring_whatever[1])
-            z +=substring_whatever[1] 
+            z +=int(substring_whatever[1])
         command += '\n'
         s.write(command.encode())
         response = s.readline()
