@@ -6,8 +6,6 @@ from flask import render_template
 from flask import Flask
 from flask import request
 
-RX_BUFFER_SIZE = 128
-
 app = Flask(__name__)
 
 @app.route("/", methods=["GET","POST"])
@@ -36,9 +34,6 @@ def index():
             elif v == "DRINK4":
                 action("DRINKNAME")
                 return render_template("index.html")
-            elif v == "freeCup":
-                action("freeCup")
-                return render_template("index.html")
             elif v == "rebootPi":
                 restartPi()
                 return render_template("index.html")
@@ -54,31 +49,27 @@ def index():
         
 def action (drink):
     #gcode commands stored in arrays
+    #helper movements
+    pushUp = ["$X","G92 Z0","G0 F15000", "G0 Z-0800"]
+    pushDown = ["$X", "G92 Z0","G0 F15000", "G0 Z0800"]
     goToUser = ["$X","G0 F10000","G91","G0 Z0X0Y0","G90","G0 X0000","G0 Y0000"]
 
+    #calibration movements
     goToUserHome = ["$X","G91","G0 F15000","G92 Y0 X0 Z0","G0 X0150","G0 Z-2200","G0 Y-0350"]
     homeY = ["$X","G91","G92 X0 Y0 Z0","G0 F15000","G0 Y2000"]
     homeX = ["$X","G91","G0 F15000","G0 X-2000"]
     homeZ = ["$X","G91","G0 F15000","G0 Z1000","G0 Z1000","G0 Z9999"]
-
     pushY = ["$X","G91","G0 F15000","G0 Y-0010"]
     pushX = ["$X","G91","G0 F15000","G0 X0010"]
     pushZ = ["$X","G91","G92 Z0","G0 F15000","G0 Z-0700"]
 
-    freeCup = ["$X","G91","G0 F9000","G0 Z-0500"] # Trigger hardlimit in case the Z-axis is too high
-    drink1p1 = []
-    drink1p2 = []
-    drink1 = [drink1p1,drink1p2] # Drink 1
-
-    drink2p1 = ["$X","G91","G92 X0 Y0 Z0","G0 F9000","G0 Z1900","G0 F15000","G0 Y0083","G0 X0115","G0 F6000","G0 Z-0900",";Buffer ",";Buffer ","G0 X0230"] # Coke lemon?
-    drink2p2 = ["$X","G91",""]
+    #drinks
+    drink1 = [] # Drink 1
     drink2 = ["$X","G91","G92 X0 Y0 Z0","G0 F9000","G0 Z1900","G0 F15000","G0 Y0083","G0 X0115","G0 F6000","G0 Z-0900",";Buffer ",";Buffer ","G0 X0230"] # Coke lemon?
-
     drink3 = [] # Drink 3
     drink4 = [] # Drink 4
 
-    pushUp = ["$X","G92 Z0","G0 F15000", "G0 Z-0800"]
-    pushDown = ["$X", "G92 Z0","G0 F15000", "G0 Z0800"]
+    
 
    
     if drink == "calibration":
