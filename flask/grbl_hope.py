@@ -48,20 +48,20 @@ def index():
         
 def action (drink):
     #gcode commands stored in arrays
-    goToUser = ["$X","G0F15000","G61 Z", "G61 X", "G61 Y"]
+    goToUser = ["$X","G91","G0F15000","G61 Z", "G61 X", "G61 Y"]
 
-    goToUserHome = ["$X","G0 F15000","G92 Y0 X0 Z0","G0 X0150","G0 Z-2200","G0 Y-0350","G60","G0 Z-0005"]
-    homeY = ["$X","G92 X0 Y0 Z0","G0 F15000","G0 Y2000"]
-    homeX = ["$X","G0 F15000","G0 X-2000"]
-    homeZ = ["$X","G0 F15000","G0 Z1000","G0 Z1000","G0 Z9999"]
+    goToUserHome = ["$X","G91","G0 F15000","G92 Y0 X0 Z0","G0 X0150","G0 Z-2200","G0 Y-0350","G60","G0 Z-0010"]
+    homeY = ["$X","G91","G92 X0 Y0 Z0","G0 F15000","G0 Y2000"]
+    homeX = ["$X","G91","G0 F15000","G0 X-2000"]
+    homeZ = ["$X","G91","G0 F15000","G0 Z1000","G0 Z1000","G0 Z9999"]
 
-    pushY = ["$X","G0 F15000","G0 Y-0010"]
-    pushX = ["$X","G0 F15000","G0 X0010"]
-    pushZ = ["$X","G92 Z0","G0 F15000","G0 Z-0700"]
+    pushY = ["$X","G91","G0 F15000","G0 Y-0010"]
+    pushX = ["$X","G91","G0 F15000","G0 X0010"]
+    pushZ = ["$X","G91","G92 Z0","G0 F15000","G0 Z-0700"]
 
-    freeCup = ["$X","G0 F9000","G0 -0500"] # Trigger hardlimit in case the Z-axis is too high
+    freeCup = ["$X","G91","G0 F9000","G0 -0500"] # Trigger hardlimit in case the Z-axis is too high
     drink1 = [] # Drink 1
-    drink2 = ["$X", "G92 X0 Y0 Z0", "G0 F9000", "G0 Z1900", "G0 F15000", "G0 Y0090", "G0 X0110","G92 Z0", "G0 Z-0200"] # Coke lemon?
+    drink2 = ["$X","G91","G92 X0 Y0 Z0","G0 F9000","G0 Z1900","G0 F15000","G0 Y0090","G0 X0110","G92 Z0","G0 Z-0200"] # Coke lemon?
     drink3 = [] # Drink 3
     drink4 = [] # Drink 4
 
