@@ -102,7 +102,7 @@ def sendToGRBL(gcodeArray):
             response = s.readline()
             print('Response: ' + response.decode())
             time.sleep(0.8)
-            if "G60" or "G61" in command:
+            if command.find("G60") > 0 or command("G61") > 0:
                 substring_whatever = "0060"
                 print("IF TRIGGERED")
 
