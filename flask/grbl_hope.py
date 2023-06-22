@@ -23,7 +23,7 @@ def index():
                 action("goToUser")
                 return render_template("index.html")
             elif v == "DRINK1":
-                action('freeCup')
+                action('drink1')
                 return render_template("index.html")
             elif v == "DRINK2":
                 action("drink2")
@@ -42,8 +42,7 @@ def index():
                 return render_template("index.html")
             elif v == "pushDown":
                 action("pushDown")
-                return render_template("index.html")
-                
+                return render_template("index.html")     
         else:
             return render_template("index.html")
         
@@ -65,12 +64,9 @@ def action (drink):
 
     #drinks
     drink1 = [] # Drink 1
-    drink2 = ["$X","G91","G92 X0 Y0 Z0","G0 F9000","G0 Z1900","G0 F15000","G0 Y0083","G0 X0115","G0 F6000","G0 Z-0900",";Buffer ",";Buffer ","G0 X0230"] # Coke lemon?
+    drink2 = ["$X","G91","G92 X0 Y0 Z0","G0 F9000","G0 Z1900","G0 F15000","G0 Y0083","G0 X0115","G0 F6000","G0 Z-0900  ;Buffer","G0 X0230"] # Coke lemon?
     drink3 = [] # Drink 3
     drink4 = [] # Drink 4
-
-    
-
    
     if drink == "calibration":
         calibration = [homeY,homeZ,homeX,pushY,pushX,pushZ,goToUserHome]
@@ -79,8 +75,6 @@ def action (drink):
     elif drink == "goToUser":
         sendToGRBL([goToUser])
         print(drink+": Perfectly executed")
-    elif drink == "freeCup":
-        sendToGRBL([freeCup])
     elif drink == "drink1":
         sendToGRBL([drink1])
     elif drink == "drink2":
@@ -96,7 +90,6 @@ def action (drink):
 
 
 def sendToGRBL(gcodeArray):
-    finished = False
     for movement in gcodeArray:
         s = serial.Serial('/dev/ttyUSB0',115200)
         a = "\r\n\r\n"
@@ -115,11 +108,14 @@ def sendToGRBL(gcodeArray):
             time.sleep(0.8)
             
         print("BUFFER MUFFER ",substring_whatever)
-        time.sleep(abs(int(substring_whatever)) / 1000)
+        
+        if command.find(";") > 0: 
+            time.sleep(1.2)
+            print("EXTRA BUFFER TRIGGER")
+        else:
+            time.sleep(abs(int(substring_whatever)) / 1000)
         # time.sleep(5)
         s.close()
-    finished == True
-    return finished
 
 def restartPi():
     os.system("sudo reboot")
