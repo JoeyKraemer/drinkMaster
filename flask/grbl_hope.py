@@ -48,7 +48,7 @@ def index():
         
 def action (drink):
     #gcode commands stored in arrays
-    goToUser = ["$X","G0F15000","G61"]
+    goToUser = ["$X","G0F15000","G61 Z", "G61 X", "G61 Y"]
 
     goToUserHome = ["$X","G0 F15000","G92 Y0 X0 Z0","G0 X0150","G0 Z-2200","G0 Y-0350","G60"]
     homeY = ["$X","G92 X0 Y0 Z0","G0 F15000","G0 Y2000"]
@@ -61,7 +61,7 @@ def action (drink):
 
     freeCup = ["$X","G0 F9000","G0 -0500"] # Trigger hardlimit in case the Z-axis is too high
     drink1 = [] # Drink 1
-    drink2 = ["$X", "G92 X0 Y0 Z0", "G0 F9000", "G0 Z1900", "G0 F15000", "G0 Y0090", "G0 X0110","G92 Z0", "G0 Z-0080"] # Coke lemon?
+    drink2 = ["$X", "G92 X0 Y0 Z0", "G0 F9000", "G0 Z1900", "G0 F15000", "G0 Y0090", "G0 X0110","G92 Z0", "G0 Z-0150"] # Coke lemon?
     drink3 = [] # Drink 3
     drink4 = [] # Drink 4
 
@@ -103,8 +103,9 @@ def sendToGRBL(gcodeArray):
             print('Response: ' + response.decode())
             time.sleep(0.8)
             if "G60" in command:
-                command = "0060"
+                substring_whatever = "0060"
                 print("IF TRIGGERED")
+
             
         print("BUFFER MUFFER ",substring_whatever)
         time.sleep(abs(int(substring_whatever)) / 1000)
