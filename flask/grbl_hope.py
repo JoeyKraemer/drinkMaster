@@ -61,7 +61,7 @@ def action (drink):
 
     freeCup = ["$X","G91","G0 F9000","G0 -0500"] # Trigger hardlimit in case the Z-axis is too high
     drink1 = [] # Drink 1
-    drink2 = ["$X","G91","G92 X0 Y0 Z0","G0 F9000","G0 Z1900","G0 F15000","G0 Y0090","G0 X0110","G92 Z0","G0 Z-0900"] # Coke lemon?
+    drink2 = ["$X","G91","G92 X0 Y0 Z0","G0 F9000","G0 Z1900","G0 F15000","G0 Y0090","G0 X0110","G92 Z0","G0 Z-0850"] # Coke lemon?
     drink3 = [] # Drink 3
     drink4 = [] # Drink 4
 
