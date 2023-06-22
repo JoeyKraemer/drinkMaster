@@ -50,7 +50,7 @@ def action (drink):
     #gcode commands stored in arrays
     goToUser = ["$X","G0F15000","G61 Z", "G61 X", "G61 Y"]
 
-    goToUserHome = ["$X","G0 F15000","G92 Y0 X0 Z0","G0 X0150","G0 Z-2200","G0 Y-0350","G60"]
+    goToUserHome = ["$X","G0 F15000","G92 Y0 X0 Z0","G0 X0150","G0 Z-2200","G0 Y-0350","G60","G0 Z-0005"]
     homeY = ["$X","G92 X0 Y0 Z0","G0 F15000","G0 Y2000"]
     homeX = ["$X","G0 F15000","G0 X-2000"]
     homeZ = ["$X","G0 F15000","G0 Z1000","G0 Z1000","G0 Z9999"]
@@ -102,10 +102,6 @@ def sendToGRBL(gcodeArray):
             response = s.readline()
             print('Response: ' + response.decode())
             time.sleep(0.8)
-            if command.find("G60") > 0 or command.find("G61") > 0:
-                substring_whatever = "GG0060"
-                print("IF TRIGGERED")
-
             
         print("BUFFER MUFFER ",substring_whatever)
         time.sleep(abs(int(substring_whatever)) / 1000)
