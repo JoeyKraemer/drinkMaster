@@ -51,10 +51,10 @@ def action (drink):
     #helper movements
     pushUp = ["$X","G92 Z0","G0 F15000", "G0 Z-0800"]
     pushDown = ["$X", "G92 Z0","G0 F15000", "G0 Z0800"]
-    goToUser = ["$X","G0 F10000","G91","G0 Z0X0Y0","G90","G0 X0000","G0 Y0000"]
+    goToUser = ["$X","G0 F10000","G90","G0 Z0X0Y0 ;BUFFER",";BUFFER"]
 
     #calibration movements
-    goToUserHome = ["$X","G91","G0 F15000","G92 Y0 X0 Z0","G0 X0150","G0 Z-2200","G0 Y-0350"]
+    goToUserHome = ["$X","G91","G0 F15000","G92 Y0 X0 Z0","G0 X0150","G0 Z-2200","G0 Y-0350","M114"]
     homeY = ["$X","G91","G92 X0 Y0 Z0","G0 F15000","G0 Y2000"]
     homeX = ["$X","G91","G0 F15000","G0 X-2000"]
     homeZ = ["$X","G91","G0 F15000","G0 Z1000","G0 Z1000","G0 Z9999"]
