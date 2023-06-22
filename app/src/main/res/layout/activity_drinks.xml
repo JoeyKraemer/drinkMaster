@@ -2,49 +2,75 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/lightGrey"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/resetDrinksButton"
-        android:layout_width="294dp"
-        android:layout_height="93dp"
-        android:layout_marginBottom="76dp"
-        android:text="Reset Drinks"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/defaultValuesButton"
-        app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
-        android:id="@+id/defaultValuesButton"
-        android:layout_width="286dp"
-        android:layout_height="90dp"
-        android:layout_marginBottom="76dp"
-        android:text="assign default values"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="532dp"
+        android:layout_height="69dp"
+        android:layout_marginTop="36dp"
+        android:gravity="center"
+        android:shadowColor="@color/black"
+        android:shadowDx="6"
+        android:shadowDy="6"
+        android:shadowRadius="3"
+        android:text="Edit page"
+        android:textSize="50dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.865"
-        app:layout_constraintStart_toEndOf="@+id/resetDrinksButton" />
-
-    <Button
-        android:id="@+id/accessEditableDrinksButton"
-        android:layout_width="309dp"
-        android:layout_height="442dp"
-        android:layout_marginTop="52dp"
-        android:text="access drinks"
-        android:textSize="34sp"
-        app:layout_constraintEnd_toStartOf="@+id/accessEditableIngredientsButton"
+        app:layout_constraintHorizontal_bias="0.52"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/accessEditableIngredientsButton"
-        android:layout_width="309dp"
-        android:layout_height="442dp"
-        android:layout_marginTop="52dp"
-        android:text="access ingredients"
-        android:textSize="34sp"
+    <ImageView
+        android:id="@+id/accesDrink"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.492"
+        app:srcCompat="@drawable/access_button" />
+
+    <ImageView
+        android:id="@+id/defaultDrink"
+        android:layout_width="360dp"
+        android:layout_height="366dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/resetDrink"
+        app:layout_constraintStart_toEndOf="@+id/accesDrink"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/default_drink" />
+
+    <ImageView
+        android:id="@+id/resetDrink"
+        android:layout_width="315dp"
+        android:layout_height="360dp"
+        android:layout_marginEnd="52dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/accessEditableDrinksButton"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/reset_drink" />
+
+    <ImageView
+        android:id="@+id/returnBack"
+        android:layout_width="116dp"
+        android:layout_height="93dp"
+        android:layout_marginEnd="120dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/back_button" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,6 +3,7 @@ package com.example.ProjectDrinkMaster
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.ProjectDrinkMaster.MainActivity.Companion.newDrinkValueFile
 import com.example.ProjectDrinkMaster.MainActivity.Companion.resetDrinksToDefaultValues
@@ -13,9 +14,10 @@ class DrinksActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_drinks)
 
-        val resetDrinksButton = findViewById<Button>(R.id.resetDrinksButton)
-        val defaultValuesButton = findViewById<Button>(R.id.defaultValuesButton)
-        val accessDrinksButton = findViewById<Button>(R.id.accessEditableDrinksButton)
+        val resetDrinksButton = findViewById<ImageView>(R.id.resetDrink)
+        val defaultValuesButton = findViewById<ImageView>(R.id.defaultDrink)
+        val accessDrinksButton = findViewById<ImageView>(R.id.accesDrink)
+        val returnButton = findViewById<ImageView>(R.id.returnBack)
 
         resetDrinksButton.setOnClickListener{
             newDrinkValueFile()
@@ -39,6 +41,10 @@ class DrinksActivity: AppCompatActivity() {
         accessDrinksButton.setOnClickListener{
             val intent = Intent(this@DrinksActivity, EditDrinksActivity::class.java)
             startActivity(intent);
+        }
+
+        returnButton.setOnClickListener{
+            finish()
         }
 
 

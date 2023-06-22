@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.ProjectDrinkMaster.MainActivity.Companion.readOffDrinkValueFile
 import com.example.ProjectDrinkMaster.MainActivity.Companion.writeToDrinkValueFile
@@ -27,7 +28,7 @@ class EditDrinksActivity: AppCompatActivity() {
         drinkDescs += findViewById<EditText>(R.id.editableTextDrinkDescription3)
         drinkDescs += findViewById<EditText>(R.id.editableTextDrinkDescription4)
 
-        val confirmButton = findViewById<Button>(R.id.confirmDrinkModificationButton)
+        val confirmButton = findViewById<ImageView>(R.id.okButton)
 
         var data = readOffDrinkValueFile()
 
