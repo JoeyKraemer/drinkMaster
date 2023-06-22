@@ -49,8 +49,8 @@ def index():
 def action (drink):
     #gcode commands stored in arrays
     #helper movements
-    pushUp = ["$X","G92 Z0","G0 F15000", "G0 Z-0800"]
-    pushDown = ["$X", "G92 Z0","G0 F15000", "G0 Z0800"]
+    pushUp = ["$X","G92 Z0","G0 F15000", "G0 Z-0900"]
+    pushDown = ["$X", "G92 Z0","G0 F15000", "G0 Z0900"]
     goToUser = ["$X","G0 F10000","G90","G0 Z0X0Y0 ;BUFFER",";BUFFER"]
 
     #calibration movements
