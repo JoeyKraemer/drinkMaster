@@ -105,8 +105,6 @@ def sendToGRBL(gcodeArray):
             s.write(command.encode())
             response = s.readline()
             print('Response: ' + response.decode())
-            response = s.readline()
-            print('Response: ' + response.decode())
             time.sleep(0.8)
             
         print("BUFFER MUFFER ",substring_whatever)
