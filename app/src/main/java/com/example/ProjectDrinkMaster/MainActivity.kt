@@ -167,6 +167,7 @@ class MainActivity : AppCompatActivity() {
     private var shouldScrollToPosition2 = false
     private var time: Long = 3000
     private lateinit var qr_code: ImageView
+    private var last_drink_ordered: Int = 1
 
     @SuppressLint("MissingInflatedId", "ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -340,13 +341,14 @@ class MainActivity : AppCompatActivity() {
         val dialog = builder.create()
         qr_code = customView.findViewById<ImageView>(R.id.qr_code)//qr code
 
-        val qrCodeContent = "receipt: 1 drink"
+        val drinkName = readOffDrinkValueFile().getJSONObject("drinks").getJSONObject("drink$last_drink_ordered").getString("name")
+        val qrCodeContent = "drink $last_drink_ordered : $drinkName"
         val qrCodeBitmap = generateQRCode(qrCodeContent, 300, 300)
         qr_code.setImageBitmap(qrCodeBitmap)
         dialog.show()
         customView.postDelayed({
             dialog.hide()
-        }, 5000)
+        }, 15000)
     }
 
         private fun generateQRCode(content: String, width: Int, height: Int): Bitmap? {
@@ -369,18 +371,22 @@ class MainActivity : AppCompatActivity() {
     //the following funtions will add 1 drink to the bars
     fun getGin() {
         addOneToDrinkValue(1)
+        last_drink_ordered = 1
     }
 
     fun getRum() {
         addOneToDrinkValue(3)
+        last_drink_ordered = 3
     }
 
     fun getLemmonade() {
         addOneToDrinkValue(2)
+        last_drink_ordered = 2
     }
 
     fun getCoke() {
         addOneToDrinkValue(4)
+        last_drink_ordered = 4
     }
 
     // add +1 to a drink. "drink" is an int from 1 to 4 corresponding to drink1 to drink4
