@@ -1,5 +1,6 @@
 package com.example.ProjectDrinkMaster
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -42,6 +43,12 @@ class EditDrinksActivity: AppCompatActivity() {
             }
             writeToDrinkValueFile(data)
             finish()
+            val ctx = applicationContext
+            val pm = ctx.packageManager
+            val intent = pm.getLaunchIntentForPackage(ctx.packageName)
+            val mainIntent = Intent.makeRestartActivityTask(intent!!.component)
+            ctx.startActivity(mainIntent)
+            Runtime.getRuntime().exit(0)
         }
 
 
