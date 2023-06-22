@@ -49,8 +49,8 @@ def index():
 def action (drink):
     #gcode commands stored in arrays
     #helper movements
-    pushUp = ["$X","G92 Z0","G0 F15000", "G0 Z-0800"]
-    pushDown = ["$X", "G92 Z0","G0 F15000", "G0 Z0800"]
+    pushUp = ["$X","G92 Z0","G0 F15000", "G0 Z-0900"]
+    pushDown = ["$X", "G92 Z0","G0 F15000", "G0 Z0900"]
     goToUser = ["$X","G0 F10000","G90","G0 Z0X0Y0 ;BUFFER",";BUFFER"]
 
     #calibration movements
@@ -64,7 +64,7 @@ def action (drink):
 
     #drinks
     drink1 = [] # Drink 1
-    drink2 = ["$X","G91","G92 X0 Y0 Z0","G0 F9000","G0 Z1900","G0 F15000","G0 Y0083","G0 X0115","G0 F6000","G0 Z-0900","G04 P5000", "G0 Z0900"] # Drink 2
+    drink2 = ["$X","G91","G92 X0 Y0 Z0","G0 F9000","G0 Z1900","G0 F15000","G0 Y0083","G0 X0115","G0 F6000","G0 Z-0900","G04 P500", "G0 Z0900"] # Drink 2
     drink3 = [] # Drink 3
     drink4 = [] # Drink 4
    
