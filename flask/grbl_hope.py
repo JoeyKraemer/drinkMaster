@@ -48,7 +48,7 @@ def index():
         
 def action (drink):
     #gcode commands stored in arrays
-    goToUser = ["$X","G91","G0F15000","G61 Z", "G61 X", "G61 Y"]
+    goToUser = ["$X","G91","G61 F15000","G61 Z", "G61 X", "G61 Y"]
 
     goToUserHome = ["$X","G91","G0 F15000","G92 Y0 X0 Z0","G0 X0150","G0 Z-2200","G0 Y-0350","G60","G0 Z-0010"]
     homeY = ["$X","G91","G92 X0 Y0 Z0","G0 F15000","G0 Y2000"]
