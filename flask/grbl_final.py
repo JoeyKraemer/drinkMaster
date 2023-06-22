@@ -60,7 +60,7 @@ def action (drink):
     goToUserHome = ["$X","G91","G0 F15000","G92 Y0 X0 Z0","G0 X0150","G0 Z-2200","G0 Y-0350"]
     homeY = ["$X","G91","G0 F15000","G0 Y2000"]
     homeX = ["$X","G91","G0 F15000","G0 X-2000"]
-    homeZ = ["$X","G91","G0 F15000","G0 Z1000","G0 Z1000","G0 Z9999"]
+    homeZ = ["$X","G91","G0 F15000","G0 Z9999"]
     pushY = ["$X","G91","G0 F15000","G0 Y-0010"]
     pushX = ["$X","G91","G0 F15000","G0 X0010"]
     pushZ = ["$X","G91","G92 Z0","G0 F15000","G0 Z-0700"]
@@ -128,15 +128,15 @@ def sendToGRBL(drink):
         if "X" in command:
             substring_whatever = command.split("X")
             print(substring_whatever[1])
-            x =substring_whatever[1] 
+            x = int(substring_whatever[1])
         elif "Y" in command:
             substring_whatever = command.split("Y")
             print(substring_whatever[1])
-            y =substring_whatever[1] 
+            y = int(substring_whatever[1]) 
         elif "Z" in command:
             substring_whatever = command.split("Z")
             print(substring_whatever[1])
-            z =substring_whatever[1] 
+            z = int(substring_whatever[1])
         command += '\n'
         s.write(command.encode())
         response = s.readline()
