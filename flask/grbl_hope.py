@@ -87,9 +87,9 @@ def action (drink):
     elif drink == "drink1":
         sendToGRBL([drink1])
     elif drink == "drink2":
-        sendToGRBL([drink2])
-        time.sleep(5)
-        sendToGRBL([pushDown])
+        if sendToGRBL([drink2]):
+            time.sleep(1)
+            sendToGRBL([pushDown])
     elif drink == "drink3":
         sendToGRBL([drink3])
     elif drink == "drink4":
@@ -101,6 +101,7 @@ def action (drink):
 
 
 def sendToGRBL(gcodeArray):
+    finished = False
     for movement in gcodeArray:
         s = serial.Serial('/dev/ttyUSB0',115200)
         a = "\r\n\r\n"
@@ -122,6 +123,8 @@ def sendToGRBL(gcodeArray):
         time.sleep(abs(int(substring_whatever)) / 1000)
         # time.sleep(5)
         s.close()
+    finished == True
+    return finished
 
 def restartPi():
     os.system("sudo reboot")
