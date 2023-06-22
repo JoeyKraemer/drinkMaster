@@ -28,6 +28,13 @@ import java.io.FileWriter
 import java.lang.Thread.sleep
 import java.util.Calendar
 import kotlin.concurrent.thread
+// qrcode
+import android.graphics.Bitmap
+import android.graphics.Color
+import com.google.zxing.BarcodeFormat
+import com.google.zxing.WriterException
+import com.google.zxing.common.BitMatrix
+import com.google.zxing.qrcode.QRCodeWriter
 
 
 class MainActivity : AppCompatActivity() {
@@ -159,6 +166,7 @@ class MainActivity : AppCompatActivity() {
     private val targetPixels = 500
     private var shouldScrollToPosition2 = false
     private var time: Long = 3000
+    private lateinit var qr_code: ImageView
 
     @SuppressLint("MissingInflatedId", "ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -330,34 +338,16 @@ class MainActivity : AppCompatActivity() {
         val customView = LayoutInflater.from(this).inflate(R.layout.receipt_pop_up, null)
         builder.setView(customView)
         val dialog = builder.create()
+        qr_code = customView.findViewById<ImageView>(R.id.qr_code)//qr code
+
+        val qrCodeContent = "receipt: 1 drink"
+        val qrCodeBitmap = generateQRCode(qrCodeContent, 300, 300)
+        qr_code.setImageBitmap(qrCodeBitmap)
         dialog.show()
         customView.postDelayed({
             dialog.hide()
         }, 5000)
     }
-/*
-    import android.graphics.Bitmap
-    import android.graphics.Color
-    import android.os.Bundle
-    import android.widget.ImageView
-    import androidx.appcompat.app.AppCompatActivity
-    import com.google.zxing.BarcodeFormat
-    import com.google.zxing.WriterException
-    import com.google.zxing.common.BitMatrix
-    import com.google.zxing.qrcode.QRCodeWriter
-
-        private lateinit var qr_code: ImageView
-
-        override fun onCreate(savedInstanceState: Bundle?) {
-            super.onCreate(savedInstanceState)
-            setContentView(R.layout.activity_main)
-
-            qrCodeImageView = findViewById(R.id.qr_code)
-
-            val qrCodeContent = "DRINK1"
-            val qrCodeBitmap = generateQRCode(qrCodeContent, 300, 300)
-            qr_code.setImageBitmap(qrCodeBitmap)
-        }
 
         private fun generateQRCode(content: String, width: Int, height: Int): Bitmap? {
             val qrCodeWriter = QRCodeWriter()
@@ -375,7 +365,6 @@ class MainActivity : AppCompatActivity() {
             }
             return null
         }
-    }*/
 
     //the following funtions will add 1 drink to the bars
     fun getGin() {
