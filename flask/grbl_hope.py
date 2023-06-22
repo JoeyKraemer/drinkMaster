@@ -105,7 +105,7 @@ def sendToGRBL(gcodeArray):
             s.write(command.encode())
             response = s.readline()
             print('Response: ' + response.decode())
-            if command.find("$#"):
+            if command.find("#"):
                 response = s.readline()
                 print('Response: ' + response.decode())
             time.sleep(0.8)
