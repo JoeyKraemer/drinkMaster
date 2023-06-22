@@ -35,6 +35,7 @@ import com.google.zxing.BarcodeFormat
 import com.google.zxing.WriterException
 import com.google.zxing.common.BitMatrix
 import com.google.zxing.qrcode.QRCodeWriter
+import java.io.FileNotFoundException
 
 
 class MainActivity : AppCompatActivity() {
@@ -431,6 +432,14 @@ class MainActivity : AppCompatActivity() {
 
         }
         catch(e:JSONException){
+            newDrinkValueFile()
+            resetDrinksToDefaultValues()
+
+            prepareDifferentDrinks()
+            return
+        }
+
+        catch(e:FileNotFoundException){
             newDrinkValueFile()
             resetDrinksToDefaultValues()
 
