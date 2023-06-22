@@ -335,10 +335,47 @@ class MainActivity : AppCompatActivity() {
             dialog.hide()
         }, 5000)
     }
+/*
+    import android.graphics.Bitmap
+    import android.graphics.Color
+    import android.os.Bundle
+    import android.widget.ImageView
+    import androidx.appcompat.app.AppCompatActivity
+    import com.google.zxing.BarcodeFormat
+    import com.google.zxing.WriterException
+    import com.google.zxing.common.BitMatrix
+    import com.google.zxing.qrcode.QRCodeWriter
 
-    private fun QrCode(){
+        private lateinit var qr_code: ImageView
 
-    }
+        override fun onCreate(savedInstanceState: Bundle?) {
+            super.onCreate(savedInstanceState)
+            setContentView(R.layout.activity_main)
+
+            qrCodeImageView = findViewById(R.id.qr_code)
+
+            val qrCodeContent = "DRINK1"
+            val qrCodeBitmap = generateQRCode(qrCodeContent, 500, 500)
+            qrCodeImageView.setImageBitmap(qrCodeBitmap)
+        }
+
+        private fun generateQRCode(content: String, width: Int, height: Int): Bitmap? {
+            val qrCodeWriter = QRCodeWriter()
+            try {
+                val bitMatrix: BitMatrix = qrCodeWriter.encode(content, BarcodeFormat.QR_CODE, width, height)
+                val bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565)
+                for (x in 0 until width) {
+                    for (y in 0 until height) {
+                        bitmap.setPixel(x, y, if (bitMatrix[x, y]) Color.BLACK else Color.WHITE)
+                    }
+                }
+                return bitmap
+            } catch (e: WriterException) {
+                e.printStackTrace()
+            }
+            return null
+        }
+    }*/
 
     //the following funtions will add 1 drink to the bars
     fun getGin() {
