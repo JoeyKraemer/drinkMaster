@@ -146,20 +146,9 @@ def sendToGRBL(drink):
     s.close()
 
 def goToUser(x,y,z):
-    if int(x) > 0:
-        x -= int(x)*2
-    else:
-        abs(int(x))
-    
-    if int(y) > 0:
-        y -= int(y)*2
-    else:
-        abs(int(y))
-    
-    if int(z) > 0:
-        z -= int(z)*2
-    else:
-        abs(int(z))
+    x = int(x) * -1
+    y = int(y) * -1
+    z = int(z) * -1
 
     Xaxis = "G0 X" + str(x)
     Yaxis = "G0 Y" + str(y)
