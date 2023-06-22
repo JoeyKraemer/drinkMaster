@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
         // ===== FILE I/O =====
         // reads off the drinkList, the return can be used with jsonObject.get("drink1")
 
-        public fun readOffDrinkValueFile(packageName: String = "com.example.ProjectDrinkMaster"): JSONObject {
+        fun readOffDrinkValueFile(packageName: String = "com.example.ProjectDrinkMaster"): JSONObject {
             val fr = FileReader("/data/data/$packageName/$fileName")
             val bfReader = BufferedReader(fr)
             val stringBuilder = StringBuilder()
@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity() {
             return JSONObject(response)
         }
 
-        public fun newDrinkValueFile(packageName: String = "com.example.ProjectDrinkMaster") {
+        fun newDrinkValueFile(packageName: String = "com.example.ProjectDrinkMaster") {
             val jsonObject = JSONObject()
             val nOfDrinks = 4
             val nOfIngredients = 6
@@ -67,34 +67,34 @@ class MainActivity : AppCompatActivity() {
             var ingredients = JSONObject()
 
 
-            for(i in 1..nOfDrinks){  // adds ingredients
+            for (i in 1..nOfDrinks) {  // adds ingredients
                 var drink = JSONObject()
                 var drinkIngredients = JSONObject()
                 var ingredient1 = JSONObject()
 
-                drink.put("id","$i") // id
-                drink.put("name","drink$i") //name
+                drink.put("id", "$i") // id
+                drink.put("name", "drink$i") //name
                 drink.put("description", "description$i")
 
-                ingredient1.put("id",(0..5).random()) //placeholder id
-                ingredient1.put("amount",(1..2).random()) //placeholder amount
+                ingredient1.put("id", (0..5).random()) //placeholder id
+                ingredient1.put("amount", (1..2).random()) //placeholder amount
 
                 drinkIngredients.put("ingredient1", ingredient1) // adds first ingredient
 
-                drink.put("drinkIngredients",drinkIngredients) // adds ingredients to drink
-                drink.put("sold",0) // adds number of drinks sold
-                drinks.put("drink$i",drink)
+                drink.put("drinkIngredients", drinkIngredients) // adds ingredients to drink
+                drink.put("sold", 0) // adds number of drinks sold
+                drinks.put("drink$i", drink)
             }
             jsonObject.put("drinks", drinks)
 
-            for(i in 1 .. nOfIngredients){
+            for (i in 1..nOfIngredients) {
                 var ingredient = JSONObject()
 
                 ingredient.put("id", i) // id
                 ingredient.put("name", "ingredient$i") // placeholder name
                 ingredient.put("maxMl", 700) // placeholder max ml
-                ingredient.put("currentMl",700) // placeholder current ml
-                ingredients.put("ingredient$i",ingredient)
+                ingredient.put("currentMl", 700) // placeholder current ml
+                ingredients.put("ingredient$i", ingredient)
             }
             jsonObject.put("ingredients", ingredients)
 
@@ -107,7 +107,10 @@ class MainActivity : AppCompatActivity() {
         }
 
         // overrides drink value file
-        public fun writeToDrinkValueFile(jsonObject: JSONObject, packageName: String = "com.example.ProjectDrinkMaster") {
+        fun writeToDrinkValueFile(
+            jsonObject: JSONObject,
+            packageName: String = "com.example.ProjectDrinkMaster"
+        ) {
             val userString = jsonObject.toString()
             val fileWriter = FileWriter("/data/data/$packageName/$fileName")
             val bufferedWriter = BufferedWriter(fileWriter)
@@ -115,30 +118,40 @@ class MainActivity : AppCompatActivity() {
             bufferedWriter.close()
         }
 
-        public fun resetDrinksToDefaultValues(){
+        fun resetDrinksToDefaultValues() {
             val data = readOffDrinkValueFile()
 
-            val description1 = "Gin and Tonic, a beloved classic cocktail, is a delightful fusion of gin's botanical flavors and the refreshing effervescence of tonic water. This iconic drink originated in the 19th century as a malaria-fighting elixir for British soldiers in India, and it has since become a timeless favorite worldwide.\n" +
-                    "\n" +
-                    "Crafting a Gin and Tonic is simple yet satisfying. It typically involves combining gin, tonic water, and a hint of citrus, usually a slice of lime or lemon. The real magic happens when the flavors mingle, creating a crisp and invigorating beverage that is perfect for any occasion."
+            val description1 =
+                "Mint syrup is a sweet liquid made by extracting the essence and flavors from fresh mint leaves and combining them with sugar and water. It is a popular ingredient used in various culinary applications, particularly in beverages and desserts.\n" +
+                        "\n" +
+                        "To make mint syrup, fresh mint leaves are typically steeped in a simple syrup solution, which is a mixture of water and sugar heated until the sugar dissolves. This process allows the mint leaves to infuse their aromatic and refreshing qualities into the syrup. The syrup is then strained to remove the mint leaves, resulting in a smooth and flavorful liquid."
 
-            val description2 = "Coke and Cola Max are iconic carbonated beverages that deliver the classic cola experience with their unique twists. Coke captures hearts with its rich, caramel-like flavor and refreshing effervescence, while Cola Max offers an intense taste with zero sugar and added caffeine. Whether you crave the timeless taste of Coke or the extra kick of Cola Max, both beverages provide a satisfying cola experience. Indulge in the perfect duo of Coke and Cola Max for a refreshing and energizing treat."
+            val description2 =
+                "Strawberry syrup drink is a refreshing and fruity beverage made with a syrup derived from strawberries. It typically involves blending or mashing fresh strawberries and combining them with sugar and water to create a sweet and flavorful syrup.\n" +
+                        "\n" +
+                        "To prepare strawberry syrup drink, ripe strawberries are washed, hulled (removing the green stem), and then mashed or blended into a puree. The puree is then combined with sugar and water in a saucepan and simmered over low heat until the sugar completely dissolves and the mixture thickens slightly. The resulting syrup is strained to remove any solids or seeds, leaving a smooth and vibrant strawberry-flavored liquid."
 
-            val description3 = "Rum and Coke is a timeless cocktail that brings together the smooth, rich flavors of rum with the crisp, effervescence of cola. This simple yet delightful drink has been enjoyed by cocktail enthusiasts for decades."
+            val description3 =
+                "Lemon syrup drink is a refreshing and tangy beverage made with a sweet syrup infused with the essence of lemons. It offers a bright and zesty flavor that is both thirst-quenching and satisfying.\n" +
+                        "\n" +
+                        "To create lemon syrup drink, the first step involves making a simple syrup by dissolving sugar in water over heat until the sugar completely dissolves. Once the simple syrup is ready, freshly squeezed lemon juice is added to the mixture. This combination of sweet and tart flavors creates a balanced and delightful taste."
 
-            val description4 = "Lemonade is a classic and refreshing beverage that embodies the bright and tangy flavors of fresh lemons. With its simple yet irresistible blend of lemon juice, water, and sweetener, lemonade has been a beloved thirst-quencher for generations."
+            val description4 =
+                "Water is a clear, odorless, and tasteless liquid that is essential for the survival and well-being of all living organisms. It is the most basic and fundamental drink, often referred to as the \"universal solvent.\" Drinking water is crucial for maintaining proper hydration and supporting various bodily functions.\n" +
+                        "\n" +
+                        "Pure water, in its natural form, contains no additives or flavors. It is composed of hydrogen and oxygen molecules (H2O) and is known for its ability to dissolve many substances, making it a great medium for transporting nutrients throughout the body."
 
 
-            data.getJSONObject("drinks").getJSONObject("drink1").put("name", "Gin n Tonic")
+            data.getJSONObject("drinks").getJSONObject("drink1").put("name", "Mint Syrup")
             data.getJSONObject("drinks").getJSONObject("drink1").put("description", description1)
 
-            data.getJSONObject("drinks").getJSONObject("drink2").put("name", "Coke Lemon")
+            data.getJSONObject("drinks").getJSONObject("drink2").put("name", "Strawberry Syrup")
             data.getJSONObject("drinks").getJSONObject("drink2").put("description", description2)
 
-            data.getJSONObject("drinks").getJSONObject("drink3").put("name", "Rum cola")
+            data.getJSONObject("drinks").getJSONObject("drink3").put("name", "Lemonade")
             data.getJSONObject("drinks").getJSONObject("drink3").put("description", description3)
 
-            data.getJSONObject("drinks").getJSONObject("drink4").put("name", "Lemonade")
+            data.getJSONObject("drinks").getJSONObject("drink4").put("name", "Water")
             data.getJSONObject("drinks").getJSONObject("drink4").put("description", description4)
 
             writeToDrinkValueFile(data)
@@ -146,6 +159,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private lateinit var binding: Activity
+
     //recycling view
     private lateinit var newRecyclerView: RecyclerView
     lateinit var heading: Array<String>
@@ -272,8 +286,6 @@ class MainActivity : AppCompatActivity() {
                         0
                     )
                 }
-                //output
-                 Log.d("Scrool", "amounnf of pixels: $totalScrolledPixels")
             }
         })
     }
@@ -335,47 +347,47 @@ class MainActivity : AppCompatActivity() {
             dialog.hide()
         }, 5000)
     }
-/*
-    import android.graphics.Bitmap
-    import android.graphics.Color
-    import android.os.Bundle
-    import android.widget.ImageView
-    import androidx.appcompat.app.AppCompatActivity
-    import com.google.zxing.BarcodeFormat
-    import com.google.zxing.WriterException
-    import com.google.zxing.common.BitMatrix
-    import com.google.zxing.qrcode.QRCodeWriter
+    /*
+        import android.graphics.Bitmap
+        import android.graphics.Color
+        import android.os.Bundle
+        import android.widget.ImageView
+        import androidx.appcompat.app.AppCompatActivity
+        import com.google.zxing.BarcodeFormat
+        import com.google.zxing.WriterException
+        import com.google.zxing.common.BitMatrix
+        import com.google.zxing.qrcode.QRCodeWriter
 
-        private lateinit var qr_code: ImageView
+            private lateinit var qr_code: ImageView
 
-        override fun onCreate(savedInstanceState: Bundle?) {
-            super.onCreate(savedInstanceState)
-            setContentView(R.layout.activity_main)
+            override fun onCreate(savedInstanceState: Bundle?) {
+                super.onCreate(savedInstanceState)
+                setContentView(R.layout.activity_main)
 
-            qrCodeImageView = findViewById(R.id.qr_code)
+                qrCodeImageView = findViewById(R.id.qr_code)
 
-            val qrCodeContent = "DRINK1"
-            val qrCodeBitmap = generateQRCode(qrCodeContent, 300, 300)
-            qr_code.setImageBitmap(qrCodeBitmap)
-        }
-
-        private fun generateQRCode(content: String, width: Int, height: Int): Bitmap? {
-            val qrCodeWriter = QRCodeWriter()
-            try {
-                val bitMatrix: BitMatrix = qrCodeWriter.encode(content, BarcodeFormat.QR_CODE, width, height)
-                val bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565)
-                for (x in 0 until width) {
-                    for (y in 0 until height) {
-                        bitmap.setPixel(x, y, if (bitMatrix[x, y]) Color.BLACK else Color.WHITE)
-                    }
-                }
-                return bitmap
-            } catch (e: WriterException) {
-                e.printStackTrace()
+                val qrCodeContent = "DRINK1"
+                val qrCodeBitmap = generateQRCode(qrCodeContent, 300, 300)
+                qr_code.setImageBitmap(qrCodeBitmap)
             }
-            return null
-        }
-    }*/
+
+            private fun generateQRCode(content: String, width: Int, height: Int): Bitmap? {
+                val qrCodeWriter = QRCodeWriter()
+                try {
+                    val bitMatrix: BitMatrix = qrCodeWriter.encode(content, BarcodeFormat.QR_CODE, width, height)
+                    val bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565)
+                    for (x in 0 until width) {
+                        for (y in 0 until height) {
+                            bitmap.setPixel(x, y, if (bitMatrix[x, y]) Color.BLACK else Color.WHITE)
+                        }
+                    }
+                    return bitmap
+                } catch (e: WriterException) {
+                    e.printStackTrace()
+                }
+                return null
+            }
+        }*/
 
     //the following funtions will add 1 drink to the bars
     fun getGin() {
@@ -397,7 +409,8 @@ class MainActivity : AppCompatActivity() {
     // add +1 to a drink. "drink" is an int from 1 to 4 corresponding to drink1 to drink4
     private fun addOneToDrinkValue(drink: Int) {
         val jsonObject = readOffDrinkValueFile()
-        val value = jsonObject.getJSONObject("drinks").getJSONObject("drink$drink").getInt("sold") + 1
+        val value =
+            jsonObject.getJSONObject("drinks").getJSONObject("drink$drink").getInt("sold") + 1
         jsonObject.getJSONObject("drinks").getJSONObject("drink$drink").put("sold", value)
         writeToDrinkValueFile(jsonObject)
     }
@@ -429,8 +442,7 @@ class MainActivity : AppCompatActivity() {
             name4 = data.getJSONObject("drink4").getString("name")
             desc4 = data.getJSONObject("drink4").getString("description")
 
-        }
-        catch(e:JSONException){
+        } catch (e: JSONException) {
             newDrinkValueFile()
             resetDrinksToDefaultValues()
 
@@ -440,28 +452,28 @@ class MainActivity : AppCompatActivity() {
 
         var drink = ItemsViewModel(
             desc1,
-            R.drawable.gin,
+            R.drawable.mint_drink,
             name1,
             R.drawable.ordergintonic
         )
         drinkList.add(drink)
         drink = ItemsViewModel(
             desc2,
-            R.drawable.coke,
+            R.drawable.straberry_drink,
             name2,
             R.drawable.ordercolalemon
         )
         drinkList.add(drink)
         drink = ItemsViewModel(
             desc3,
-            R.drawable.rum,
+            R.drawable.lemonade,
             name3,
             R.drawable.orderrumcola
         )
         drinkList.add(drink)
         drink = ItemsViewModel(
             desc4,
-            R.drawable.lemonade,
+            R.drawable.water,
             name4,
             R.drawable.orderlemonade
         )
