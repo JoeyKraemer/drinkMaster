@@ -125,17 +125,17 @@ def sendToGRBL(drink):
     for command in drink:
         print('Sending: ' + command)
         if "X" in command:
-                substring_whatever = command.split("X")
-                print(substring_whatever[1])
-                x +=substring_whatever[1] 
+            substring_whatever = command.split("X")
+            print(substring_whatever[1])
+            x =substring_whatever[1] 
         elif "Y" in command:
             substring_whatever = command.split("Y")
             print(substring_whatever[1])
-            y +=substring_whatever[1] 
+            y =substring_whatever[1] 
         elif "Z" in command:
             substring_whatever = command.split("Z")
             print(substring_whatever[1])
-            z +=substring_whatever[1] 
+            z =substring_whatever[1] 
         command += '\n'
         s.write(command.encode())
         response = s.readline()
