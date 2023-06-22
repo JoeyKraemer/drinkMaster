@@ -5,150 +5,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
-    <androidx.constraintlayout.widget.ConstraintLayout
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/DrinkTitle"
-            android:layout_width="567dp"
-            android:layout_height="91dp"
-            android:layout_marginTop="72dp"
-            android:text="Drinks"
-            android:textAlignment="center"
-            android:textSize="60sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.434"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <include layout="@layout/edit_drinks_title" />
 
-        <TextView
-            android:id="@+id/DrinkName"
-            android:layout_width="193dp"
-            android:layout_height="49dp"
-            android:layout_marginStart="52dp"
-            android:layout_marginTop="88dp"
-            android:text="Drink name:"
-            android:textAlignment="textEnd"
-            android:textSize="34sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/DrinkTitle" />
+        <include layout="@layout/edit_drinks_names" />
 
-        <TextView
-            android:id="@+id/DrinkDescription"
-            android:layout_width="193dp"
-            android:layout_height="49dp"
-            android:layout_marginStart="52dp"
-            android:layout_marginTop="24dp"
-            android:text="Description:"
-            android:textAlignment="textEnd"
-            android:textSize="34sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/DrinkName" />
+        <include layout="@layout/edit_drinks_descriptions" />
 
-        <TextView
-            android:id="@+id/DrinkIngredients"
-            android:layout_width="193dp"
-            android:layout_height="49dp"
-            android:layout_marginStart="52dp"
-            android:layout_marginTop="104dp"
-            android:text="Ingredients:"
-            android:textSize="34sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editableTextDrinkDescription1" />
+        <include layout="@layout/edit_drinks_ingredients" />
 
-        <EditText
-            android:id="@+id/editableTextDrinkTitle1"
-            android:layout_width="193dp"
-            android:layout_height="49dp"
-            android:layout_marginStart="36dp"
-            android:layout_marginTop="88dp"
-            android:textSize="28sp"
-            app:layout_constraintStart_toEndOf="@+id/DrinkName"
-            app:layout_constraintTop_toBottomOf="@+id/DrinkTitle" />
-
-        <EditText
-            android:id="@+id/editableTextDrinkTitle2"
-            android:layout_width="193dp"
-            android:layout_height="49dp"
-            android:layout_marginStart="52dp"
-            android:layout_marginTop="88dp"
-            android:textSize="28sp"
-            app:layout_constraintStart_toEndOf="@+id/editableTextDrinkTitle1"
-            app:layout_constraintTop_toBottomOf="@+id/DrinkTitle" />
-
-        <EditText
-            android:id="@+id/editableTextDrinkTitle3"
-            android:layout_width="193dp"
-            android:layout_height="49dp"
-            android:layout_marginStart="52dp"
-            android:layout_marginTop="88dp"
-            android:textSize="28sp"
-            app:layout_constraintStart_toEndOf="@+id/editableTextDrinkTitle2"
-            app:layout_constraintTop_toBottomOf="@+id/DrinkTitle" />
-
-        <EditText
-            android:id="@+id/editableTextDrinkTitle4"
-            android:layout_width="193dp"
-            android:layout_height="49dp"
-            android:layout_marginStart="56dp"
-            android:layout_marginTop="88dp"
-            android:textSize="28sp"
-            app:layout_constraintStart_toEndOf="@+id/editableTextDrinkTitle3"
-            app:layout_constraintTop_toBottomOf="@+id/DrinkTitle" />
-
-        <EditText
-            android:id="@+id/editableTextDrinkDescription1"
-            android:layout_width="193dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="36dp"
-            android:layout_marginTop="24dp"
-            android:textSize="28sp"
-            app:layout_constraintStart_toEndOf="@+id/DrinkDescription"
-            app:layout_constraintTop_toBottomOf="@+id/editableTextDrinkTitle1" />
-
-        <EditText
-            android:id="@+id/editableTextDrinkDescription2"
-            android:layout_width="193dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="52dp"
-            android:layout_marginTop="24dp"
-            android:textSize="28sp"
-            app:layout_constraintStart_toEndOf="@+id/editableTextDrinkDescription1"
-            app:layout_constraintTop_toBottomOf="@+id/editableTextDrinkTitle2" />
-
-        <EditText
-            android:id="@+id/editableTextDrinkDescription3"
-            android:layout_width="193dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="52dp"
-            android:layout_marginTop="24dp"
-            android:textSize="28sp"
-            app:layout_constraintStart_toEndOf="@+id/editableTextDrinkDescription2"
-            app:layout_constraintTop_toBottomOf="@+id/editableTextDrinkTitle3" />
-
-        <EditText
-            android:id="@+id/editableTextDrinkDescription4"
-            android:layout_width="193dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="56dp"
-            android:layout_marginTop="24dp"
-            android:singleLine="false"
-            android:textSize="28sp"
-            app:layout_constraintStart_toEndOf="@+id/editableTextDrinkDescription3"
-            app:layout_constraintTop_toBottomOf="@+id/editableTextDrinkTitle4" />
-
-        <Button
-            android:id="@+id/confirmDrinkModificationButton"
-            android:layout_width="201dp"
-            android:layout_height="121dp"
-            android:layout_marginTop="63dp"
-            android:layout_marginEnd="67dp"
-            android:text="confirm"
-            android:textSize="34sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 </ScrollView>
