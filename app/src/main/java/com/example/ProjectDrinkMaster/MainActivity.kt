@@ -355,8 +355,8 @@ class MainActivity : AppCompatActivity() {
             qrCodeImageView = findViewById(R.id.qr_code)
 
             val qrCodeContent = "DRINK1"
-            val qrCodeBitmap = generateQRCode(qrCodeContent, 500, 500)
-            qrCodeImageView.setImageBitmap(qrCodeBitmap)
+            val qrCodeBitmap = generateQRCode(qrCodeContent, 300, 300)
+            qr_code.setImageBitmap(qrCodeBitmap)
         }
 
         private fun generateQRCode(content: String, width: Int, height: Int): Bitmap? {
