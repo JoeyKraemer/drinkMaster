@@ -28,6 +28,13 @@ import java.io.FileWriter
 import java.lang.Thread.sleep
 import java.util.Calendar
 import kotlin.concurrent.thread
+// qrcode
+import android.graphics.Bitmap
+import android.graphics.Color
+import com.google.zxing.BarcodeFormat
+import com.google.zxing.WriterException
+import com.google.zxing.common.BitMatrix
+import com.google.zxing.qrcode.QRCodeWriter
 
 
 class MainActivity : AppCompatActivity() {
@@ -81,9 +88,16 @@ class MainActivity : AppCompatActivity() {
 
                 drinkIngredients.put("ingredient1", ingredient1) // adds first ingredient
 
+
                 drink.put("drinkIngredients", drinkIngredients) // adds ingredients to drink
                 drink.put("sold", 0) // adds number of drinks sold
                 drinks.put("drink$i", drink)
+
+                drink.put("drinkIngredients",drinkIngredients) // adds ingredients to drink
+                drink.put("price", 0) // price, placeholder of 0
+                drink.put("sold",0) // adds number of drinks sold
+                drinks.put("drink$i",drink)
+
             }
             jsonObject.put("drinks", drinks)
 
@@ -173,6 +187,8 @@ class MainActivity : AppCompatActivity() {
     private val targetPixels = 500
     private var shouldScrollToPosition2 = false
     private var time: Long = 3000
+    private lateinit var qr_code: ImageView
+    private var last_drink_ordered: Int = 1
 
     @SuppressLint("MissingInflatedId", "ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -342,68 +358,56 @@ class MainActivity : AppCompatActivity() {
         val customView = LayoutInflater.from(this).inflate(R.layout.receipt_pop_up, null)
         builder.setView(customView)
         val dialog = builder.create()
+        qr_code = customView.findViewById<ImageView>(R.id.qr_code)//qr code
+
+        val data = readOffDrinkValueFile()
+        val drinkName = data.getJSONObject("drinks").getJSONObject("drink$last_drink_ordered").getString("name")
+        val drinkPrice = data.getJSONObject("drinks").getJSONObject("drink$last_drink_ordered").getInt("price")
+        val qrCodeContent = "ordered $drinkName : $drinkPrice euro. thank you for ordering from DrinkMaster."
+        val qrCodeBitmap = generateQRCode(qrCodeContent, 300, 300)
+        qr_code.setImageBitmap(qrCodeBitmap)
         dialog.show()
         customView.postDelayed({
             dialog.hide()
-        }, 5000)
+        }, 15000)
     }
-    /*
-        import android.graphics.Bitmap
-        import android.graphics.Color
-        import android.os.Bundle
-        import android.widget.ImageView
-        import androidx.appcompat.app.AppCompatActivity
-        import com.google.zxing.BarcodeFormat
-        import com.google.zxing.WriterException
-        import com.google.zxing.common.BitMatrix
-        import com.google.zxing.qrcode.QRCodeWriter
-
-            private lateinit var qr_code: ImageView
-
-            override fun onCreate(savedInstanceState: Bundle?) {
-                super.onCreate(savedInstanceState)
-                setContentView(R.layout.activity_main)
-
-                qrCodeImageView = findViewById(R.id.qr_code)
-
-                val qrCodeContent = "DRINK1"
-                val qrCodeBitmap = generateQRCode(qrCodeContent, 300, 300)
-                qr_code.setImageBitmap(qrCodeBitmap)
-            }
-
-            private fun generateQRCode(content: String, width: Int, height: Int): Bitmap? {
-                val qrCodeWriter = QRCodeWriter()
-                try {
-                    val bitMatrix: BitMatrix = qrCodeWriter.encode(content, BarcodeFormat.QR_CODE, width, height)
-                    val bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565)
-                    for (x in 0 until width) {
-                        for (y in 0 until height) {
-                            bitmap.setPixel(x, y, if (bitMatrix[x, y]) Color.BLACK else Color.WHITE)
-                        }
+        private fun generateQRCode(content: String, width: Int, height: Int): Bitmap? {
+            val qrCodeWriter = QRCodeWriter()
+            try {
+                val bitMatrix: BitMatrix = qrCodeWriter.encode(content, BarcodeFormat.QR_CODE, width, height)
+                val bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565)
+                for (x in 0 until width) {
+                    for (y in 0 until height) {
+                        bitmap.setPixel(x, y, if (bitMatrix[x, y]) Color.BLACK else Color.WHITE)
                     }
-                    return bitmap
-                } catch (e: WriterException) {
-                    e.printStackTrace()
                 }
-                return null
+                return bitmap
+            } catch (e: WriterException) {
+                e.printStackTrace()
             }
-        }*/
+            return null
+        }
+
 
     //the following funtions will add 1 drink to the bars
     fun getGin() {
         addOneToDrinkValue(1)
+        last_drink_ordered = 1
     }
 
     fun getRum() {
         addOneToDrinkValue(3)
+        last_drink_ordered = 3
     }
 
     fun getLemmonade() {
         addOneToDrinkValue(2)
+        last_drink_ordered = 2
     }
 
     fun getCoke() {
         addOneToDrinkValue(4)
+        last_drink_ordered = 4
     }
 
     // add +1 to a drink. "drink" is an int from 1 to 4 corresponding to drink1 to drink4
@@ -442,7 +446,12 @@ class MainActivity : AppCompatActivity() {
             name4 = data.getJSONObject("drink4").getString("name")
             desc4 = data.getJSONObject("drink4").getString("description")
 
-        } catch (e: JSONException) {
+            data.getJSONObject("drink1").getInt("price")
+
+
+        }
+        catch(e:JSONException){
+
             newDrinkValueFile()
             resetDrinksToDefaultValues()
 
