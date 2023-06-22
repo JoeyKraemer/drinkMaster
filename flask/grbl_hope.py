@@ -54,17 +54,18 @@ def action (drink):
     goToUser = ["$X","G0 F10000","G90","G0 Z0X0Y0 ;BUFFER",";BUFFER"]
 
     #calibration movements
-    goToUserHome = ["$X","G91","G0 F15000","G92 Y0 X0 Z0","G0 X0150","G0 Z-2200","G0 Y-0350","$#","G0010"]
+    goToUserHome = ["$X","G91","G0 F15000","G92 Y0 X0 Z0","G0 X0150","G0 Z-2200","G0 Y-0350","$#","G10 L2 Y0X0Z0"]
     homeY = ["$X","G91","G92 X0 Y0 Z0","G0 F15000","G0 Y2000"]
     homeX = ["$X","G91","G0 F15000","G0 X-2000"]
     homeZ = ["$X","G91","G0 F15000","G0 Z1000","G0 Z1000","G0 Z9999"]
     pushY = ["$X","G91","G0 F15000","G0 Y-0010"]
     pushX = ["$X","G91","G0 F15000","G0 X0010"]
     pushZ = ["$X","G91","G92 Z0","G0 F15000","G0 Z-0700"]
+    homing = ["$X","$H",";2000"]
 
     #drinks
     drink1 = [] # Drink 1
-    drink2 = ["$X","G91","G92 X0 Y0 Z0","G0 F9000","G0 Z1900","G0 F15000","G0 Y0083","G0 X0115","G0 F6000","G0 Z-0900  ;Buffer","G0 X0230"] # Coke lemon?
+    drink2 = ["$X","G0 F9000","G0 Z1900","G0 F15000","G0 Y0083","G0 X0115","G0 F6000","G0 Z-0900  ;Buffer","G0 X0230"] # Coke lemon?
     drink3 = [] # Drink 3
     drink4 = [] # Drink 4
    
@@ -76,7 +77,7 @@ def action (drink):
         sendToGRBL([goToUser])
         print(drink+": Perfectly executed")
     elif drink == "drink1":
-        sendToGRBL([drink1])
+        sendToGRBL([homeY,homing])
     elif drink == "drink2":
         sendToGRBL([drink2])
     elif drink == "drink3":
