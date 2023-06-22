@@ -60,22 +60,17 @@ class AdminActivity : AppCompatActivity() {
 
         rebootPiButton.setOnClickListener {
             SendRequest("action", "rebootPi").start()
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-            finish()
         }
         rebootMachineButton.setOnClickListener {
-            dialog.hide()
             SendRequest("action", "rebootPlatform").start()
         }
 
         calibrateButton.setOnClickListener {
-            dialog.hide()
             SendRequest("action", "calibration").start()
         }
 
         openCup.setOnClickListener {
-            dialog.hide()
+
             SendRequest("action", "freeCup")
         }
         backButton.setOnClickListener {
@@ -160,7 +155,8 @@ class AdminActivity : AppCompatActivity() {
                         } else {
                             //Last character is inserted
                             if (validateCode(getCode())) {
-                                dialog.hide()
+                                dialog.dismiss()
+                                dialog.cancel()
                                 onPinEntered()
                             } else {
                                 for (ii in keycodeDigitElements.indices) {
