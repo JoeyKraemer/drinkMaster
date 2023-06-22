@@ -95,8 +95,8 @@ def sendToGRBL(gcodeArray):
         a = "\r\n\r\n"
         s.write(a.encode())
         time.sleep(2)
-        s.flushInput()
-        s.flushOutput()
+        #s.flushInput()
+        #s.flushOutput()
 
         for command in movement:
             print('Sending: ' + command)
