@@ -42,6 +42,12 @@ def index():
             elif v == "rebootPi":
                 restartPi()
                 return render_template("index.html")
+            elif v == "pushUp":
+                action("pushUp")
+                return render_template("index.html")
+            elif v == "pushDown":
+                action("pushDown")
+                return render_template("index.html")
                 
         else:
             return render_template("index.html")
