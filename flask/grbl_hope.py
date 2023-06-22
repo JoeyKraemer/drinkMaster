@@ -58,11 +58,11 @@ def action (drink):
     pushX = ["$X","G0 F15000","G0 X0010"]
     pushZ = ["$X","G92 Z0","G0 F15000","G0 Z-0700"]
 
-    freeCup = []
-    drink1 = []
-    drink2 = ["$X", "G92 X0 Y0 Z0", "G0 F9000", "G0 Z1900", "G0 F15000", "G0 Y0090", "G0 X0110", "G0 Z-0080"]
-    drink3 = []
-    drink4 = []
+    freeCup = ["$X","G0 F9000","G0 -500"] # Trigger hardlimit in case the Z-axis is too high
+    drink1 = [] # Drink 1
+    drink2 = ["$X", "G92 X0 Y0 Z0", "G0 F9000", "G0 Z1900", "G0 F15000", "G0 Y0090", "G0 X0110","G92 Z0", "G0 Z-0080"] # Coke lemon?
+    drink3 = [] # Drink 3
+    drink4 = [] # Drink 4
 
    
     if drink == "calibration":
