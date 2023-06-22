@@ -67,7 +67,7 @@ def action (drink):
 
     #drinks
     drink1 = [] # Drink 1
-    drink2 = ["$X","G0 F9000","G0 Z1900","G0 F15000","G0 Y0083","G0 X0115","G0 F6000","G92 Z0","G0 Z-850"] # Drink 2
+    drink2 = ["$X","G0 F9000","G0 Z1900","G0 F15000","G0 Y0083","G0 X0115","G0 F6000","G92 Z0","G0 Z-900"] # Drink 2
     drink3 = [] # Drink 3
     drink4 = [] # Drink 4
    
@@ -146,20 +146,21 @@ def sendToGRBL(drink):
     s.close()
 
 def goToUser(x,y,z):
-    if x > 0:
-        x -= x*2
+    if int(x) > 0:
+        x -= int(x)*2
     else:
-        abs(x)
+        abs(int(x))
     
-    if y > 0:
-        y -= y*2
+    if int(y) > 0:
+        y -= int(y)*2
     else:
-        abs(y)
+        abs(int(y))
     
-    if z > 0:
-        z -= z*2
+    if int(z) > 0:
+        z -= int(z)*2
     else:
-        abs(z)
+        abs(int(z))
+
     Xaxis = "G0 X" + str(x)
     Yaxis = "G0 Y" + str(y)
     Zaxis = "G0 Z" + str(z)
