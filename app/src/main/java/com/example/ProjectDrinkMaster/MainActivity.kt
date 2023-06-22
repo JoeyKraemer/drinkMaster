@@ -89,6 +89,7 @@ class MainActivity : AppCompatActivity() {
                 drinkIngredients.put("ingredient1", ingredient1) // adds first ingredient
 
                 drink.put("drinkIngredients",drinkIngredients) // adds ingredients to drink
+                drink.put("price", 0) // price, placeholder of 0
                 drink.put("sold",0) // adds number of drinks sold
                 drinks.put("drink$i",drink)
             }
@@ -341,8 +342,10 @@ class MainActivity : AppCompatActivity() {
         val dialog = builder.create()
         qr_code = customView.findViewById<ImageView>(R.id.qr_code)//qr code
 
-        val drinkName = readOffDrinkValueFile().getJSONObject("drinks").getJSONObject("drink$last_drink_ordered").getString("name")
-        val qrCodeContent = "drink $last_drink_ordered : $drinkName"
+        val data = readOffDrinkValueFile()
+        val drinkName = data.getJSONObject("drinks").getJSONObject("drink$last_drink_ordered").getString("name")
+        val drinkPrice = data.getJSONObject("drinks").getJSONObject("drink$last_drink_ordered").getInt("price")
+        val qrCodeContent = "ordered $drinkName : $drinkPrice euro. thank you for ordering from DrinkMaster."
         val qrCodeBitmap = generateQRCode(qrCodeContent, 300, 300)
         qr_code.setImageBitmap(qrCodeBitmap)
         dialog.show()
@@ -423,6 +426,8 @@ class MainActivity : AppCompatActivity() {
 
             name4 = data.getJSONObject("drink4").getString("name")
             desc4 = data.getJSONObject("drink4").getString("description")
+
+            data.getJSONObject("drink1").getInt("price")
 
         }
         catch(e:JSONException){
