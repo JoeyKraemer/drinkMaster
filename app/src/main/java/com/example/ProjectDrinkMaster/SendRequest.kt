@@ -2,6 +2,7 @@ package com.example.ProjectDrinkMaster
 
 import android.os.AsyncTask
 import android.util.Log
+import java.io.EOFException
 import java.net.ConnectException
 import java.net.HttpURLConnection
 import java.net.ProtocolException
@@ -25,9 +26,7 @@ class SendRequest(key: String, value: String, url: String = MainActivity.url) : 
                     "networkRequest",
                     "\nSent 'GET' request to URL : $url; Response Code : $responseCode"
                 )
-                if (recivedValue === "rebootPi"){
-                    exitProcess(0)
-                }
+
 
             }
         } catch (e: ConnectException) {
@@ -36,6 +35,8 @@ class SendRequest(key: String, value: String, url: String = MainActivity.url) : 
         } catch (e: ProtocolException) {
             Log.e("sendRequest", e.toString())
 
+        }catch (e: EOFException){
+            Log.e("sendRequest", e.toString())
         }
 
 
