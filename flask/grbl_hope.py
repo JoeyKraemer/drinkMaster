@@ -103,7 +103,7 @@ def sendToGRBL(gcodeArray):
             print('Response: ' + response.decode())
             time.sleep(0.8)
             if "G60" in command:
-                command = "G0060"
+                command = "0060"
                 print("IF TRIGGERED")
             
         print("BUFFER MUFFER ",substring_whatever)
