@@ -66,8 +66,14 @@ def action (drink):
     pushZ = ["$X","G91","G92 Z0","G0 F15000","G0 Z-0700"]
 
     freeCup = ["$X","G91","G0 F9000","G0 Z-0500"] # Trigger hardlimit in case the Z-axis is too high
-    drink1 = [] # Drink 1
-    drink2 = ["$X","G91","G92 X0 Y0 Z0","G0 F9000","G0 Z1900","G0 F15000","G0 Y0083","G0 X0115","G0 F6000","G0 Z-0900"] # Coke lemon?
+    drink1p1 = []
+    drink1p2 = []
+    drink1 = [drink1p1,drink1p2] # Drink 1
+
+    drink2p1 = ["$X","G91","G92 X0 Y0 Z0","G0 F9000","G0 Z1900","G0 F15000","G0 Y0083","G0 X0115","G0 F6000","G0 Z-0900",";Buffer ",";Buffer ","G0 X0230"] # Coke lemon?
+    drink2p2 = ["$X","G91",""]
+    drink2 = ["$X","G91","G92 X0 Y0 Z0","G0 F9000","G0 Z1900","G0 F15000","G0 Y0083","G0 X0115","G0 F6000","G0 Z-0900",";Buffer ",";Buffer ","G0 X0230"] # Coke lemon?
+
     drink3 = [] # Drink 3
     drink4 = [] # Drink 4
 
@@ -87,8 +93,7 @@ def action (drink):
     elif drink == "drink1":
         sendToGRBL([drink1])
     elif drink == "drink2":
-        if sendToGRBL([drink2]):
-            sendToGRBL([pushDown])
+        sendToGRBL([drink2])
     elif drink == "drink3":
         sendToGRBL([drink3])
     elif drink == "drink4":
