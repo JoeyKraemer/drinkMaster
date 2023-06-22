@@ -68,7 +68,7 @@ def action (drink):
 
     #drinks
     drink1 = [] # Drink 1
-    drink2 = ["$X","G0 F9000","G0 Z1900","G0 F15000","G0 Y0083","G0 X0115","G0 F6000","G0 Z-0900","G04 P5","G0 Z0925","G0 F15000","G0 X-220","G0 F6000", "G0Z-850", "G04 P5", "G0Z0900"] # Drink 2
+    drink2 = ["$X","G0 F9000","G0 Z1900","G0 F15000","G0 Y0083","G0 X0115","G0 F6000","G0 Z-0800","G04 P5","G0 Z0800","G0 F15000","G0 X-220","G0 F6000", "G0Z-800", "G04 P5", "G0 Z0900"] # Drink 2
     drink3 = [] # Drink 3
     drink4 = [] # Drink 4
    
