@@ -8,7 +8,7 @@ from flask import request
 
 x = 0
 y = 0
-Z = 0
+z = 0
 
 app = Flask(__name__)
 
@@ -55,11 +55,10 @@ def action (drink):
     #helper movements
     pushUp = ["$X","G92 Z0","G0 F15000", "G0 Z-0900"]
     pushDown = ["$X", "G92 Z0","G0 F15000", "G0 Z0900"]
-    goToUser = ["$X","G0 F10000","G90","G0 Z0X0Y0 ;BUFFER",";BUFFER"]
 
     #calibration movements
     goToUserHome = ["$X","G91","G0 F15000","G92 Y0 X0 Z0","G0 X0150","G0 Z-2200","G0 Y-0350","$#","G10 L2 Y0X0Z0"]
-    homeY = ["$X","G91","G92 X0 Y0 Z0","G0 F15000","G0 Y2000"]
+    homeY = ["$X","G91","G0 F15000","G0 Y2000"]
     homeX = ["$X","G91","G0 F15000","G0 X-2000"]
     homeZ = ["$X","G91","G0 F15000","G0 Z1000","G0 Z1000","G0 Z9999"]
     pushY = ["$X","G91","G0 F15000","G0 Y-0010"]
@@ -73,27 +72,27 @@ def action (drink):
     drink4 = [] # Drink 4
    
     if drink == "calibration":
-        calibration = [homeY,homeZ,homeX,pushY,pushX,pushZ,goToUserHome]
-        sendToGRBL(calibration)
+        home = [homeY,homeZ,homeX,pushY,pushX,pushZ,goToUserHome]
+        calibration(home)
         print(drink+": Perfectly executed")
     elif drink == "goToUser":
-        sendToGRBL([goToUser])
+        goToUser(x,y,z)
         print(drink+": Perfectly executed")
     elif drink == "drink1":
-        sendToGRBL([drink1])
+        sendToGRBL(drink1)
     elif drink == "drink2":
-        sendToGRBL([drink2])
+        sendToGRBL(drink2)
     elif drink == "drink3":
-        sendToGRBL([drink3])
+        sendToGRBL(drink3)
     elif drink == "drink4":
-        sendToGRBL([drink4])
+        sendToGRBL(drink4)
     elif drink == "pushUp":
-        sendToGRBL([pushUp])
+        sendToGRBL(pushUp)
     elif drink == "pushDown":
-        sendToGRBL([pushDown])
+        sendToGRBL(pushDown)
 
 
-def sendToGRBL(gcodeArray):
+def calibration(gcodeArray):
     for movement in gcodeArray:
         s = serial.Serial('/dev/ttyUSB0',115200)
         a = "\r\n\r\n"
@@ -112,14 +111,86 @@ def sendToGRBL(gcodeArray):
             time.sleep(0.8)
             
         print("BUFFER MUFFER ",substring_whatever)
-        
-        if command.find(";") > 0: 
-            time.sleep(1.2)
-            print("EXTRA BUFFER TRIGGER")
-        else:
-            time.sleep(abs(int(substring_whatever)) / 1000)
-        # time.sleep(5)
+        time.sleep(abs(int(substring_whatever)) / 1000)
         s.close()
+
+def sendToGRBL(drink):
+    s = serial.Serial('/dev/ttyUSB0',115200)
+    a = "\r\n\r\n"
+    s.write(a.encode())
+    time.sleep(2)
+    s.flushInput()
+    s.flushOutput()
+     
+    for command in drink:
+        print('Sending: ' + command)
+        if "X" in command:
+                substring_whatever = command.split("X")
+                print(substring_whatever[1])
+                x +=substring_whatever[1] 
+        elif "Y" in command:
+            substring_whatever = command.split("Y")
+            print(substring_whatever[1])
+            y +=substring_whatever[1] 
+        elif "Z" in command:
+            substring_whatever = command.split("Z")
+            print(substring_whatever[1])
+            z +=substring_whatever[1] 
+        command += '\n'
+        s.write(command.encode())
+        response = s.readline()
+        print('Response: ' + response.decode())
+    
+    print("Current position: X",x," Y",y," Z",z)
+    s.close()
+
+def goToUser(x,y,z):
+    if x > 0:
+        x -= x*2
+    else:
+        abs(x)
+    
+    if y > 0:
+        y -= y*2
+    else:
+        abs(y)
+    
+    if z > 0:
+        z -= z*2
+    else:
+        abs(z)
+    Xaxis = "G0 X" + x
+    Yaxis = "G0 Y" + y
+    Zaxis = "G0 Z" + Z
+    ar = ["$X","G0 F10000",Zaxis,Xaxis,Yaxis]
+
+    s = serial.Serial('/dev/ttyUSB0',115200)
+    a = "\r\n\r\n"
+    s.write(a.encode())
+    time.sleep(2)
+    s.flushInput()
+    s.flushOutput()
+
+    for command in ar:
+        print('Sending: ' + command)
+        if "X" in command:
+                substring_whatever = command.split("X")
+                print(substring_whatever[1])
+                x +=substring_whatever[1] 
+        elif "Y" in command:
+            substring_whatever = command.split("Y")
+            print(substring_whatever[1])
+            y +=substring_whatever[1] 
+        elif "Z" in command:
+            substring_whatever = command.split("Z")
+            print(substring_whatever[1])
+            z +=substring_whatever[1] 
+        command += '\n'
+        s.write(command.encode())
+        response = s.readline()
+        print('Response: ' + response.decode())
+    print("Current position: X",x," Y",y," Z",z)
+
 
 def restartPi():
     os.system("sudo reboot")
