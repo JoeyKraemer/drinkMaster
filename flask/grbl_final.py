@@ -121,6 +121,7 @@ def sendToGRBL(drink):
     time.sleep(2)
     s.flushInput()
     s.flushOutput()
+    global x, y, z
      
     for command in drink:
         print('Sending: ' + command)
