@@ -88,6 +88,8 @@ def action (drink):
         sendToGRBL([drink1])
     elif drink == "drink2":
         sendToGRBL([drink2])
+        time.sleep(5)
+        sendToGRBL([pushDown])
     elif drink == "drink3":
         sendToGRBL([drink3])
     elif drink == "drink4":
