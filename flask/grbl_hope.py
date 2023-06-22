@@ -48,8 +48,9 @@ def index():
         
 def action (drink):
     #gcode commands stored in arrays
-    goToUser = ["$X","G0 F15000","G92 Y0 X0 Z0","G0 X0150","G0 Z-2200","G0 Y-0350"]
+    goToUser = ["$X","G0F15000","G61"]
 
+    goToUserHome = ["$X","G0 F15000","G92 Y0 X0 Z0","G0 X0150","G0 Z-2200","G0 Y-0350","G60"]
     homeY = ["$X","G92 X0 Y0 Z0","G0 F15000","G0 Y2000"]
     homeX = ["$X","G0 F15000","G0 X-2000"]
     homeZ = ["$X","G0 F15000","G0 Z1000","G0 Z1000","G0 Z9999"]
@@ -66,22 +67,22 @@ def action (drink):
 
    
     if drink == "calibration":
-        calibration = [homeY,homeZ,homeX,pushY,pushX,pushZ,goToUser]
+        calibration = [homeY,homeZ,homeX,pushY,pushX,pushZ,goToUserHome]
         sendToGRBL(calibration)
         print(drink+": Perfectly executed")
     elif drink == "goToUser":
-        sendToGRBL(goToUser)
+        sendToGRBL([goToUser])
         print(drink+": Perfectly executed")
     elif drink == "freeCup":
-        sendToGRBL(freeCup)
+        sendToGRBL([freeCup])
     elif drink == "drink1":
-        sendToGRBL(drink1)
+        sendToGRBL([drink1])
     elif drink == "drink2":
         sendToGRBL([drink2])
     elif drink == "drink3":
-        sendToGRBL(drink3)
+        sendToGRBL([drink3])
     elif drink == "drink4":
-        sendToGRBL(drink4)
+        sendToGRBL([drink4])
 
 
 def sendToGRBL(gcodeArray):
@@ -101,6 +102,9 @@ def sendToGRBL(gcodeArray):
             response = s.readline()
             print('Response: ' + response.decode())
             time.sleep(0.8)
+            if "G60" in command:
+                command = "G0060"
+                print("IF TRIGGERED")
             
         print("BUFFER MUFFER ",substring_whatever)
         time.sleep(abs(int(substring_whatever)) / 1000)
