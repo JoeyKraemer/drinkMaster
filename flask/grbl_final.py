@@ -67,7 +67,7 @@ def action (drink):
 
     #drinks
     drink1 = [
-        "$x","G90","G0 F9000", "G0 Z1900", "G0 F15000", "G0 Y0210", "G0 X0115",
+        "$x","G90","G0 F9000", "G0 Z1900", "G0 F15000", "G0 Y0210", "G0 X0120",
         "G0 F6000","G92 z0", "G0 Z-1000", "G04 P5","G92 z0", "G0 Z0900", 
         "G0 F15000","G92 x0", "G0 X-220","G92 z0", "G0 Z-900", "G04 P5","G92 z0", "G0 Z0800"
         ] # Drink 1
@@ -116,12 +116,8 @@ def calibration(gcodeArray):
             response = s.readline()
             print('Response: ' + response.decode())
             time.sleep(0.8)
-            
         print("BUFFER MUFFER ",substring_whatever)
         time.sleep(abs(int(substring_whatever)) / 1000)
-
-        
-
         s.close()
     global x,y,z
     x = 0
@@ -166,7 +162,7 @@ def goToUser(x,y,z):
 
     Xaxis = "G0 X" + str(x)
     Yaxis = "G0 Y" + str(y)
-    Zaxis = "G0 Z" + str(z)
+    Zaxis = "G0 Z" + str(z-100)
 
     ar = ["$x","G0 F10000",Xaxis,Zaxis,Yaxis]
 
