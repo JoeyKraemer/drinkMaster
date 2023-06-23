@@ -24,23 +24,23 @@ def index():
                 action("calibration")
                 return render_template("index.html")
             elif v == "goToUser":
-                action("goToUser")
+                goToUser(x,y,z)
                 return render_template("index.html")
             elif v == "DRINK1":
                 action('drink1')
-                action("goToUser")
+                goToUser(x,y,z)
                 return render_template("index.html")
             elif v == "DRINK2":
                 action("drink2")
-                action("goToUser")
+                goToUser(x,y,z)
                 return render_template("index.html")   
             elif v == "DRINK3":
                 action("drink3")
-                action("goToUser")
+                goToUser(x,y,z)
                 return render_template("index.html")
             elif v == "DRINK4":
                 action("drink4")
-                action("goToUser")
+                goToUser(x,y,z)
                 return render_template("index.html")
             elif v == "rebootPi":
                 restartPi()
@@ -86,7 +86,7 @@ def action (drink):
     drink3 = [
         "$x", "G90", "G0 F9000", "G0 Z1900", "G0 F15000", "G0 Y0315", "G0 X0110", 
         "G0 F6000", "G92 z0", "G0 Z-1000", "G04 P5", "G92 z0", "G0 Z0900",
-        "G0 F15000", "G92 x0", "G0 X-230", "G92 y0","G0 Y-5","G0 F6000", "G92 z0", "G0 Z-900", "G04 P5", "G92 z0", "G0 Z0800"
+        "G0 F15000", "G92 x0", "G0 X-220", "G92 y0","G0 Y-5","G0 F6000", "G92 z0", "G0 Z-900", "G04 P5", "G92 z0", "G0 Z0800"
     ] # Drink 3
     drink4 = [] # Drink 4
    
