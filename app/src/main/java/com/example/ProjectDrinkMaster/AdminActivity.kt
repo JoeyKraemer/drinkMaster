@@ -10,8 +10,6 @@ import android.view.LayoutInflater
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.github.mikephil.charting.charts.BarChart
@@ -19,16 +17,10 @@ import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
 
+// Admin panel page
 class AdminActivity : AppCompatActivity() {
 
-    private val editTextArray: ArrayList<EditText> = ArrayList(NUM_OF_DIGITS)
-
-    companion object {
-        const val NUM_OF_DIGITS = 4
-    }
-
     // size of graph in dp
-    val graphHeight = 600
     val pincode = 1234
 
     private lateinit var dialog: AlertDialog
@@ -79,6 +71,7 @@ class AdminActivity : AppCompatActivity() {
         // ===== INIT KEYCODE ======
         // create pop up password
         showPasswordDialog()
+
         // ===== INIT GRAPH ======
         // get amount of drinks sold for graph
         val data = MainActivity.readOffDrinkValueFile().getJSONObject("drinks")
@@ -123,7 +116,8 @@ class AdminActivity : AppCompatActivity() {
 
             var numTemp: String
 
-            (0 until keycodeDigitElements.size) // iterates through every value in keycodeDigitSize
+            // iterates through every value in keycodeDigitSize
+            (0 until keycodeDigitElements.size)
                 .forEach { i ->
                     if (s != null) {
                         if (s.isBlank()) {
@@ -132,7 +126,7 @@ class AdminActivity : AppCompatActivity() {
                     }
 
                     if (s === keycodeDigitElements[i].editableText) {
-                        if (i != keycodeDigitElements.size - 1) { //not last char
+                        if (i != keycodeDigitElements.size - 1) { // if not last char
                             keycodeDigitElements[i + 1].requestFocus()
                             keycodeDigitElements[i + 1].setSelection(keycodeDigitElements[i + 1].length())
                             return
@@ -160,11 +154,14 @@ class AdminActivity : AppCompatActivity() {
         }
     }
 
+    // initializes and shows enter password dialog
     private fun showPasswordDialog() {
         val builder = AlertDialog.Builder(this)
         val dialogView = LayoutInflater.from(this).inflate(R.layout.pincode_pop_up, null)
         builder.setView(dialogView)
         dialog = builder.create()
+
+        // disallow user from removing popup
         dialog.setCancelable(false)
         dialog.setCanceledOnTouchOutside(false)
 
@@ -201,9 +198,11 @@ class AdminActivity : AppCompatActivity() {
                 false
             }
         }
+        // focus back on first number
         keycodeDigitElements[0].requestFocus()
     }
 
+    // gets text entered on keypad
     fun getCode(): String {
         var code = ""
         for (i in keycodeDigitElements.indices) {
@@ -213,6 +212,7 @@ class AdminActivity : AppCompatActivity() {
         return code
     }
 
+    // sees if string is same as hardcoded passcode
     fun validateCode(code: String): Boolean {
         return (code == pincode.toString())
     }

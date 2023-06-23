@@ -1,19 +1,16 @@
 package com.example.ProjectDrinkMaster
 
-import android.os.AsyncTask
 import android.util.Log
 import java.io.EOFException
 import java.net.ConnectException
 import java.net.HttpURLConnection
 import java.net.ProtocolException
 import java.net.URL
-import kotlin.system.exitProcess
 
-// task to send something to a webpage
-// normal useage: sendRequest(key, value).start()
+// task to send something to a webpage, prints response code to console
+// normal usage: sendRequest(key, value).start()
 class SendRequest(key: String, value: String, url: String = MainActivity.url) : Thread() {
     val url = URL("$url?$key=$value")
-    val recivedValue = value
 
     override fun run() {
 

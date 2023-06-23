@@ -5,7 +5,6 @@ import android.util.Log
 import java.net.ConnectException
 import java.net.ProtocolException
 import java.net.URL
-import java.util.concurrent.TimeoutException
 
 // task to read an entire page
 // normal usage: readRequest(url,page).execute().get()

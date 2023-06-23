@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
+// recycler view class
 class CustomAdapter(private val mList: List<ItemsViewModel>) :
     RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
     //inner class that is created inside another clas

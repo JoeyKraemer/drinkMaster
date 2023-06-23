@@ -17,7 +17,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.SnapHelper
-import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
 import java.io.BufferedReader
@@ -28,7 +27,7 @@ import java.io.FileWriter
 import java.lang.Thread.sleep
 import java.util.Calendar
 import kotlin.concurrent.thread
-// qrcode
+// qrcode imports
 import android.graphics.Bitmap
 import android.graphics.Color
 import com.google.zxing.BarcodeFormat
@@ -37,6 +36,7 @@ import com.google.zxing.common.BitMatrix
 import com.google.zxing.qrcode.QRCodeWriter
 import java.io.FileNotFoundException
 
+// main page
 class MainActivity : AppCompatActivity() {
     // global variables
     companion object {
@@ -59,6 +59,7 @@ class MainActivity : AppCompatActivity() {
             return JSONObject(response)
         }
 
+        // creates an entirely new file for drinkValues.json (essentially a reset function)
         fun newDrinkValueFile(packageName: String = "com.example.ProjectDrinkMaster") {
             val jsonObject = JSONObject()
             val nOfDrinks = 4
@@ -67,14 +68,14 @@ class MainActivity : AppCompatActivity() {
             var drinks = JSONObject()
             var ingredients = JSONObject()
 
-            for (i in 1..nOfDrinks) {  // adds ingredients
+            for (i in 1..nOfDrinks) {  // for each drink, adds default values and assigns it to drinks
                 var drink = JSONObject()
                 var drinkIngredients = JSONObject()
                 var ingredient1 = JSONObject()
 
                 drink.put("id", "$i") // id
                 drink.put("name", "drink$i") //name
-                drink.put("description", "description$i")
+                drink.put("description", "description$i") // description
 
                 ingredient1.put("id", (0..5).random()) //placeholder id
                 ingredient1.put("amount", (1..2).random()) //placeholder amount
@@ -93,7 +94,7 @@ class MainActivity : AppCompatActivity() {
             }
             jsonObject.put("drinks", drinks)
 
-            for (i in 1..nOfIngredients) {
+            for (i in 1..nOfIngredients) { // assigns default ingredients to file
                 var ingredient = JSONObject()
 
                 ingredient.put("id", i) // id
@@ -110,7 +111,7 @@ class MainActivity : AppCompatActivity() {
             bufferedWriter.write(userString)
             bufferedWriter.close()
         }
-        // overrides drink value file
+        // writes to drink value file, can be used to modify file. syntax: writeToDrinkValueFile(JSONObject)
         fun writeToDrinkValueFile(
             jsonObject: JSONObject,
             packageName: String = "com.example.ProjectDrinkMaster"
@@ -122,6 +123,7 @@ class MainActivity : AppCompatActivity() {
             bufferedWriter.close()
         }
 
+        // rewrites the drink value file to have the default names and descriptions
         fun resetDrinksToDefaultValues() {
             val data = readOffDrinkValueFile()
 
@@ -198,6 +200,8 @@ class MainActivity : AppCompatActivity() {
 
         prepareDifferentDrinks()
 
+        // sets a onClickListener for the buttons on every drink page.
+        // these send a request to server and call the functions: getGin(), getLemonade(), getRum() and getCoke() respectively
         drinkAdapter.setOnOrderClick {
             Log.d(
                 "Button pressed",
@@ -220,13 +224,14 @@ class MainActivity : AppCompatActivity() {
             showPop()
         }
 
-        // setting button to get into the admin page
+        // setting the button to get into the admin page
         val mintIcon = findViewById<ImageView>(R.id.mint)
         mintIcon.setOnClickListener { view ->
             val intent = Intent(this@MainActivity, AdminActivity::class.java)
             startActivity(intent)
         }
 
+        // error finder thread. pings DRINKMASTER server every 5 seconds, then stores every error into errormsgs
         var lastError = ""
         thread(
             true,
@@ -275,6 +280,7 @@ class MainActivity : AppCompatActivity() {
             newDrinkValueFile()
         }
 
+        // updates user position in code whenever the user scrolls horizontally
         recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
@@ -295,6 +301,7 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
+    // initializes and shows the "please confirm your drink ; yes, no" pop-up
     private fun showPop() {
         //creating the alert box
         val builder = AlertDialog.Builder(this)
@@ -318,6 +325,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    // initializes and shows the progress bar pop-up
     private fun confirmationPopUp() {
         val builder = AlertDialog.Builder(this)
         val customView = LayoutInflater.from(this).inflate(R.layout.ok_box, null)
@@ -330,6 +338,7 @@ class MainActivity : AppCompatActivity() {
         }, time)
     }
 
+    // initializes and shows the "your drink has been finished" pop-up
     private fun finishedPopUpBox() {
         val builder = AlertDialog.Builder(this)
         val customView = LayoutInflater.from(this).inflate(R.layout.finished_box, null)
@@ -342,6 +351,7 @@ class MainActivity : AppCompatActivity() {
         }, 5000)
     }
 
+    // initializes and shows the qr code and receipt pop-up
     private fun receiptPopUpBox() {
         val builder = AlertDialog.Builder(this)
         val customView = LayoutInflater.from(this).inflate(R.layout.receipt_pop_up, null)
@@ -364,6 +374,7 @@ class MainActivity : AppCompatActivity() {
         }, 15000)
     }
 
+    // generates the qr code from message
     private fun generateQRCode(content: String, width: Int, height: Int): Bitmap? {
         val qrCodeWriter = QRCodeWriter()
         try {
@@ -383,7 +394,7 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    //the following funtions will add 1 drink to the bars
+    //the following functions get executed when a drink button gets pressed. then will add +1 to amount sold per drink.
     fun getGin() {
         addOneToDrinkValue(1)
         last_drink_ordered = 1
@@ -425,6 +436,7 @@ class MainActivity : AppCompatActivity() {
         var name4 = ""
         var desc4 = ""
 
+        // reads off values from json file, will reset the to default values if an error occurs
         try {
             val data = readOffDrinkValueFile().getJSONObject("drinks")
 
@@ -458,6 +470,7 @@ class MainActivity : AppCompatActivity() {
             return
         }
 
+        // adds drink names and descriptions to UI
         var drink = ItemsViewModel(
             desc1,
             R.drawable.mint_drink,
@@ -490,6 +503,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    // for progress bar
     fun getTime(): Long {
         return time
     }
