@@ -41,6 +41,9 @@ def index():
             elif v == "rebootPi":
                 restartPi()
                 return render_template("index.html")
+            elif v == "rebootPlattform":
+                restartGRBL()
+                return render_template("index.html")
             elif v == "pushUp":
                 action("pushUp")
                 return render_template("index.html")
@@ -124,6 +127,7 @@ def calibration(gcodeArray):
     y = 0
     z = 0
 
+
 def sendToGRBL(drink):
     s = serial.Serial('/dev/ttyUSB0',115200)
     a = "\r\n\r\n"
@@ -197,6 +201,16 @@ def goToUser(x,y,z):
 def restartPi():
     os.system("sudo reboot")
     exit()
+
+
+def restartGRBL():
+    s = serial.Serial('/dev/ttyUSB0',115200)
+    a = "\r\n\r\n"
+    s.write(a.encode())
+    time.sleep(2)
+    s.flushInput()
+    s.flushOutput()
+    s.close()
 
 
 def main():
