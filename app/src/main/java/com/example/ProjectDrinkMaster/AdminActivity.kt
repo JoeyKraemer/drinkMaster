@@ -66,7 +66,7 @@ class AdminActivity : AppCompatActivity() {
 
         openCup.setOnClickListener {
 
-            SendRequest("action", "freeCup")
+            SendRequest("action", "pushUp")
         }
         backButton.setOnClickListener {
             finish()
