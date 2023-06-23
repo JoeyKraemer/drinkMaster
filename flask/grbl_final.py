@@ -95,19 +95,19 @@ def action (drink):
         print(drink+": Perfectly executed")
     elif drink == "drink1":
         sendToGRBL(drink1)
-        time.sleep(1)
+        time.sleep(5)
         goToUser(x,y,z)
     elif drink == "drink2":
         sendToGRBL(drink2)
-        time.sleep(1)
+        time.sleep(5)
         goToUser(x,y,z)
     elif drink == "drink3":
         sendToGRBL(drink3)
-        time.sleep(1)
+        time.sleep(5)
         goToUser(x,y,z)
     elif drink == "drink4":
         sendToGRBL(drink4)
-        time.sleep(1)
+        time.sleep(5)
         goToUser(x,y,z)
     elif drink == "pushUp":
         sendToGRBL(pushUp)
