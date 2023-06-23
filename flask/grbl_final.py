@@ -80,9 +80,9 @@ def action (drink):
         "G0 F6000","G92 z0"," G0 Z-1000","G04 P5","G92 z0 ","G0 Z780",
         "G0 F15000","G92 x0","G0 X-220","G92 y0","G0 Y-5","G0 F6000", "G92 z0","G0 Z-900","G04 P5","G92 z0","G0 Z600"] # Drink 2
     drink3 = [
-        "$x", "G90", "G0 F9000", "G0 Z1900", "G0 F15000", "G0 Y0315", "G0 X0120", #first two movements to R3
+        "$x", "G90", "G0 F9000", "G0 Z1900", "G0 F15000", "G0 Y0315", "G0 X0130", 
         "G0 F6000", "G92 z0", "G0 Z-1000", "G04 P5", "G92 z0", "G0 Z0900",
-        "G0 F15000", "G92 x0", "G0 X-220", "G0 X-220", "G92 z0", "G0 Z-900", "G04 P5", "G92 z0", "G0 Z0800"
+        "G0 F15000", "G92 x0", "G0 X-230", "G92 y0","G0 Y-5","G0 F6000", "G92 z0", "G0 Z-900", "G04 P5", "G92 z0", "G0 Z0800"
     ] # Drink 3
     drink4 = [] # Drink 4
    
@@ -95,10 +95,12 @@ def action (drink):
         print(drink+": Perfectly executed")
     elif drink == "drink1":
         sendToGRBL(drink1)
+        goToUser()
     elif drink == "drink2":
         sendToGRBL(drink2)
     elif drink == "drink3":
         sendToGRBL(drink3)
+        goToUser()
     elif drink == "drink4":
         sendToGRBL(drink4)
     elif drink == "pushUp":
