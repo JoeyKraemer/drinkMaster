@@ -112,6 +112,7 @@ def calibration(gcodeArray):
             
         print("BUFFER MUFFER ",substring_whatever)
         time.sleep(abs(int(substring_whatever)) / 1000)
+        x,y,z = 0
         s.close()
 
 def sendToGRBL(drink):
@@ -128,15 +129,15 @@ def sendToGRBL(drink):
         if "X" in command:
             substring_whatever = command.split("X")
             print(substring_whatever[1])
-            x = int(substring_whatever[1])
+            x += int(substring_whatever[1])
         elif "Y" in command:
             substring_whatever = command.split("Y")
             print(substring_whatever[1])
-            y = int(substring_whatever[1]) 
+            y += int(substring_whatever[1]) 
         elif "Z" in command:
             substring_whatever = command.split("Z")
             print(substring_whatever[1])
-            z = int(substring_whatever[1])
+            z += int(substring_whatever[1])
         command += '\n'
         s.write(command.encode())
         response = s.readline()
