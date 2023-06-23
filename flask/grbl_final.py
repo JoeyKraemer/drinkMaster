@@ -211,6 +211,10 @@ def restartGRBL():
     time.sleep(2)
     s.flushInput()
     s.flushOutput()
+    d = ";RESTART"
+    s.write(d.encode())
+    output = s.readline()
+    print("Response",output.decode())
     s.close()
 
 
