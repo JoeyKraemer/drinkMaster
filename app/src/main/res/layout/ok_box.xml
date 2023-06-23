@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/darkBeige"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/mint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/mint_small" />
+
+    <TextView
+        android:id="@+id/topText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="150dp"
+        android:layout_marginTop="80dp"
+        android:baselineAligned="false"
+        android:fontFamily="@font/share_regular"
+        android:text="Thank you for your order."
+        android:textColor="@color/white"
+        android:textSize="45dp" />
+
+    <TextView
+        android:id="@+id/bottomText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginBottom="75dp"
+        android:baselineAligned="false"
+        android:fontFamily="@font/share_regular"
+        android:text="Your drink will be prepared shortly."
+        android:textColor="@color/white"
+        android:textSize="45dp" />
+
+    <ProgressBar
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="665dp"
+        android:layout_height="39dp"
+        android:layout_marginLeft="30dp"
+        android:indeterminate="true"
+        android:indeterminateTint="@color/black" />
+
+    <ImageView
+        android:id="@+id/lemon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="710dp"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/lemon_small" />
+
+</LinearLayout>
