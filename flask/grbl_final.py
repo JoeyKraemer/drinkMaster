@@ -28,15 +28,19 @@ def index():
                 return render_template("index.html")
             elif v == "DRINK1":
                 action('drink1')
+                action("goToUser")
                 return render_template("index.html")
             elif v == "DRINK2":
                 action("drink2")
+                action("goToUser")
                 return render_template("index.html")   
             elif v == "DRINK3":
                 action("drink3")
+                action("goToUser")
                 return render_template("index.html")
             elif v == "DRINK4":
                 action("drink4")
+                action("goToUser")
                 return render_template("index.html")
             elif v == "rebootPi":
                 restartPi()
