@@ -154,7 +154,7 @@ def goToUser(x,y,z):
     Yaxis = "G0 Y" + str(y)
     Zaxis = "G0 Z" + str(z)
 
-    ar = ["$x","G0 F10000",Zaxis,Xaxis,Yaxis]
+    ar = ["$x","G0 F10000",Xaxis,Zaxis,Yaxis]
 
     s = serial.Serial('/dev/ttyUSB0',115200)
     a = "\r\n\r\n"
@@ -188,8 +188,10 @@ def restartPi():
     os.system("sudo reboot")
     exit()
 
+
 def main():
     app.run(debug=True, host="0.0.0.0", use_reloader=False)
+
 
 if __name__ == "__main__":
     main()
