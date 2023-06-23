@@ -41,7 +41,7 @@ def index():
             elif v == "rebootPi":
                 restartPi()
                 return render_template("index.html")
-            elif v == "rebootPlattform":
+            elif v == "rebootPlatform":
                 restartGRBL()
                 return render_template("index.html")
             elif v == "pushUp":
@@ -52,7 +52,8 @@ def index():
                 return render_template("index.html")     
         else:
             return render_template("index.html")
-        
+
+
 def action (drink):
     #gcode commands stored in arrays
     #helper movements
