@@ -113,12 +113,13 @@ def calibration(gcodeArray):
         print("BUFFER MUFFER ",substring_whatever)
         time.sleep(abs(int(substring_whatever)) / 1000)
 
-        global x,y,z
-        x = 0
-        y = 0
-        z = 0
+        
 
         s.close()
+    global x,y,z
+    x = 0
+    y = 0
+    z = 0
 
 def sendToGRBL(drink):
     s = serial.Serial('/dev/ttyUSB0',115200)
