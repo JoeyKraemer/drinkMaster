@@ -7,74 +7,67 @@
     android:background="@color/ligthBeige"
     tools:context=".MainActivity">
 
-    <FrameLayout
-        android:id="@+id/frameLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp">
-
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/darkBeige"
-            android:fontFamily="@font/share_regular"
-            android:paddingTop="15dp"
-            android:shadowColor="@color/black"
-            android:text="Drink Master"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="48sp" />
-
-        <ImageView
-            android:id="@+id/mint"
-            android:layout_width="76dp"
-            android:layout_height="75dp"
-            app:srcCompat="@drawable/mint" />
-
-        <ImageView
-            android:id="@+id/lemon"
-            android:layout_width="76dp"
-            android:layout_height="75dp"
-            android:layout_marginLeft="1200dp"
-            app:srcCompat="@drawable/lemon" />
-
-        <ImageButton
-            android:id="@+id/order"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="400dp"
-            android:layout_marginTop="650dp"
-            app:srcCompat="@drawable/order" />
-
-        <ImageView
-            android:id="@+id/mocktail"
-            android:layout_width="76dp"
-            android:layout_height="75dp"
-            android:layout_marginTop="730dp"
-            app:srcCompat="@drawable/mocktail" />
-
-        <ImageView
-            android:id="@+id/ice"
-            android:layout_width="76dp"
-            android:layout_height="75dp"
-            android:layout_marginLeft="1200dp"
-            android:layout_marginTop="730dp"
-            app:srcCompat="@drawable/ice" />
-
-    </FrameLayout>
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
-        android:layout_width="864dp"
-        android:layout_height="459dp"
+        android:layout_width="match_parent"
+        android:layout_height="600dp"
         android:scrollbars="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/frameLayout"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/frameLayout"
-        tools:itemCount="7"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:itemCount="4"
         tools:listitem="@layout/recycler_view" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/darkBeige"
+        android:fontFamily="@font/share_regular"
+        android:paddingTop="15dp"
+        android:shadowColor="@color/black"
+        android:text="Drink Master"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="48sp" />
+
+    <ImageView
+        android:id="@+id/mint"
+        android:layout_width="60dp"
+        android:layout_height="59dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/mint" />
+
+    <ImageView
+        android:id="@+id/lemon"
+        android:layout_width="57dp"
+        android:layout_height="61dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/lemon" />
+
+    <ImageView
+        android:id="@+id/mocktail"
+        android:layout_width="76dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/mocktail" />
+
+    <ImageView
+        android:id="@+id/ice"
+        android:layout_width="76dp"
+        android:layout_height="75dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ice" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
