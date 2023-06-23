@@ -26,8 +26,6 @@ class SendRequest(key: String, value: String, url: String = MainActivity.url) : 
                     "networkRequest",
                     "\nSent 'GET' request to URL : $url; Response Code : $responseCode"
                 )
-
-
             }
         } catch (e: ConnectException) {
             Log.e("sendRequest", e.toString())
@@ -35,11 +33,8 @@ class SendRequest(key: String, value: String, url: String = MainActivity.url) : 
         } catch (e: ProtocolException) {
             Log.e("sendRequest", e.toString())
 
-        }catch (e: EOFException){
+        } catch (e: EOFException) {
             Log.e("sendRequest", e.toString())
         }
-
-
     }
-
 }

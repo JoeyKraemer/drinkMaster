@@ -29,17 +29,12 @@ class AdminActivity : AppCompatActivity() {
 
     // size of graph in dp
     val graphHeight = 600
-
     val pincode = 1234
 
     private lateinit var dialog: AlertDialog
-
     private var keycodeDigitElements = ArrayList<EditText>(4)
-
     private val graphBarLengths = ArrayList<Int>(4)
-
     private var graphBars = ArrayList<ImageView>(4)
-
     lateinit var barChart: BarChart
     lateinit var barData: BarData
     lateinit var barDataSet: BarDataSet
@@ -77,20 +72,16 @@ class AdminActivity : AppCompatActivity() {
             finish()
         }
 
-        accessDrinksButton.setOnClickListener{
+        accessDrinksButton.setOnClickListener {
             val intent = Intent(this@AdminActivity, DrinksActivity::class.java)
-            startActivity(intent);
+            startActivity(intent)
         }
-
-
         // ===== INIT KEYCODE ======
         // create pop up password
         showPasswordDialog()
-
         // ===== INIT GRAPH ======
         // get amount of drinks sold for graph
         val data = MainActivity.readOffDrinkValueFile().getJSONObject("drinks")
-
         for (i in (1..4)) {
             graphBarLengths += data.getJSONObject("drink$i").getInt("sold")
         }
@@ -105,19 +96,13 @@ class AdminActivity : AppCompatActivity() {
         barDataSet.color = resources.getColor(R.color.darkBeige)
         barDataSet.valueTextSize = 16f
         barChart.description.isEnabled = false
-
     }
 
     // executes after the pin is entered (extension of OnCreate)
     fun onPinEntered() {
-
         if (MainActivity.errormsgs.isNotEmpty()) {
             var text = MainActivity.errormsgs.last()[0] + " " + MainActivity.errormsgs.last()[1]
-
-            //
-        // createErrorBox(text)
         }
-
     }
 
     // ===== GRAPH LOGIC =====
@@ -140,7 +125,6 @@ class AdminActivity : AppCompatActivity() {
 
             (0 until keycodeDigitElements.size) // iterates through every value in keycodeDigitSize
                 .forEach { i ->
-
                     if (s != null) {
                         if (s.isBlank()) {
                             return
@@ -170,11 +154,9 @@ class AdminActivity : AppCompatActivity() {
         }
 
         override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
-
         }
 
         override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-
         }
     }
 
@@ -234,17 +216,4 @@ class AdminActivity : AppCompatActivity() {
     fun validateCode(code: String): Boolean {
         return (code == pincode.toString())
     }
-
-    // ==== ERROR POPUP ====//
-
-    /*fun createErrorBox(errorMsg: String?) {
-        val builder = AlertDialog.Builder(this)
-        val dialogView = LayoutInflater.from(this).inflate(R.layout.error_box, null)
-        builder.setView(dialogView)
-        val dialog2 = builder.create()
-        dialogView.findViewById<TextView>(R.id.errorText).text = errorMsg
-        dialog2.show()
-    }
-
-*/
 }

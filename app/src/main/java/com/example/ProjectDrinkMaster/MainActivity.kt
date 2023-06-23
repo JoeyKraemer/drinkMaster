@@ -37,19 +37,14 @@ import com.google.zxing.common.BitMatrix
 import com.google.zxing.qrcode.QRCodeWriter
 import java.io.FileNotFoundException
 
-
 class MainActivity : AppCompatActivity() {
-
     // global variables
     companion object {
         const val url = "http://192.168.0.103:5000/"
         const val fileName = "drinkValues.json"
         var errormsgs = ArrayList<Array<String>>()
-
-
         // ===== FILE I/O =====
         // reads off the drinkList, the return can be used with jsonObject.get("drink1")
-
         fun readOffDrinkValueFile(packageName: String = "com.example.ProjectDrinkMaster"): JSONObject {
             val fr = FileReader("/data/data/$packageName/$fileName")
             val bfReader = BufferedReader(fr)
@@ -61,7 +56,6 @@ class MainActivity : AppCompatActivity() {
             }
             bfReader.close()
             val response = stringBuilder.toString()
-
             return JSONObject(response)
         }
 
@@ -70,10 +64,8 @@ class MainActivity : AppCompatActivity() {
             val nOfDrinks = 4
             val nOfIngredients = 6
 
-
             var drinks = JSONObject()
             var ingredients = JSONObject()
-
 
             for (i in 1..nOfDrinks) {  // adds ingredients
                 var drink = JSONObject()
@@ -89,15 +81,14 @@ class MainActivity : AppCompatActivity() {
 
                 drinkIngredients.put("ingredient1", ingredient1) // adds first ingredient
 
-
                 drink.put("drinkIngredients", drinkIngredients) // adds ingredients to drink
                 drink.put("sold", 0) // adds number of drinks sold
                 drinks.put("drink$i", drink)
 
-                drink.put("drinkIngredients",drinkIngredients) // adds ingredients to drink
+                drink.put("drinkIngredients", drinkIngredients) // adds ingredients to drink
                 drink.put("price", 0) // price, placeholder of 0
-                drink.put("sold",0) // adds number of drinks sold
-                drinks.put("drink$i",drink)
+                drink.put("sold", 0) // adds number of drinks sold
+                drinks.put("drink$i", drink)
 
             }
             jsonObject.put("drinks", drinks)
@@ -113,14 +104,12 @@ class MainActivity : AppCompatActivity() {
             }
             jsonObject.put("ingredients", ingredients)
 
-
             val userString = jsonObject.toString()
             val fileWriter = FileWriter("/data/data/$packageName/$fileName")
             val bufferedWriter = BufferedWriter(fileWriter)
             bufferedWriter.write(userString)
             bufferedWriter.close()
         }
-
         // overrides drink value file
         fun writeToDrinkValueFile(
             jsonObject: JSONObject,
@@ -155,7 +144,6 @@ class MainActivity : AppCompatActivity() {
                 "Water is a clear, odorless, and tasteless liquid that is essential for the survival and well-being of all living organisms. It is the most basic and fundamental drink, often referred to as the \"universal solvent.\" Drinking water is crucial for maintaining proper hydration and supporting various bodily functions.\n" +
                         "\n" +
                         "Pure water, in its natural form, contains no additives or flavors. It is composed of hydrogen and oxygen molecules (H2O) and is known for its ability to dissolve many substances, making it a great medium for transporting nutrients throughout the body."
-
 
             data.getJSONObject("drinks").getJSONObject("drink1").put("name", "Mint Syrup")
             data.getJSONObject("drinks").getJSONObject("drink1").put("description", description1)
@@ -362,9 +350,12 @@ class MainActivity : AppCompatActivity() {
         qr_code = customView.findViewById<ImageView>(R.id.qr_code)//qr code
 
         val data = readOffDrinkValueFile()
-        val drinkName = data.getJSONObject("drinks").getJSONObject("drink$last_drink_ordered").getString("name")
-        val drinkPrice = data.getJSONObject("drinks").getJSONObject("drink$last_drink_ordered").getInt("price")
-        val qrCodeContent = "ordered $drinkName : $drinkPrice euro. thank you for ordering from DrinkMaster."
+        val drinkName =
+            data.getJSONObject("drinks").getJSONObject("drink$last_drink_ordered").getString("name")
+        val drinkPrice =
+            data.getJSONObject("drinks").getJSONObject("drink$last_drink_ordered").getInt("price")
+        val qrCodeContent =
+            "ordered $drinkName : $drinkPrice euro. thank you for ordering from DrinkMaster."
         val qrCodeBitmap = generateQRCode(qrCodeContent, 300, 300)
         qr_code.setImageBitmap(qrCodeBitmap)
         dialog.show()
@@ -372,22 +363,24 @@ class MainActivity : AppCompatActivity() {
             dialog.hide()
         }, 15000)
     }
-        private fun generateQRCode(content: String, width: Int, height: Int): Bitmap? {
-            val qrCodeWriter = QRCodeWriter()
-            try {
-                val bitMatrix: BitMatrix = qrCodeWriter.encode(content, BarcodeFormat.QR_CODE, width, height)
-                val bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565)
-                for (x in 0 until width) {
-                    for (y in 0 until height) {
-                        bitmap.setPixel(x, y, if (bitMatrix[x, y]) Color.BLACK else Color.WHITE)
-                    }
+
+    private fun generateQRCode(content: String, width: Int, height: Int): Bitmap? {
+        val qrCodeWriter = QRCodeWriter()
+        try {
+            val bitMatrix: BitMatrix =
+                qrCodeWriter.encode(content, BarcodeFormat.QR_CODE, width, height)
+            val bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565)
+            for (x in 0 until width) {
+                for (y in 0 until height) {
+                    bitmap.setPixel(x, y, if (bitMatrix[x, y]) Color.BLACK else Color.WHITE)
                 }
-                return bitmap
-            } catch (e: WriterException) {
-                e.printStackTrace()
             }
-            return null
+            return bitmap
+        } catch (e: WriterException) {
+            e.printStackTrace()
         }
+        return null
+    }
 
 
     //the following funtions will add 1 drink to the bars
@@ -450,17 +443,14 @@ class MainActivity : AppCompatActivity() {
             data.getJSONObject("drink1").getInt("price")
 
 
-        }
-        catch(e:JSONException){
+        } catch (e: JSONException) {
 
             newDrinkValueFile()
             resetDrinksToDefaultValues()
 
             prepareDifferentDrinks()
             return
-        }
-
-        catch(e:FileNotFoundException){
+        } catch (e: FileNotFoundException) {
             newDrinkValueFile()
             resetDrinksToDefaultValues()
 
@@ -503,5 +493,4 @@ class MainActivity : AppCompatActivity() {
     fun getTime(): Long {
         return time
     }
-
 }

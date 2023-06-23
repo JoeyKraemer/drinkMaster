@@ -4,7 +4,6 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-
     <TextView
         android:id="@+id/DrinkIngredients"
         android:layout_width="193dp"
@@ -14,4 +13,5 @@
         android:text="Ingredients:"
         android:textSize="34sp"
         app:layout_constraintStart_toStartOf="parent"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

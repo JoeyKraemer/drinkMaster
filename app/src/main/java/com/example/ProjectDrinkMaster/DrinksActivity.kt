@@ -8,7 +8,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.ProjectDrinkMaster.MainActivity.Companion.newDrinkValueFile
 import com.example.ProjectDrinkMaster.MainActivity.Companion.resetDrinksToDefaultValues
 
-
 class DrinksActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,7 +45,5 @@ class DrinksActivity: AppCompatActivity() {
         returnButton.setOnClickListener{
             finish()
         }
-
-
     }
 }

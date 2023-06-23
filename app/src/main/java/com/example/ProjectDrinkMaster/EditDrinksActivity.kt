@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.ProjectDrinkMaster.MainActivity.Companion.readOffDrinkValueFile
 import com.example.ProjectDrinkMaster.MainActivity.Companion.writeToDrinkValueFile
 
-class EditDrinksActivity: AppCompatActivity() {
+class EditDrinksActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,15 +32,21 @@ class EditDrinksActivity: AppCompatActivity() {
 
         var data = readOffDrinkValueFile()
 
-        for (i in drinkTitles.indices){
-            drinkTitles[i].setText(data.getJSONObject("drinks").getJSONObject("drink${i+1}").getString("name"))
-            drinkDescs[i].setText(data.getJSONObject("drinks").getJSONObject("drink${i+1}").getString("description"))
+        for (i in drinkTitles.indices) {
+            drinkTitles[i].setText(
+                data.getJSONObject("drinks").getJSONObject("drink${i + 1}").getString("name")
+            )
+            drinkDescs[i].setText(
+                data.getJSONObject("drinks").getJSONObject("drink${i + 1}").getString("description")
+            )
         }
 
-        confirmButton.setOnClickListener{
-            for (i in drinkTitles.indices){
-                data.getJSONObject("drinks").getJSONObject("drink${i+1}").put("name", drinkTitles[i].text)
-                data.getJSONObject("drinks").getJSONObject("drink${i+1}").put("description", drinkDescs[i].text)
+        confirmButton.setOnClickListener {
+            for (i in drinkTitles.indices) {
+                data.getJSONObject("drinks").getJSONObject("drink${i + 1}")
+                    .put("name", drinkTitles[i].text)
+                data.getJSONObject("drinks").getJSONObject("drink${i + 1}")
+                    .put("description", drinkDescs[i].text)
             }
             writeToDrinkValueFile(data)
             finish()
@@ -51,12 +57,6 @@ class EditDrinksActivity: AppCompatActivity() {
             ctx.startActivity(mainIntent)
             Runtime.getRuntime().exit(0)
         }
-
-
-
-
-
     }
-
-
 }
+
