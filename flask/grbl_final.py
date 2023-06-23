@@ -33,10 +33,10 @@ def index():
                 action("drink2")
                 return render_template("index.html")   
             elif v == "DRINK3":
-                action("DRINKNAME")
+                action("drink3")
                 return render_template("index.html")
             elif v == "DRINK4":
-                action("DRINKNAME")
+                action("drink4")
                 return render_template("index.html")
             elif v == "rebootPi":
                 restartPi()
