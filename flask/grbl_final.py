@@ -112,9 +112,11 @@ def calibration(gcodeArray):
             
         print("BUFFER MUFFER ",substring_whatever)
         time.sleep(abs(int(substring_whatever)) / 1000)
-        
+
         global x,y,z
-        x,y,z = 0
+        x = 0
+        y = 0
+        z = 0
 
         s.close()
 
