@@ -185,7 +185,7 @@ def goToUser(x,y,z):
     Yaxis = "G0 Y" + str(y)
     Zaxis = "G0 Z" + str(z-100)
 
-    ar = ["$x",currentPosition,"G91","G0 F10000",Xaxis,Zaxis,Yaxis]
+    ar = ["$x","G91",currentPosition,"G0 F10000",Xaxis,Zaxis,Yaxis]
 
     s = serial.Serial('/dev/ttyUSB0',115200)
     a = "\r\n\r\n"
