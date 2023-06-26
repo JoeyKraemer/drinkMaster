@@ -173,6 +173,10 @@ def sendToGRBL(drink):
     s.close()
 
 def goToUser(x,y,z):
+    currentPosition = "G92 x" + str(x) +  "G92 y" + str(y) + "G92 z" + str(z)
+    #currentPositionY = "G92 y" + str(y)
+    #currentPositionZ = "G92 z" + str(z)
+    
     x = int(x) * -1
     y = int(y) * -1
     z = int(z) * -1
@@ -181,7 +185,7 @@ def goToUser(x,y,z):
     Yaxis = "G0 Y" + str(y)
     Zaxis = "G0 Z" + str(z-100)
 
-    ar = ["$x","G0 F10000",Xaxis,Zaxis,Yaxis]
+    ar = ["$x",currentPosition,"G91","G0 F10000",Xaxis,Zaxis,Yaxis]
 
     s = serial.Serial('/dev/ttyUSB0',115200)
     a = "\r\n\r\n"
