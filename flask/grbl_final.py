@@ -73,16 +73,16 @@ def action (drink):
     drink1 = [
         "$x","G92 x0y0z0","G90","G0 F9000", "G0 Z1900", "G0 F15000", "G0 Y0210", "G0 X0120",
         "G0 F6000","G92 z0", "G0 Z-1000", "G04 P5","G92 z0", "G0 Z0900", 
-        "G0 F12000","G92 x0", "G0 X-220","G92 z0", "G0 Z-900", "G04 P5","G92 z0", "G0 Z0800"
+        "G0 F15000","G92 x0", "G0 X-220","G92 z0", "G0 Z-900", "G04 P5","G92 z0", "G0 Z0800"
         ] # Drink 1
     drink2 = [
         "$x","G92 x0y0z0","G90","G0 F9000","G0 Z1900","G0 F15000","G0 Y0105","G0 X0115",
         "G0 F6000","G92 z0"," G0 Z-1000","G04 P5","G92 z0 ","G0 Z780",
-        "G0 F12000","G92 x0","G0 X-220","G92 y0","G0 Y-5","G0 F6000", "G92 z0","G0 Z-900","G04 P5","G92 z0","G0 Z600"] # Drink 2
+        "G0 F15000","G92 x0","G0 X-220","G92 y0","G0 Y-5","G0 F6000", "G92 z0","G0 Z-900","G04 P5","G92 z0","G0 Z600"] # Drink 2
     drink3 = [
         "$x","G92 x0y0z0", "G90", "G0 F9000", "G0 Z1900", "G0 F15000", "G0 Y0315", "G0 X0110", "G92 y0","G0 Y-5",
         "G0 F6000", "G92 z0", "G0 Z-1000", "G04 P5", "G92 z0", "G0 Z0900",
-        "G0 F12000", "G92 x0", "G0 X-210", "G92 y0","G0 Y-5","G0 F6000", "G92 z0", "G0 Z-900", "G04 P5", "G92 z0", "G0 Z0800"
+        "G0 F15000", "G92 x0", "G0 X-210", "G92 y0","G0 Y-5","G0 F6000", "G92 z0", "G0 Z-900", "G04 P5", "G92 z0", "G0 Z0800"
     ] # Drink 3
     drink4 = [] # Drink 4
    
@@ -173,7 +173,7 @@ def sendToGRBL(drink):
     s.close()
 
 def goToUser(x,y,z):
-    currentPosition = "G92 x" + str(x) +  "G92 y" + str(y) + "G92 z" + str(z)
+    currentPosition = "G92 x" + str(x) +  ",G92 y" + str(y) + ",G92 z" + str(z)
     #currentPositionY = "G92 y" + str(y)
     #currentPositionZ = "G92 z" + str(z)
     
