@@ -35,6 +35,9 @@ import com.google.zxing.WriterException
 import com.google.zxing.common.BitMatrix
 import com.google.zxing.qrcode.QRCodeWriter
 import java.io.FileNotFoundException
+// rating imports
+import android.widget.RatingBar
+import android.widget.TextView
 
 // main page
 class MainActivity : AppCompatActivity() {
@@ -359,6 +362,12 @@ class MainActivity : AppCompatActivity() {
         val dialog = builder.create()
         qr_code = customView.findViewById<ImageView>(R.id.qr_code)//qr code
 
+        val reviewButton = customView.findViewById<Button>(R.id.button_leave_review) // Replace `your_button_id` with the actual ID of your button
+        reviewButton.setOnClickListener {
+            dialog.dismiss() // Dismiss the receipt dialog
+            RatingBarPopUpBox() // Open the RatingBar popup
+        }
+
         val data = readOffDrinkValueFile()
         val drinkName =
             data.getJSONObject("drinks").getJSONObject("drink$last_drink_ordered").getString("name")
@@ -393,7 +402,38 @@ class MainActivity : AppCompatActivity() {
         return null
     }
 
+    private var totalRating = 0.0
+    private var ratingCount = 0
 
+    // initializes and shows the rating bar pop-up
+    private fun RatingBarPopUpBox() {
+        // Create and set the custom view for the AlertDialog
+        val customView = LayoutInflater.from(this).inflate(R.layout.star_review, null)
+        val dialog = AlertDialog.Builder(this)
+            .setView(customView)
+            .create()
+
+        // Access views from the customView rather than the activity
+        val ratingBar = customView.findViewById<RatingBar>(R.id.ratingBar)
+        val submitButton = customView.findViewById<Button>(R.id.button_rating)
+        val averageRatingView = customView.findViewById<TextView>(R.id.average_rating_view)
+
+        submitButton.setOnClickListener {
+            val rating = ratingBar.rating
+            totalRating += rating
+            ratingCount++
+            val averageRating = totalRating / ratingCount
+            averageRatingView.text = "Average Rating: $averageRating"
+            customView.postDelayed({
+                dialog.hide()
+            }, 3000)  // Close the dialog after the rating is submitted
+        }
+
+        // Show the dialog
+        dialog.show()
+    }
+
+    
     //the following functions get executed when a drink button gets pressed. then will add +1 to amount sold per drink.
     fun getGin() {
         addOneToDrinkValue(1)
