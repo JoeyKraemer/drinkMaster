@@ -3,6 +3,7 @@ package com.example.ProjectDrinkMaster
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
+import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -419,12 +420,24 @@ class MainActivity : AppCompatActivity() {
         val cancelButton = customView.findViewById<Button>(R.id.button_cancel_rating)
         val averageRatingView = customView.findViewById<TextView>(R.id.average_rating_view)
 
+        val ratingManager = RatingManager(this) // Instantiating the RatingManager with context
+
         submitButton.setOnClickListener {
-            val rating = ratingBar.rating
-            totalRating += rating
-            ratingCount++
-            val averageRating = totalRating / ratingCount
+            it.isEnabled = false
+            cancelButton.isEnabled = false
+
+            val rating = ratingBar.rating // Getting the rating from the RatingBar
+
+            when (last_drink_ordered) { // Using a when statement to handle different cases
+                1 -> ratingManager.saveRating("drink1", rating)
+                2 -> ratingManager.saveRating("drink2", rating)
+                3 -> ratingManager.saveRating("drink3", rating)
+                4 -> ratingManager.saveRating("drink4", rating)
+            }
+
+            val averageRating = ratingManager.getAverageRating("drink$last_drink_ordered")
             averageRatingView.text = "Average Rating: %.1f".format(averageRating)
+
             customView.postDelayed({
                 dialog.dismiss() // Close the dialog 3 seconds after the rating is submitted
             }, 3000)
@@ -437,6 +450,31 @@ class MainActivity : AppCompatActivity() {
 
         // Show the dialog
         dialog.show()
+    }
+
+    class RatingManager(context: Context) {
+        private val sharedPreferences = context.getSharedPreferences("ratings", MODE_PRIVATE)
+
+        fun saveRating(drinkId: String, newRating: Float) {
+            val oldAverage = getAverageRating(drinkId)
+            val ratingCount = getRatingCount(drinkId)
+
+            // Calculate new average
+            val newAverage = ((oldAverage * ratingCount) + newRating) / (ratingCount + 1)
+
+            val editor = sharedPreferences.edit()
+            editor.putFloat("${drinkId}_average", newAverage)
+            editor.putInt("${drinkId}_count", ratingCount + 1)
+            editor.apply()
+        }
+
+        fun getAverageRating(drinkId: String): Float {
+            return sharedPreferences.getFloat("${drinkId}_average", 0f)
+        }
+
+        private fun getRatingCount(drinkId: String): Int {
+            return sharedPreferences.getInt("${drinkId}_count", 0)
+        }
     }
 
     //the following functions get executed when a drink button gets pressed. then will add +1 to amount sold per drink.
