@@ -1,92 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/darkBeige"
-    android:orientation="vertical">
+    android:background="@color/darkBeige">
 
     <ImageView
         android:id="@+id/mint"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/mint_small" />
 
     <TextView
         android:id="@+id/mainText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="220dp"
+        android:layout_marginStart="240dp"
         android:layout_marginTop="55dp"
-        android:baselineAligned="false"
         android:text="Give us a rating."
         android:textColor="@color/white"
-        android:textSize="40dp" />
+        android:textSize="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mint" />
 
     <RatingBar
         android:id="@+id/ratingBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="240dp"
+        android:layout_marginStart="260dp"
         android:layout_marginTop="40dp"
         android:numStars="5"
         android:stepSize="1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mainText"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <Button
         android:id="@+id/button_rating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="150dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginBottom="-30dp"
+        android:layout_marginStart="170dp"
+        android:layout_marginTop="60dp"
         android:background="@drawable/border"
         android:backgroundTint="#F9F6EE"
-        android:clickable="true"
-        android:fontFamily="@font/share_regular"
-        android:paddingLeft="40dp"
-        android:paddingRight="40dp"
         android:text="Submit"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="@color/white"
-        app:cornerRadius="0dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ratingBar" />
 
     <Button
         android:id="@+id/button_cancel_rating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="430dp"
-        android:layout_marginTop="-20dp"
+        android:layout_marginStart="190dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="210dp"
         android:background="@drawable/border"
         android:backgroundTint="#F9F6EE"
-        android:clickable="true"
-        android:fontFamily="@font/share_regular"
-        android:paddingLeft="40dp"
-        android:paddingRight="40dp"
         android:text="Cancel"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="@color/white"
-        app:cornerRadius="0dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/button_rating"
+        app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
 
     <TextView
         android:id="@+id/average_rating_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Average Rating: "
-        android:textSize="30sp"
-        android:textColor="@color/white"
-        android:layout_marginLeft="255dp"
+        android:layout_marginStart="275dp"
         android:layout_marginTop="30dp"
-        android:baselineAligned="false" />
-
+        android:text="Average Rating: "
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/button_cancel_rating" />
 
     <ImageView
         android:id="@+id/lemon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="630dp"
-        android:scaleType="fitXY"
+        android:layout_marginStart="630dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/average_rating_view"
         app:srcCompat="@drawable/lemon_small" />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
