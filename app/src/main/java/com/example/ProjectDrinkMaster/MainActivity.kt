@@ -416,6 +416,7 @@ class MainActivity : AppCompatActivity() {
         // Access views from the customView rather than the activity
         val ratingBar = customView.findViewById<RatingBar>(R.id.ratingBar)
         val submitButton = customView.findViewById<Button>(R.id.button_rating)
+        val cancelButton = customView.findViewById<Button>(R.id.button_cancel_rating)
         val averageRatingView = customView.findViewById<TextView>(R.id.average_rating_view)
 
         submitButton.setOnClickListener {
@@ -423,17 +424,21 @@ class MainActivity : AppCompatActivity() {
             totalRating += rating
             ratingCount++
             val averageRating = totalRating / ratingCount
-            averageRatingView.text = "Average Rating: $averageRating"
+            averageRatingView.text = "Average Rating: %.1f".format(averageRating)
             customView.postDelayed({
-                dialog.hide()
-            }, 3000)  // Close the dialog after the rating is submitted
+                dialog.dismiss() // Close the dialog 3 seconds after the rating is submitted
+            }, 3000)
+        }
+
+        // Handle the cancel button click event to dismiss the dialog
+        cancelButton.setOnClickListener {
+            dialog.dismiss() // Close the dialog immediately when cancel is pressed
         }
 
         // Show the dialog
         dialog.show()
     }
 
-    
     //the following functions get executed when a drink button gets pressed. then will add +1 to amount sold per drink.
     fun getGin() {
         addOneToDrinkValue(1)

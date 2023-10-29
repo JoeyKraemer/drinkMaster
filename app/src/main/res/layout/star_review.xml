@@ -38,18 +38,36 @@
         android:id="@+id/button_rating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="290dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginLeft="150dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="-30dp"
+        android:background="@drawable/border"
         android:backgroundTint="#F9F6EE"
         android:clickable="true"
         android:fontFamily="@font/share_regular"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
         android:text="Submit"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="@color/white"
+        app:cornerRadius="0dp" />
+
+    <Button
+        android:id="@+id/button_cancel_rating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="430dp"
+        android:layout_marginTop="-20dp"
+        android:background="@drawable/border"
+        android:backgroundTint="#F9F6EE"
+        android:clickable="true"
+        android:fontFamily="@font/share_regular"
         android:paddingLeft="40dp"
         android:paddingRight="40dp"
-        app:cornerRadius="0dp"
-        android:background="@drawable/border"/>
+        android:text="Cancel"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/white"
+        app:cornerRadius="0dp" />
 
     <TextView
         android:id="@+id/average_rating_view"
