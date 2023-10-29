@@ -22,6 +22,7 @@ class CustomAdapter(private val mList: List<ItemsViewModel>) :
         val image: ImageView = itemView.findViewById(R.id.recyclerViewImage)
         val title: TextView = itemView.findViewById(R.id.recylerTitle)
         val order: ImageButton = itemView.findViewById(R.id.imageButton)
+        val rating: TextView = itemView.findViewById(R.id.average_rating_view)
     }
 
     //create new views
@@ -42,6 +43,7 @@ class CustomAdapter(private val mList: List<ItemsViewModel>) :
         holder.image.setImageResource(ItemsViewModel.image)
         holder.title.text = ItemsViewModel.title
         holder.order.setImageResource(ItemsViewModel.orderButton)
+        holder.rating.text = ItemsViewModel.rating
         order = holder.order
         holder.order.setOnClickListener {
             this.onOrderButtonPress.onClick(holder.order)
